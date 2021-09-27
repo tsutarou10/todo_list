@@ -15,11 +15,14 @@ dependencies:
   # For Architecture
   hooks_riverpod: ^0.14.0+4
   flutter_hooks: ^0.17.0
+  freezed_annotation: ^0.14.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.2
+  freezed: ^0.14.5
 
 flutter:
   uses-material-design: true

@@ -3,7 +3,9 @@ import 'package:todo_list/ui/home/home_page.dart';
 
 
 const initialRoute = '/';
+
+const editPageRoute = 'editPage';
+
 Map<String, WidgetBuilder> router = {
-	'/': (BuildContext context) => HomePage(title: 'home page'),
-	'editPage': (BuildContext context) => HomePage(title: 'home page'),
+	initialRoute: (BuildContext context) => HomePage(title: 'home page'),
 };
