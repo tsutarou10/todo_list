@@ -7,5 +7,5 @@ const initialRoute = '/';
 const editPageRoute = 'editPage';
 
 Map<String, WidgetBuilder> router = {
-	initialRoute: (BuildContext context) => HomePage(title: 'home page'),
+  initialRoute: (BuildContext context) => HomePage(title: 'home page'),
 };

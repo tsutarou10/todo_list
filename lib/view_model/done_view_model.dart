@@ -5,25 +5,25 @@ import 'package:todo_list/model/todo_model.dart';
 final doneContentProvider = ChangeNotifierProvider((ref) => DoneContentViewModel());
 
 class DoneContentViewModel with ChangeNotifier {
-	final List<ToDoItem> _items = [];
-	List<ToDoItem> get items => _items;
-	void reorderData(int oldIndex, int newIndex) {
-		if(newIndex > oldIndex) {
-			newIndex -= 1;
-		}
-		print(newIndex);
-		final items = _items.removeAt(oldIndex);
-		_items.insert(newIndex, items);
-		notifyListeners();
-	}
+  final List<ToDoItem> _items = [];
+  List<ToDoItem> get items => _items;
+  void reorderData(int oldIndex, int newIndex) {
+    if(newIndex > oldIndex) {
+      newIndex -= 1;
+    }
+    print(newIndex);
+    final items = _items.removeAt(oldIndex);
+    _items.insert(newIndex, items);
+    notifyListeners();
+  }
 
-	void add(String title, String content) {
-		_items.add(ToDoItem(title, content));
-		notifyListeners();
-	}
-	void remove(int index) {
-		_items.removeAt(index);
-		notifyListeners();
-	}
+  void add(String title, String content) {
+    _items.add(ToDoItem(title, content));
+    notifyListeners();
+  }
+  void remove(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 }
-	
+
