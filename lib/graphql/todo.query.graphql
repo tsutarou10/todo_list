@@ -1,0 +1,19 @@
+query listTodolists($filter: TableTodolistFilterInput = {}) {
+  listTodolists(filter: $filter) {
+    items {
+      createdAt
+      id
+      memo
+      title
+    }
+  }
+}
+
+mutation createTodolist($createtodolistinput: CreateTodolistInput!) {
+  createTodolist(input: $createtodolistinput) {
+    id
+    title
+    memo
+    createdAt
+  }
+}

@@ -12,17 +12,20 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  # For Architecture
-  hooks_riverpod: ^0.14.0+4
-  flutter_hooks: ^0.17.0
+  hooks_riverpod: ^0.14.0+5
+  flutter_hooks: ^0.18.0
+  ferry: ^0.10.4
+  gql_http_link: ^0.4.0
   freezed_annotation: ^0.14.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  build_runner: ^2.1.2
-  freezed: ^0.14.5
+  ferry_generator: ^0.4.4
+  build_runner: ^2.1.4
+  freezed: ^0.14.2
+  analyzer: ^1.7.2
 
 flutter:
   uses-material-design: true

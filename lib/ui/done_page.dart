@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_list/graphql.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/done_view_model.dart';
@@ -54,6 +55,8 @@ class DonePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     items = watch(doneContentProvider).items;
+    final graphQlClient = GraphQLApiClient();
+    graphQlClient.listenEmployees();
     return Scaffold(
         appBar: AppBar(
             title: Text(title),

@@ -1,0 +1,113 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Mutation {
+  createTodolist(input: CreateTodolistInput!): todolist
+  deleteTodolist(input: DeleteTodolistInput!): todolist
+  updateTodolist(input: UpdateTodolistInput!): todolist
+}
+
+type Query {
+  getTodolist(id: ID!): todolist
+  listTodolists(filter: TableTodolistFilterInput, limit: Int, nextToken: String): todolistConnection
+}
+
+type Subscription {
+  onCreateTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["createTodolist"])
+  onDeleteTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["deleteTodolist"])
+  onUpdateTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["updateTodolist"])
+}
+
+type todolist {
+  createdAt: Int
+  id: ID!
+  memo: String
+  title: String!
+}
+
+type todolistConnection {
+  items: [todolist]
+  nextToken: String
+}
+
+input CreateTodolistInput {
+  createdAt: Int
+  memo: String
+  title: String!
+}
+
+input DeleteTodolistInput {
+  id: ID!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input TableTodolistFilterInput {
+  createdAt: TableIntFilterInput
+  id: TableIDFilterInput
+  memo: TableStringFilterInput
+  title: TableStringFilterInput
+}
+
+input UpdateTodolistInput {
+  createdAt: Int
+  id: ID!
+  memo: String
+  title: String
+}
