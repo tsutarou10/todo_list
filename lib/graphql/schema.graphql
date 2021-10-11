@@ -25,6 +25,7 @@ type todolist {
   createdAt: Int
   id: ID!
   memo: String
+  status: String!
   title: String!
 }
 
@@ -36,6 +37,7 @@ type todolistConnection {
 input CreateTodolistInput {
   createdAt: Int
   memo: String
+  status: String!
   title: String!
 }
 
@@ -102,6 +104,7 @@ input TableTodolistFilterInput {
   createdAt: TableIntFilterInput
   id: TableIDFilterInput
   memo: TableStringFilterInput
+  status: TableStringFilterInput
   title: TableStringFilterInput
 }
 

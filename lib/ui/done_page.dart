@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_list/graphql.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/repository/graphql.dart';
 import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/done_view_model.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
@@ -33,7 +33,7 @@ class DonePage extends ConsumerWidget {
         key: Key(item.title),
         onDismissed:  (direction) {
           if(direction == DismissDirection.endToStart) {
-            context.read(inProgressContentProvider).add(item.title, item.description.toString());
+            context.read(inProgressContentProvider).add(item.title, item.status, item.memo);
           } else {
           }
           context.read(doneContentProvider).remove(index);
@@ -55,8 +55,10 @@ class DonePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     items = watch(doneContentProvider).items;
-    final graphQlClient = GraphQLApiClient();
-    graphQlClient.listenEmployees();
+    print('done todo: ${items}');
+    //final graphQlClient = GraphQLApiClient();
+    //graphQlClient.mutationTodo("testTitle", "testMemo", "TODO");
+    //dynamic resp = graphQlClient.queryTodo("TODO");
     return Scaffold(
         appBar: AppBar(
             title: Text(title),

@@ -160,6 +160,9 @@ class _$GlistTodolistsData_listTodolists_itemsSerializer
       'title',
       serializers.serialize(object.title,
           specifiedType: const FullType(String)),
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.createdAt;
@@ -208,6 +211,10 @@ class _$GlistTodolistsData_listTodolists_itemsSerializer
           break;
         case 'title':
           result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -299,6 +306,9 @@ class _$GcreateTodolistData_createTodolistSerializer
       'title',
       serializers.serialize(object.title,
           specifiedType: const FullType(String)),
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.memo;
@@ -348,6 +358,10 @@ class _$GcreateTodolistData_createTodolistSerializer
         case 'createdAt':
           result.createdAt = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -594,6 +608,8 @@ class _$GlistTodolistsData_listTodolists_items
   final String? memo;
   @override
   final String title;
+  @override
+  final String status;
 
   factory _$GlistTodolistsData_listTodolists_items(
           [void Function(GlistTodolistsData_listTodolists_itemsBuilder)?
@@ -606,7 +622,8 @@ class _$GlistTodolistsData_listTodolists_items
       this.createdAt,
       required this.id,
       this.memo,
-      required this.title})
+      required this.title,
+      required this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GlistTodolistsData_listTodolists_items', 'G__typename');
@@ -614,6 +631,8 @@ class _$GlistTodolistsData_listTodolists_items
         id, 'GlistTodolistsData_listTodolists_items', 'id');
     BuiltValueNullFieldError.checkNotNull(
         title, 'GlistTodolistsData_listTodolists_items', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        status, 'GlistTodolistsData_listTodolists_items', 'status');
   }
 
   @override
@@ -634,17 +653,20 @@ class _$GlistTodolistsData_listTodolists_items
         createdAt == other.createdAt &&
         id == other.id &&
         memo == other.memo &&
-        title == other.title;
+        title == other.title &&
+        status == other.status;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, G__typename.hashCode), createdAt.hashCode),
-                id.hashCode),
-            memo.hashCode),
-        title.hashCode));
+            $jc(
+                $jc($jc($jc(0, G__typename.hashCode), createdAt.hashCode),
+                    id.hashCode),
+                memo.hashCode),
+            title.hashCode),
+        status.hashCode));
   }
 
   @override
@@ -655,7 +677,8 @@ class _$GlistTodolistsData_listTodolists_items
           ..add('createdAt', createdAt)
           ..add('id', id)
           ..add('memo', memo)
-          ..add('title', title))
+          ..add('title', title)
+          ..add('status', status))
         .toString();
   }
 }
@@ -686,6 +709,10 @@ class GlistTodolistsData_listTodolists_itemsBuilder
   String? get title => _$this._title;
   set title(String? title) => _$this._title = title;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   GlistTodolistsData_listTodolists_itemsBuilder() {
     GlistTodolistsData_listTodolists_items._initializeBuilder(this);
   }
@@ -698,6 +725,7 @@ class GlistTodolistsData_listTodolists_itemsBuilder
       _id = $v.id;
       _memo = $v.memo;
       _title = $v.title;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -726,7 +754,9 @@ class GlistTodolistsData_listTodolists_itemsBuilder
                 id, 'GlistTodolistsData_listTodolists_items', 'id'),
             memo: memo,
             title: BuiltValueNullFieldError.checkNotNull(
-                title, 'GlistTodolistsData_listTodolists_items', 'title'));
+                title, 'GlistTodolistsData_listTodolists_items', 'title'),
+            status: BuiltValueNullFieldError.checkNotNull(
+                status, 'GlistTodolistsData_listTodolists_items', 'status'));
     replace(_$result);
     return _$result;
   }
@@ -857,6 +887,8 @@ class _$GcreateTodolistData_createTodolist
   final String? memo;
   @override
   final int? createdAt;
+  @override
+  final String status;
 
   factory _$GcreateTodolistData_createTodolist(
           [void Function(GcreateTodolistData_createTodolistBuilder)?
@@ -869,7 +901,8 @@ class _$GcreateTodolistData_createTodolist
       required this.id,
       required this.title,
       this.memo,
-      this.createdAt})
+      this.createdAt,
+      required this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GcreateTodolistData_createTodolist', 'G__typename');
@@ -877,6 +910,8 @@ class _$GcreateTodolistData_createTodolist
         id, 'GcreateTodolistData_createTodolist', 'id');
     BuiltValueNullFieldError.checkNotNull(
         title, 'GcreateTodolistData_createTodolist', 'title');
+    BuiltValueNullFieldError.checkNotNull(
+        status, 'GcreateTodolistData_createTodolist', 'status');
   }
 
   @override
@@ -896,15 +931,20 @@ class _$GcreateTodolistData_createTodolist
         id == other.id &&
         title == other.title &&
         memo == other.memo &&
-        createdAt == other.createdAt;
+        createdAt == other.createdAt &&
+        status == other.status;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, G__typename.hashCode), id.hashCode), title.hashCode),
-            memo.hashCode),
-        createdAt.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, G__typename.hashCode), id.hashCode),
+                    title.hashCode),
+                memo.hashCode),
+            createdAt.hashCode),
+        status.hashCode));
   }
 
   @override
@@ -914,7 +954,8 @@ class _$GcreateTodolistData_createTodolist
           ..add('id', id)
           ..add('title', title)
           ..add('memo', memo)
-          ..add('createdAt', createdAt))
+          ..add('createdAt', createdAt)
+          ..add('status', status))
         .toString();
   }
 }
@@ -945,6 +986,10 @@ class GcreateTodolistData_createTodolistBuilder
   int? get createdAt => _$this._createdAt;
   set createdAt(int? createdAt) => _$this._createdAt = createdAt;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   GcreateTodolistData_createTodolistBuilder() {
     GcreateTodolistData_createTodolist._initializeBuilder(this);
   }
@@ -957,6 +1002,7 @@ class GcreateTodolistData_createTodolistBuilder
       _title = $v.title;
       _memo = $v.memo;
       _createdAt = $v.createdAt;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -985,7 +1031,9 @@ class GcreateTodolistData_createTodolistBuilder
             title: BuiltValueNullFieldError.checkNotNull(
                 title, 'GcreateTodolistData_createTodolist', 'title'),
             memo: memo,
-            createdAt: createdAt);
+            createdAt: createdAt,
+            status: BuiltValueNullFieldError.checkNotNull(
+                status, 'GcreateTodolistData_createTodolist', 'status'));
     replace(_$result);
     return _$result;
   }

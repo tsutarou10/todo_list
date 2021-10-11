@@ -5,6 +5,7 @@ query listTodolists($filter: TableTodolistFilterInput = {}) {
       id
       memo
       title
+      status
     }
   }
 }
@@ -15,5 +16,6 @@ mutation createTodolist($createtodolistinput: CreateTodolistInput!) {
     title
     memo
     createdAt
+    status
   }
 }

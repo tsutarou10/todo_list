@@ -1,7 +1,8 @@
 class ToDoItem {
   String title;
-  String? description;
-  DateTime? createdAt;
+  String? memo;
+  int? createdAt;
+  String status;
 
-  ToDoItem(this.title, [this.description, this.createdAt]);
+  ToDoItem(this.title, this.status, [this.memo, this.createdAt]);
 }

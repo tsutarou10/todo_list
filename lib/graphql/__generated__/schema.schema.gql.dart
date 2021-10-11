@@ -17,6 +17,7 @@ abstract class GCreateTodolistInput
 
   int? get createdAt;
   String? get memo;
+  String get status;
   String get title;
   static Serializer<GCreateTodolistInput> get serializer =>
       _$gCreateTodolistInputSerializer;
@@ -183,6 +184,7 @@ abstract class GTableTodolistFilterInput
   GTableIntFilterInput? get createdAt;
   GTableIDFilterInput? get id;
   GTableStringFilterInput? get memo;
+  GTableStringFilterInput? get status;
   GTableStringFilterInput? get title;
   static Serializer<GTableTodolistFilterInput> get serializer =>
       _$gTableTodolistFilterInputSerializer;

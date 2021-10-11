@@ -40,6 +40,9 @@ class _$GCreateTodolistInputSerializer
       Serializers serializers, GCreateTodolistInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(String)),
       'title',
       serializers.serialize(object.title,
           specifiedType: const FullType(String)),
@@ -80,6 +83,10 @@ class _$GCreateTodolistInputSerializer
         case 'memo':
           result.memo = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case 'title':
           result.title = serializers.deserialize(value,
@@ -808,6 +815,13 @@ class _$GTableTodolistFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GTableStringFilterInput)));
     }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GTableStringFilterInput)));
+    }
     value = object.title;
     if (value != null) {
       result
@@ -842,6 +856,11 @@ class _$GTableTodolistFilterInputSerializer
           break;
         case 'memo':
           result.memo.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GTableStringFilterInput))!
+              as GTableStringFilterInput);
+          break;
+        case 'status':
+          result.status.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GTableStringFilterInput))!
               as GTableStringFilterInput);
           break;
@@ -940,14 +959,19 @@ class _$GCreateTodolistInput extends GCreateTodolistInput {
   @override
   final String? memo;
   @override
+  final String status;
+  @override
   final String title;
 
   factory _$GCreateTodolistInput(
           [void Function(GCreateTodolistInputBuilder)? updates]) =>
       (new GCreateTodolistInputBuilder()..update(updates)).build();
 
-  _$GCreateTodolistInput._({this.createdAt, this.memo, required this.title})
+  _$GCreateTodolistInput._(
+      {this.createdAt, this.memo, required this.status, required this.title})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        status, 'GCreateTodolistInput', 'status');
     BuiltValueNullFieldError.checkNotNull(
         title, 'GCreateTodolistInput', 'title');
   }
@@ -967,13 +991,15 @@ class _$GCreateTodolistInput extends GCreateTodolistInput {
     return other is GCreateTodolistInput &&
         createdAt == other.createdAt &&
         memo == other.memo &&
+        status == other.status &&
         title == other.title;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, createdAt.hashCode), memo.hashCode), title.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, createdAt.hashCode), memo.hashCode), status.hashCode),
+        title.hashCode));
   }
 
   @override
@@ -981,6 +1007,7 @@ class _$GCreateTodolistInput extends GCreateTodolistInput {
     return (newBuiltValueToStringHelper('GCreateTodolistInput')
           ..add('createdAt', createdAt)
           ..add('memo', memo)
+          ..add('status', status)
           ..add('title', title))
         .toString();
   }
@@ -998,6 +1025,10 @@ class GCreateTodolistInputBuilder
   String? get memo => _$this._memo;
   set memo(String? memo) => _$this._memo = memo;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   String? _title;
   String? get title => _$this._title;
   set title(String? title) => _$this._title = title;
@@ -1009,6 +1040,7 @@ class GCreateTodolistInputBuilder
     if ($v != null) {
       _createdAt = $v.createdAt;
       _memo = $v.memo;
+      _status = $v.status;
       _title = $v.title;
       _$v = null;
     }
@@ -1032,6 +1064,8 @@ class GCreateTodolistInputBuilder
         new _$GCreateTodolistInput._(
             createdAt: createdAt,
             memo: memo,
+            status: BuiltValueNullFieldError.checkNotNull(
+                status, 'GCreateTodolistInput', 'status'),
             title: BuiltValueNullFieldError.checkNotNull(
                 title, 'GCreateTodolistInput', 'title'));
     replace(_$result);
@@ -2032,6 +2066,8 @@ class _$GTableTodolistFilterInput extends GTableTodolistFilterInput {
   @override
   final GTableStringFilterInput? memo;
   @override
+  final GTableStringFilterInput? status;
+  @override
   final GTableStringFilterInput? title;
 
   factory _$GTableTodolistFilterInput(
@@ -2039,7 +2075,7 @@ class _$GTableTodolistFilterInput extends GTableTodolistFilterInput {
       (new GTableTodolistFilterInputBuilder()..update(updates)).build();
 
   _$GTableTodolistFilterInput._(
-      {this.createdAt, this.id, this.memo, this.title})
+      {this.createdAt, this.id, this.memo, this.status, this.title})
       : super._();
 
   @override
@@ -2058,13 +2094,15 @@ class _$GTableTodolistFilterInput extends GTableTodolistFilterInput {
         createdAt == other.createdAt &&
         id == other.id &&
         memo == other.memo &&
+        status == other.status &&
         title == other.title;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, createdAt.hashCode), id.hashCode), memo.hashCode),
+        $jc($jc($jc($jc(0, createdAt.hashCode), id.hashCode), memo.hashCode),
+            status.hashCode),
         title.hashCode));
   }
 
@@ -2074,6 +2112,7 @@ class _$GTableTodolistFilterInput extends GTableTodolistFilterInput {
           ..add('createdAt', createdAt)
           ..add('id', id)
           ..add('memo', memo)
+          ..add('status', status)
           ..add('title', title))
         .toString();
   }
@@ -2100,6 +2139,11 @@ class GTableTodolistFilterInputBuilder
       _$this._memo ??= new GTableStringFilterInputBuilder();
   set memo(GTableStringFilterInputBuilder? memo) => _$this._memo = memo;
 
+  GTableStringFilterInputBuilder? _status;
+  GTableStringFilterInputBuilder get status =>
+      _$this._status ??= new GTableStringFilterInputBuilder();
+  set status(GTableStringFilterInputBuilder? status) => _$this._status = status;
+
   GTableStringFilterInputBuilder? _title;
   GTableStringFilterInputBuilder get title =>
       _$this._title ??= new GTableStringFilterInputBuilder();
@@ -2113,6 +2157,7 @@ class GTableTodolistFilterInputBuilder
       _createdAt = $v.createdAt?.toBuilder();
       _id = $v.id?.toBuilder();
       _memo = $v.memo?.toBuilder();
+      _status = $v.status?.toBuilder();
       _title = $v.title?.toBuilder();
       _$v = null;
     }
@@ -2139,6 +2184,7 @@ class GTableTodolistFilterInputBuilder
               createdAt: _createdAt?.build(),
               id: _id?.build(),
               memo: _memo?.build(),
+              status: _status?.build(),
               title: _title?.build());
     } catch (_) {
       late String _$failedField;
@@ -2149,6 +2195,8 @@ class GTableTodolistFilterInputBuilder
         _id?.build();
         _$failedField = 'memo';
         _memo?.build();
+        _$failedField = 'status';
+        _status?.build();
         _$failedField = 'title';
         _title?.build();
       } catch (e) {

@@ -15,8 +15,12 @@ class HomePage extends ConsumerWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
   var currentTab;
 
+  List<ToDoItem> todoItems = [];
+  List<ToDoItem> inProgressItems = [];
+  List<ToDoItem> doneItems = [];
 
-  void initCurrentTab(List<ToDoItem> todoItems, List<ToDoItem> inProgressItems, List<ToDoItem> doneItems) {
+
+  void initCurrentTab() {
     currentTab = [
       ToDoPage(title: 'ToDo', items: todoItems),
       InProgressPage(title: 'In Progress', items: inProgressItems),
@@ -26,12 +30,12 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
+    print('home_page.dart');
     int currentIndex = watch(bottomNavigationBarProvider).currentIndex;
-    List<ToDoItem> todoItems = watch(todoContentProvider).items;
-    List<ToDoItem> inprogressItems = watch(inProgressContentProvider).items;
-    List<ToDoItem> doneItems = watch(doneContentProvider).items;
-    initCurrentTab(todoItems, inprogressItems, doneItems);
-    print(currentIndex);
+    todoItems = watch(todoContentProvider).items;
+    inProgressItems = watch(inProgressContentProvider).items;
+    doneItems = watch(doneContentProvider).items;
+    initCurrentTab();
     return Scaffold(
         body: currentTab[currentIndex],
         bottomNavigationBar:  BottomNavigationBar(

@@ -32,9 +32,9 @@ class InProgressPage extends ConsumerWidget {
         key: Key(item.title),
         onDismissed:  (direction) {
           if(direction == DismissDirection.endToStart) {
-            context.read(todoContentProvider).add(item.title, item.description.toString());
+            context.read(todoContentProvider).add(item.title, item.status, item.memo);
           } else {
-            context.read(doneContentProvider).add(item.title, item.description.toString());
+            context.read(doneContentProvider).add(item.title, item.status, item.memo);
           }
           context.read(inProgressContentProvider).remove(index);
         },

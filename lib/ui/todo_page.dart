@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/repository/graphql.dart';
 import 'package:todo_list/ui/home/home_page.dart';
 import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
@@ -9,10 +10,11 @@ import 'package:todo_list/view_model/todo_view_model.dart';
 
 class ToDoPage extends ConsumerWidget {
   final String title;
-  List<ToDoItem> items = [];
+  List<ToDoItem> items;
+  final graphQlClient = GraphQLApiClient();
   ToDoPage({Key? key, required this.title, required this.items}) : super(key: key);
 
-  List<Widget> _getListItems(BuildContext context) => items
+  List<Widget> _getListItems(BuildContext context) => items 
       .asMap()
       .map((index, item) => MapEntry(index, _buildRow(context, index, item)))
       .values
@@ -33,9 +35,9 @@ class ToDoPage extends ConsumerWidget {
         onDismissed:  (direction) {
           if(direction == DismissDirection.endToStart) {
           } else {
-            context.read(inProgressContentProvider).add(item.title, item.description.toString());
+            context.read(inProgressContentProvider).add(item.title, item.status, item.memo);
+            context.read(todoContentProvider).remove(index);
           }
-          context.read(todoContentProvider).remove(index);
         },
         child: ListTile(
                    key: ValueKey(item.title),

@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/repository/graphql.dart';
 
 final doneContentProvider = ChangeNotifierProvider((ref) => DoneContentViewModel());
 
 class DoneContentViewModel with ChangeNotifier {
-  final List<ToDoItem> _items = [];
+  final graphQlClient = GraphQLApiClient();
+  List<ToDoItem> _items = [];
   List<ToDoItem> get items => _items;
+
+  DoneContentViewModel() {
+    fetch();
+  }
+
+  void fetch() async {
+    print('fetch done');
+    _items = await graphQlClient.queryTodo("DONE");
+  }
+
   void reorderData(int oldIndex, int newIndex) {
     if(newIndex > oldIndex) {
       newIndex -= 1;
@@ -17,8 +29,8 @@ class DoneContentViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void add(String title, String content) {
-    _items.add(ToDoItem(title, content));
+  void add(String title, String status, String? memo) {
+    _items.add(ToDoItem(title, status, memo));
     notifyListeners();
   }
   void remove(int index) {
