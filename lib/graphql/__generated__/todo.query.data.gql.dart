@@ -44,6 +44,8 @@ abstract class GcreateTodoListData_createTodoList
   String get G__typename;
   String get cuid;
   String get tid;
+  String? get title;
+  String? get status;
   static Serializer<GcreateTodoListData_createTodoList> get serializer =>
       _$gcreateTodoListDataCreateTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
@@ -119,7 +121,7 @@ abstract class GlistTodoListsData_listTodoLists_items
   String get G__typename;
   String get cuid;
   String get tid;
-  String get title;
+  String? get title;
   String? get status;
   static Serializer<GlistTodoListsData_listTodoLists_items> get serializer =>
       _$glistTodoListsDataListTodoListsItemsSerializer;

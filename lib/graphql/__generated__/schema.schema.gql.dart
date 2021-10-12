@@ -18,7 +18,7 @@ abstract class GCreateTodoListInput
   String get cuid;
   String? get status;
   String get tid;
-  String get title;
+  String? get title;
   static Serializer<GCreateTodoListInput> get serializer =>
       _$gCreateTodoListInputSerializer;
   Map<String, dynamic> toJson() =>
@@ -37,6 +37,7 @@ abstract class GDeleteTodoListInput
       _$GDeleteTodoListInput;
 
   String get cuid;
+  String get tid;
   static Serializer<GDeleteTodoListInput> get serializer =>
       _$gDeleteTodoListInputSerializer;
   Map<String, dynamic> toJson() =>
@@ -184,6 +185,7 @@ abstract class GTableTodoListFilterInput
   GTableStringFilterInput? get cuid;
   GTableStringFilterInput? get status;
   GTableStringFilterInput? get tid;
+  GTableStringFilterInput? get title;
   static Serializer<GTableTodoListFilterInput> get serializer =>
       _$gTableTodoListFilterInputSerializer;
   Map<String, dynamic> toJson() =>
@@ -203,7 +205,9 @@ abstract class GUpdateTodoListInput
       _$GUpdateTodoListInput;
 
   String get cuid;
-  String? get tid;
+  String? get status;
+  String get tid;
+  String? get title;
   static Serializer<GUpdateTodoListInput> get serializer =>
       _$gUpdateTodoListInputSerializer;
   Map<String, dynamic> toJson() =>

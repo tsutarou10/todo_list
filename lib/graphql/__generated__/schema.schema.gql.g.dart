@@ -44,15 +44,19 @@ class _$GCreateTodoListInputSerializer
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
     ];
     Object? value;
     value = object.status;
     if (value != null) {
       result
         ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -85,7 +89,7 @@ class _$GCreateTodoListInputSerializer
           break;
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -111,6 +115,8 @@ class _$GDeleteTodoListInputSerializer
     final result = <Object?>[
       'cuid',
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'tid',
+      serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -130,6 +136,10 @@ class _$GDeleteTodoListInputSerializer
       switch (key) {
         case 'cuid':
           result.cuid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'tid':
+          result.tid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -810,6 +820,13 @@ class _$GTableTodoListFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GTableStringFilterInput)));
     }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GTableStringFilterInput)));
+    }
     return result;
   }
 
@@ -840,6 +857,11 @@ class _$GTableTodoListFilterInputSerializer
                   specifiedType: const FullType(GTableStringFilterInput))!
               as GTableStringFilterInput);
           break;
+        case 'title':
+          result.title.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(GTableStringFilterInput))!
+              as GTableStringFilterInput);
+          break;
       }
     }
 
@@ -864,12 +886,21 @@ class _$GUpdateTodoListInputSerializer
     final result = <Object?>[
       'cuid',
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'tid',
+      serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.tid;
+    value = object.status;
     if (value != null) {
       result
-        ..add('tid')
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -892,8 +923,16 @@ class _$GUpdateTodoListInputSerializer
           result.cuid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'tid':
           result.tid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -911,19 +950,17 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
   @override
   final String tid;
   @override
-  final String title;
+  final String? title;
 
   factory _$GCreateTodoListInput(
           [void Function(GCreateTodoListInputBuilder)? updates]) =>
       (new GCreateTodoListInputBuilder()..update(updates)).build();
 
   _$GCreateTodoListInput._(
-      {required this.cuid, this.status, required this.tid, required this.title})
+      {required this.cuid, this.status, required this.tid, this.title})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GCreateTodoListInput', 'cuid');
     BuiltValueNullFieldError.checkNotNull(tid, 'GCreateTodoListInput', 'tid');
-    BuiltValueNullFieldError.checkNotNull(
-        title, 'GCreateTodoListInput', 'title');
   }
 
   @override
@@ -1017,8 +1054,7 @@ class GCreateTodoListInputBuilder
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GCreateTodoListInput', 'tid'),
-            title: BuiltValueNullFieldError.checkNotNull(
-                title, 'GCreateTodoListInput', 'title'));
+            title: title);
     replace(_$result);
     return _$result;
   }
@@ -1027,13 +1063,17 @@ class GCreateTodoListInputBuilder
 class _$GDeleteTodoListInput extends GDeleteTodoListInput {
   @override
   final String cuid;
+  @override
+  final String tid;
 
   factory _$GDeleteTodoListInput(
           [void Function(GDeleteTodoListInputBuilder)? updates]) =>
       (new GDeleteTodoListInputBuilder()..update(updates)).build();
 
-  _$GDeleteTodoListInput._({required this.cuid}) : super._() {
+  _$GDeleteTodoListInput._({required this.cuid, required this.tid})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GDeleteTodoListInput', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(tid, 'GDeleteTodoListInput', 'tid');
   }
 
   @override
@@ -1048,18 +1088,21 @@ class _$GDeleteTodoListInput extends GDeleteTodoListInput {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GDeleteTodoListInput && cuid == other.cuid;
+    return other is GDeleteTodoListInput &&
+        cuid == other.cuid &&
+        tid == other.tid;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, cuid.hashCode));
+    return $jf($jc($jc(0, cuid.hashCode), tid.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GDeleteTodoListInput')
-          ..add('cuid', cuid))
+          ..add('cuid', cuid)
+          ..add('tid', tid))
         .toString();
   }
 }
@@ -1072,12 +1115,17 @@ class GDeleteTodoListInputBuilder
   String? get cuid => _$this._cuid;
   set cuid(String? cuid) => _$this._cuid = cuid;
 
+  String? _tid;
+  String? get tid => _$this._tid;
+  set tid(String? tid) => _$this._tid = tid;
+
   GDeleteTodoListInputBuilder();
 
   GDeleteTodoListInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _cuid = $v.cuid;
+      _tid = $v.tid;
       _$v = null;
     }
     return this;
@@ -1099,7 +1147,9 @@ class GDeleteTodoListInputBuilder
     final _$result = _$v ??
         new _$GDeleteTodoListInput._(
             cuid: BuiltValueNullFieldError.checkNotNull(
-                cuid, 'GDeleteTodoListInput', 'cuid'));
+                cuid, 'GDeleteTodoListInput', 'cuid'),
+            tid: BuiltValueNullFieldError.checkNotNull(
+                tid, 'GDeleteTodoListInput', 'tid'));
     replace(_$result);
     return _$result;
   }
@@ -2017,12 +2067,15 @@ class _$GTableTodoListFilterInput extends GTableTodoListFilterInput {
   final GTableStringFilterInput? status;
   @override
   final GTableStringFilterInput? tid;
+  @override
+  final GTableStringFilterInput? title;
 
   factory _$GTableTodoListFilterInput(
           [void Function(GTableTodoListFilterInputBuilder)? updates]) =>
       (new GTableTodoListFilterInputBuilder()..update(updates)).build();
 
-  _$GTableTodoListFilterInput._({this.cuid, this.status, this.tid}) : super._();
+  _$GTableTodoListFilterInput._({this.cuid, this.status, this.tid, this.title})
+      : super._();
 
   @override
   GTableTodoListFilterInput rebuild(
@@ -2039,12 +2092,15 @@ class _$GTableTodoListFilterInput extends GTableTodoListFilterInput {
     return other is GTableTodoListFilterInput &&
         cuid == other.cuid &&
         status == other.status &&
-        tid == other.tid;
+        tid == other.tid &&
+        title == other.title;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode),
+        title.hashCode));
   }
 
   @override
@@ -2052,7 +2108,8 @@ class _$GTableTodoListFilterInput extends GTableTodoListFilterInput {
     return (newBuiltValueToStringHelper('GTableTodoListFilterInput')
           ..add('cuid', cuid)
           ..add('status', status)
-          ..add('tid', tid))
+          ..add('tid', tid)
+          ..add('title', title))
         .toString();
   }
 }
@@ -2077,6 +2134,11 @@ class GTableTodoListFilterInputBuilder
       _$this._tid ??= new GTableStringFilterInputBuilder();
   set tid(GTableStringFilterInputBuilder? tid) => _$this._tid = tid;
 
+  GTableStringFilterInputBuilder? _title;
+  GTableStringFilterInputBuilder get title =>
+      _$this._title ??= new GTableStringFilterInputBuilder();
+  set title(GTableStringFilterInputBuilder? title) => _$this._title = title;
+
   GTableTodoListFilterInputBuilder();
 
   GTableTodoListFilterInputBuilder get _$this {
@@ -2085,6 +2147,7 @@ class GTableTodoListFilterInputBuilder
       _cuid = $v.cuid?.toBuilder();
       _status = $v.status?.toBuilder();
       _tid = $v.tid?.toBuilder();
+      _title = $v.title?.toBuilder();
       _$v = null;
     }
     return this;
@@ -2109,7 +2172,8 @@ class GTableTodoListFilterInputBuilder
           new _$GTableTodoListFilterInput._(
               cuid: _cuid?.build(),
               status: _status?.build(),
-              tid: _tid?.build());
+              tid: _tid?.build(),
+              title: _title?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -2119,6 +2183,8 @@ class GTableTodoListFilterInputBuilder
         _status?.build();
         _$failedField = 'tid';
         _tid?.build();
+        _$failedField = 'title';
+        _title?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GTableTodoListFilterInput', _$failedField, e.toString());
@@ -2134,14 +2200,21 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   @override
   final String cuid;
   @override
-  final String? tid;
+  final String? status;
+  @override
+  final String tid;
+  @override
+  final String? title;
 
   factory _$GUpdateTodoListInput(
           [void Function(GUpdateTodoListInputBuilder)? updates]) =>
       (new GUpdateTodoListInputBuilder()..update(updates)).build();
 
-  _$GUpdateTodoListInput._({required this.cuid, this.tid}) : super._() {
+  _$GUpdateTodoListInput._(
+      {required this.cuid, this.status, required this.tid, this.title})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GUpdateTodoListInput', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(tid, 'GUpdateTodoListInput', 'tid');
   }
 
   @override
@@ -2158,19 +2231,25 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
     if (identical(other, this)) return true;
     return other is GUpdateTodoListInput &&
         cuid == other.cuid &&
-        tid == other.tid;
+        status == other.status &&
+        tid == other.tid &&
+        title == other.title;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, cuid.hashCode), tid.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode),
+        title.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('GUpdateTodoListInput')
           ..add('cuid', cuid)
-          ..add('tid', tid))
+          ..add('status', status)
+          ..add('tid', tid)
+          ..add('title', title))
         .toString();
   }
 }
@@ -2183,9 +2262,17 @@ class GUpdateTodoListInputBuilder
   String? get cuid => _$this._cuid;
   set cuid(String? cuid) => _$this._cuid = cuid;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   String? _tid;
   String? get tid => _$this._tid;
   set tid(String? tid) => _$this._tid = tid;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
 
   GUpdateTodoListInputBuilder();
 
@@ -2193,7 +2280,9 @@ class GUpdateTodoListInputBuilder
     final $v = _$v;
     if ($v != null) {
       _cuid = $v.cuid;
+      _status = $v.status;
       _tid = $v.tid;
+      _title = $v.title;
       _$v = null;
     }
     return this;
@@ -2216,7 +2305,10 @@ class GUpdateTodoListInputBuilder
         new _$GUpdateTodoListInput._(
             cuid: BuiltValueNullFieldError.checkNotNull(
                 cuid, 'GUpdateTodoListInput', 'cuid'),
-            tid: tid);
+            status: status,
+            tid: BuiltValueNullFieldError.checkNotNull(
+                tid, 'GUpdateTodoListInput', 'tid'),
+            title: title);
     replace(_$result);
     return _$result;
   }

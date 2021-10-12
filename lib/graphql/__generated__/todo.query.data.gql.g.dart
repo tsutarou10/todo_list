@@ -102,7 +102,21 @@ class _$GcreateTodoListData_createTodoListSerializer
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -129,6 +143,14 @@ class _$GcreateTodoListData_createTodoListSerializer
         case 'tid':
           result.tid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -276,11 +298,15 @@ class _$GlistTodoListsData_listTodoLists_itemsSerializer
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.status;
     if (value != null) {
       result
@@ -317,7 +343,7 @@ class _$GlistTodoListsData_listTodoLists_itemsSerializer
           break;
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
@@ -451,6 +477,10 @@ class _$GcreateTodoListData_createTodoList
   final String cuid;
   @override
   final String tid;
+  @override
+  final String? title;
+  @override
+  final String? status;
 
   factory _$GcreateTodoListData_createTodoList(
           [void Function(GcreateTodoListData_createTodoListBuilder)?
@@ -459,7 +489,11 @@ class _$GcreateTodoListData_createTodoList
           .build();
 
   _$GcreateTodoListData_createTodoList._(
-      {required this.G__typename, required this.cuid, required this.tid})
+      {required this.G__typename,
+      required this.cuid,
+      required this.tid,
+      this.title,
+      this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GcreateTodoListData_createTodoList', 'G__typename');
@@ -484,13 +518,17 @@ class _$GcreateTodoListData_createTodoList
     return other is GcreateTodoListData_createTodoList &&
         G__typename == other.G__typename &&
         cuid == other.cuid &&
-        tid == other.tid;
+        tid == other.tid &&
+        title == other.title &&
+        status == other.status;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode), tid.hashCode));
+    return $jf($jc(
+        $jc($jc($jc($jc(0, G__typename.hashCode), cuid.hashCode), tid.hashCode),
+            title.hashCode),
+        status.hashCode));
   }
 
   @override
@@ -498,7 +536,9 @@ class _$GcreateTodoListData_createTodoList
     return (newBuiltValueToStringHelper('GcreateTodoListData_createTodoList')
           ..add('G__typename', G__typename)
           ..add('cuid', cuid)
-          ..add('tid', tid))
+          ..add('tid', tid)
+          ..add('title', title)
+          ..add('status', status))
         .toString();
   }
 }
@@ -521,6 +561,14 @@ class GcreateTodoListData_createTodoListBuilder
   String? get tid => _$this._tid;
   set tid(String? tid) => _$this._tid = tid;
 
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   GcreateTodoListData_createTodoListBuilder() {
     GcreateTodoListData_createTodoList._initializeBuilder(this);
   }
@@ -531,6 +579,8 @@ class GcreateTodoListData_createTodoListBuilder
       _G__typename = $v.G__typename;
       _cuid = $v.cuid;
       _tid = $v.tid;
+      _title = $v.title;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -557,7 +607,9 @@ class GcreateTodoListData_createTodoListBuilder
             cuid: BuiltValueNullFieldError.checkNotNull(
                 cuid, 'GcreateTodoListData_createTodoList', 'cuid'),
             tid: BuiltValueNullFieldError.checkNotNull(
-                tid, 'GcreateTodoListData_createTodoList', 'tid'));
+                tid, 'GcreateTodoListData_createTodoList', 'tid'),
+            title: title,
+            status: status);
     replace(_$result);
     return _$result;
   }
@@ -798,7 +850,7 @@ class _$GlistTodoListsData_listTodoLists_items
   @override
   final String tid;
   @override
-  final String title;
+  final String? title;
   @override
   final String? status;
 
@@ -812,7 +864,7 @@ class _$GlistTodoListsData_listTodoLists_items
       {required this.G__typename,
       required this.cuid,
       required this.tid,
-      required this.title,
+      this.title,
       this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -821,8 +873,6 @@ class _$GlistTodoListsData_listTodoLists_items
         cuid, 'GlistTodoListsData_listTodoLists_items', 'cuid');
     BuiltValueNullFieldError.checkNotNull(
         tid, 'GlistTodoListsData_listTodoLists_items', 'tid');
-    BuiltValueNullFieldError.checkNotNull(
-        title, 'GlistTodoListsData_listTodoLists_items', 'title');
   }
 
   @override
@@ -932,8 +982,7 @@ class GlistTodoListsData_listTodoLists_itemsBuilder
                 cuid, 'GlistTodoListsData_listTodoLists_items', 'cuid'),
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GlistTodoListsData_listTodoLists_items', 'tid'),
-            title: BuiltValueNullFieldError.checkNotNull(
-                title, 'GlistTodoListsData_listTodoLists_items', 'title'),
+            title: title,
             status: status);
     replace(_$result);
     return _$result;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
@@ -8,8 +9,9 @@ import 'package:todo_list/view_model/done_view_model.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
-class DonePage extends StatelessWidget {
+class DonePage extends HookWidget {
   final String title;
+  List<ToDoItem> items = [];
   final graphQlClient = GraphQLApiClient();
   DonePage({Key? key, required this.title}) : super(key: key);
 
@@ -20,10 +22,10 @@ class DonePage extends StatelessWidget {
       .values
       .toList();
 
-  Widget _buildReorderableListView(BuildContext context, List<ToDoItem> items) {
+  Widget _buildReorderableListView(BuildContext context) {
     return ReorderableListView(
         onReorder: (oldIndex, newIndex) {
-          context.read(todoContentProvider).reorderData(oldIndex, newIndex);
+          context.read(doneContentProvider).reorderData(oldIndex, newIndex);
         },
         children: _getListItems(context, items),
     );
@@ -55,16 +57,15 @@ class DonePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('todo_tabs');
+    print('done_tabs');
     return Scaffold(
         appBar: AppBar(
             title: Text(title),
         ),
         body: Consumer(
             builder: (context, watch, child) {
-              List<ToDoItem> items = watch(doneContentProvider).items;
-              print('todo items: ${items}');
-              return _buildReorderableListView(context, items);
+              items = watch(doneContentProvider).items;
+              return _buildReorderableListView(context);
             }
         ),
         floatingActionButton: FloatingActionButton(

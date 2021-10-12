@@ -78,6 +78,12 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: true),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'tid'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
@@ -137,7 +143,19 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'status'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'tid'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'title'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
@@ -167,7 +185,19 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'status'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'tid'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'title'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
@@ -197,7 +227,19 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'status'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'tid'),
+                directives: [],
+                type: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'String'), isNonNull: false),
+                defaultValue: null),
+            _i1.InputValueDefinitionNode(
+                name: _i1.NameNode(value: 'title'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
@@ -234,7 +276,7 @@ const TodoList = _i1.ObjectTypeDefinitionNode(
           directives: [],
           args: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true))
+              name: _i1.NameNode(value: 'String'), isNonNull: false))
     ]);
 const TodoListConnection = _i1.ObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'TodoListConnection'),
@@ -282,7 +324,7 @@ const CreateTodoListInput = _i1.InputObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'title'),
           directives: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: true),
+              name: _i1.NameNode(value: 'String'), isNonNull: false),
           defaultValue: null)
     ]);
 const DeleteTodoListInput = _i1.InputObjectTypeDefinitionNode(
@@ -291,6 +333,12 @@ const DeleteTodoListInput = _i1.InputObjectTypeDefinitionNode(
     fields: [
       _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'cuid'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'tid'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),
@@ -593,6 +641,13 @@ const TableTodoListFilterInput = _i1.InputObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'TableStringFilterInput'),
               isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'title'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'TableStringFilterInput'),
+              isNonNull: false),
           defaultValue: null)
     ]);
 const UpdateTodoListInput = _i1.InputObjectTypeDefinitionNode(
@@ -606,7 +661,19 @@ const UpdateTodoListInput = _i1.InputObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'status'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: false),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'tid'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
+          defaultValue: null),
+      _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'title'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false),

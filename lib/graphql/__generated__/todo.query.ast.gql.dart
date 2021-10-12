@@ -39,6 +39,18 @@ const createTodoList = _i1.OperationDefinitionNode(
                 alias: null,
                 arguments: [],
                 directives: [],
+                selectionSet: null),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'title'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'status'),
+                alias: null,
+                arguments: [],
+                directives: [],
                 selectionSet: null)
           ]))
     ]));

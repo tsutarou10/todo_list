@@ -11,21 +11,21 @@ type Mutation {
 }
 
 type Query {
-  getTodoList(cuid: String!): TodoList
+  getTodoList(cuid: String!, tid: String!): TodoList
   listTodoLists(filter: TableTodoListFilterInput, limit: Int, nextToken: String): TodoListConnection
 }
 
 type Subscription {
-  onCreateTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["createTodoList"])
-  onDeleteTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["deleteTodoList"])
-  onUpdateTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["updateTodoList"])
+  onCreateTodoList(cuid: String, status: String, tid: String, title: String): TodoList @aws_subscribe(mutations : ["createTodoList"])
+  onDeleteTodoList(cuid: String, status: String, tid: String, title: String): TodoList @aws_subscribe(mutations : ["deleteTodoList"])
+  onUpdateTodoList(cuid: String, status: String, tid: String, title: String): TodoList @aws_subscribe(mutations : ["updateTodoList"])
 }
 
 type TodoList {
   cuid: String!
   status: String
   tid: String!
-  title: String!
+  title: String
 }
 
 type TodoListConnection {
@@ -37,11 +37,12 @@ input CreateTodoListInput {
   cuid: String!
   status: String
   tid: String!
-  title: String!
+  title: String
 }
 
 input DeleteTodoListInput {
   cuid: String!
+  tid: String!
 }
 
 input TableBooleanFilterInput {
@@ -103,9 +104,12 @@ input TableTodoListFilterInput {
   cuid: TableStringFilterInput
   status: TableStringFilterInput
   tid: TableStringFilterInput
+  title: TableStringFilterInput
 }
 
 input UpdateTodoListInput {
   cuid: String!
-  tid: String
+  status: String
+  tid: String!
+  title: String
 }

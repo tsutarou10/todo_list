@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
@@ -8,11 +9,11 @@ import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
 
-class ToDoPage extends StatelessWidget {
+class ToDoPage extends HookWidget {
   final String title;
+  List<ToDoItem> items = [];
   final graphQlClient = GraphQLApiClient();
   ToDoPage({Key? key, required this.title}) : super(key: key);
-
 
   List<Widget> _getListItems(BuildContext context, List<ToDoItem> items) => items
       .asMap()
@@ -20,7 +21,7 @@ class ToDoPage extends StatelessWidget {
       .values
       .toList();
 
-  Widget _buildReorderableListView(BuildContext context, List<ToDoItem> items) {
+  Widget _buildReorderableListView(BuildContext context) {
     return ReorderableListView(
         onReorder: (oldIndex, newIndex) {
           context.read(todoContentProvider).reorderData(oldIndex, newIndex);
@@ -62,14 +63,14 @@ class ToDoPage extends StatelessWidget {
         ),
         body: Consumer(
             builder: (context, watch, child) {
-              List<ToDoItem> items = watch(todoContentProvider).items;
-              print('todo items: ${items}');
-              return _buildReorderableListView(context, items);
+              items = watch(todoContentProvider).items;
+              return _buildReorderableListView(context);
             }
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              //context.read(todoContentProvider).fetch("TODO");
+              print('hoge');
+              context.read(todoContentProvider).createTodo("TEST_CUID", "test title", "test memo", "TODO");
             },
             child: const Icon(Icons.add),
         ),

@@ -13,11 +13,9 @@ class App extends HookWidget {
     final inProgressContent = useProvider(inProgressContentProvider);
     final doneContent = useProvider(doneContentProvider);
     useEffect(() {
-      WidgetsBinding.instance?.addPostFrameCallback((_) {
-        todoContent.fetch("TODO");
-        inProgressContent.fetch("IN_PROGRESS");
-        doneContent.fetch("DONE");
-      });
+      todoContent.fetch("TODO");
+      inProgressContent.fetch("IN_PROGRESS");
+      doneContent.fetch("DONE");
     }, const []);
 		return MaterialApp(
 				title: 'Flutter Demo',

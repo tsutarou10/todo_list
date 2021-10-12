@@ -2,6 +2,8 @@ mutation createTodoList($createtodolistinput: CreateTodoListInput!) {
   createTodoList(input: $createtodolistinput) {
     cuid
     tid
+    title
+    status
   }
 }
 

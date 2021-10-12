@@ -40,13 +40,15 @@ class DoneContentViewModel extends ChangeNotifier {
     if(newIndex > oldIndex) {
       newIndex -= 1;
     }
-    final items = _items.removeAt(oldIndex);
-    _items.insert(newIndex, items);
-    notifyListeners();
+    Future.delayed(Duration(milliseconds: 100), () {
+      final items = _items.removeAt(oldIndex);
+      _items.insert(newIndex, items);
+      notifyListeners();
+    });
   }
 
   void add(String title, String status, String? memo) {
-    _items.add(ToDoItem(title, status, memo));
+    _items.add(ToDoItem(title, status));
     notifyListeners();
   }
   void remove(int index) {
