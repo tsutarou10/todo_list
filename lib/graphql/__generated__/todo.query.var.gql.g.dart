@@ -6,86 +6,39 @@ part of 'todo.query.var.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GlistTodolistsVars> _$glistTodolistsVarsSerializer =
-    new _$GlistTodolistsVarsSerializer();
-Serializer<GcreateTodolistVars> _$gcreateTodolistVarsSerializer =
-    new _$GcreateTodolistVarsSerializer();
+Serializer<GcreateTodoListVars> _$gcreateTodoListVarsSerializer =
+    new _$GcreateTodoListVarsSerializer();
+Serializer<GlistTodoListsVars> _$glistTodoListsVarsSerializer =
+    new _$GlistTodoListsVarsSerializer();
 
-class _$GlistTodolistsVarsSerializer
-    implements StructuredSerializer<GlistTodolistsVars> {
-  @override
-  final Iterable<Type> types = const [GlistTodolistsVars, _$GlistTodolistsVars];
-  @override
-  final String wireName = 'GlistTodolistsVars';
-
-  @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GlistTodolistsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[];
-    Object? value;
-    value = object.filter;
-    if (value != null) {
-      result
-        ..add('filter')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.GTableTodolistFilterInput)));
-    }
-    return result;
-  }
-
-  @override
-  GlistTodolistsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GlistTodolistsVarsBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'filter':
-          result.filter.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.GTableTodolistFilterInput))!
-              as _i1.GTableTodolistFilterInput);
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GcreateTodolistVarsSerializer
-    implements StructuredSerializer<GcreateTodolistVars> {
+class _$GcreateTodoListVarsSerializer
+    implements StructuredSerializer<GcreateTodoListVars> {
   @override
   final Iterable<Type> types = const [
-    GcreateTodolistVars,
-    _$GcreateTodolistVars
+    GcreateTodoListVars,
+    _$GcreateTodoListVars
   ];
   @override
-  final String wireName = 'GcreateTodolistVars';
+  final String wireName = 'GcreateTodoListVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcreateTodolistVars object,
+      Serializers serializers, GcreateTodoListVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'createtodolistinput',
       serializers.serialize(object.createtodolistinput,
-          specifiedType: const FullType(_i1.GCreateTodolistInput)),
+          specifiedType: const FullType(_i1.GCreateTodoListInput)),
     ];
 
     return result;
   }
 
   @override
-  GcreateTodolistVars deserialize(
+  GcreateTodoListVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcreateTodolistVarsBuilder();
+    final result = new GcreateTodoListVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -95,8 +48,8 @@ class _$GcreateTodolistVarsSerializer
       switch (key) {
         case 'createtodolistinput':
           result.createtodolistinput.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.GCreateTodolistInput))!
-              as _i1.GCreateTodolistInput);
+                  specifiedType: const FullType(_i1.GCreateTodoListInput))!
+              as _i1.GCreateTodoListInput);
           break;
       }
     }
@@ -105,123 +58,76 @@ class _$GcreateTodolistVarsSerializer
   }
 }
 
-class _$GlistTodolistsVars extends GlistTodolistsVars {
+class _$GlistTodoListsVarsSerializer
+    implements StructuredSerializer<GlistTodoListsVars> {
   @override
-  final _i1.GTableTodolistFilterInput? filter;
-
-  factory _$GlistTodolistsVars(
-          [void Function(GlistTodolistsVarsBuilder)? updates]) =>
-      (new GlistTodolistsVarsBuilder()..update(updates)).build();
-
-  _$GlistTodolistsVars._({this.filter}) : super._();
+  final Iterable<Type> types = const [GlistTodoListsVars, _$GlistTodoListsVars];
+  @override
+  final String wireName = 'GlistTodoListsVars';
 
   @override
-  GlistTodolistsVars rebuild(
-          void Function(GlistTodolistsVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  Iterable<Object?> serialize(
+      Serializers serializers, GlistTodoListsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'filter',
+      serializers.serialize(object.filter,
+          specifiedType: const FullType(_i1.GTableTodoListFilterInput)),
+    ];
 
-  @override
-  GlistTodolistsVarsBuilder toBuilder() =>
-      new GlistTodolistsVarsBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GlistTodolistsVars && filter == other.filter;
+    return result;
   }
 
   @override
-  int get hashCode {
-    return $jf($jc(0, filter.hashCode));
-  }
+  GlistTodoListsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GlistTodoListsVarsBuilder();
 
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper('GlistTodolistsVars')
-          ..add('filter', filter))
-        .toString();
-  }
-}
-
-class GlistTodolistsVarsBuilder
-    implements Builder<GlistTodolistsVars, GlistTodolistsVarsBuilder> {
-  _$GlistTodolistsVars? _$v;
-
-  _i1.GTableTodolistFilterInputBuilder? _filter;
-  _i1.GTableTodolistFilterInputBuilder get filter =>
-      _$this._filter ??= new _i1.GTableTodolistFilterInputBuilder();
-  set filter(_i1.GTableTodolistFilterInputBuilder? filter) =>
-      _$this._filter = filter;
-
-  GlistTodolistsVarsBuilder();
-
-  GlistTodolistsVarsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _filter = $v.filter?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GlistTodolistsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GlistTodolistsVars;
-  }
-
-  @override
-  void update(void Function(GlistTodolistsVarsBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  _$GlistTodolistsVars build() {
-    _$GlistTodolistsVars _$result;
-    try {
-      _$result = _$v ?? new _$GlistTodolistsVars._(filter: _filter?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'filter';
-        _filter?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'GlistTodolistsVars', _$failedField, e.toString());
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'filter':
+          result.filter.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.GTableTodoListFilterInput))!
+              as _i1.GTableTodoListFilterInput);
+          break;
       }
-      rethrow;
     }
-    replace(_$result);
-    return _$result;
+
+    return result.build();
   }
 }
 
-class _$GcreateTodolistVars extends GcreateTodolistVars {
+class _$GcreateTodoListVars extends GcreateTodoListVars {
   @override
-  final _i1.GCreateTodolistInput createtodolistinput;
+  final _i1.GCreateTodoListInput createtodolistinput;
 
-  factory _$GcreateTodolistVars(
-          [void Function(GcreateTodolistVarsBuilder)? updates]) =>
-      (new GcreateTodolistVarsBuilder()..update(updates)).build();
+  factory _$GcreateTodoListVars(
+          [void Function(GcreateTodoListVarsBuilder)? updates]) =>
+      (new GcreateTodoListVarsBuilder()..update(updates)).build();
 
-  _$GcreateTodolistVars._({required this.createtodolistinput}) : super._() {
+  _$GcreateTodoListVars._({required this.createtodolistinput}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        createtodolistinput, 'GcreateTodolistVars', 'createtodolistinput');
+        createtodolistinput, 'GcreateTodoListVars', 'createtodolistinput');
   }
 
   @override
-  GcreateTodolistVars rebuild(
-          void Function(GcreateTodolistVarsBuilder) updates) =>
+  GcreateTodoListVars rebuild(
+          void Function(GcreateTodoListVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GcreateTodolistVarsBuilder toBuilder() =>
-      new GcreateTodolistVarsBuilder()..replace(this);
+  GcreateTodoListVarsBuilder toBuilder() =>
+      new GcreateTodoListVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GcreateTodolistVars &&
+    return other is GcreateTodoListVars &&
         createtodolistinput == other.createtodolistinput;
   }
 
@@ -232,26 +138,26 @@ class _$GcreateTodolistVars extends GcreateTodolistVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GcreateTodolistVars')
+    return (newBuiltValueToStringHelper('GcreateTodoListVars')
           ..add('createtodolistinput', createtodolistinput))
         .toString();
   }
 }
 
-class GcreateTodolistVarsBuilder
-    implements Builder<GcreateTodolistVars, GcreateTodolistVarsBuilder> {
-  _$GcreateTodolistVars? _$v;
+class GcreateTodoListVarsBuilder
+    implements Builder<GcreateTodoListVars, GcreateTodoListVarsBuilder> {
+  _$GcreateTodoListVars? _$v;
 
-  _i1.GCreateTodolistInputBuilder? _createtodolistinput;
-  _i1.GCreateTodolistInputBuilder get createtodolistinput =>
-      _$this._createtodolistinput ??= new _i1.GCreateTodolistInputBuilder();
+  _i1.GCreateTodoListInputBuilder? _createtodolistinput;
+  _i1.GCreateTodoListInputBuilder get createtodolistinput =>
+      _$this._createtodolistinput ??= new _i1.GCreateTodoListInputBuilder();
   set createtodolistinput(
-          _i1.GCreateTodolistInputBuilder? createtodolistinput) =>
+          _i1.GCreateTodoListInputBuilder? createtodolistinput) =>
       _$this._createtodolistinput = createtodolistinput;
 
-  GcreateTodolistVarsBuilder();
+  GcreateTodoListVarsBuilder();
 
-  GcreateTodolistVarsBuilder get _$this {
+  GcreateTodoListVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _createtodolistinput = $v.createtodolistinput.toBuilder();
@@ -261,22 +167,22 @@ class GcreateTodolistVarsBuilder
   }
 
   @override
-  void replace(GcreateTodolistVars other) {
+  void replace(GcreateTodoListVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GcreateTodolistVars;
+    _$v = other as _$GcreateTodoListVars;
   }
 
   @override
-  void update(void Function(GcreateTodolistVarsBuilder)? updates) {
+  void update(void Function(GcreateTodoListVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GcreateTodolistVars build() {
-    _$GcreateTodolistVars _$result;
+  _$GcreateTodoListVars build() {
+    _$GcreateTodoListVars _$result;
     try {
       _$result = _$v ??
-          new _$GcreateTodolistVars._(
+          new _$GcreateTodoListVars._(
               createtodolistinput: createtodolistinput.build());
     } catch (_) {
       late String _$failedField;
@@ -285,7 +191,101 @@ class GcreateTodolistVarsBuilder
         createtodolistinput.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GcreateTodolistVars', _$failedField, e.toString());
+            'GcreateTodoListVars', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GlistTodoListsVars extends GlistTodoListsVars {
+  @override
+  final _i1.GTableTodoListFilterInput filter;
+
+  factory _$GlistTodoListsVars(
+          [void Function(GlistTodoListsVarsBuilder)? updates]) =>
+      (new GlistTodoListsVarsBuilder()..update(updates)).build();
+
+  _$GlistTodoListsVars._({required this.filter}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        filter, 'GlistTodoListsVars', 'filter');
+  }
+
+  @override
+  GlistTodoListsVars rebuild(
+          void Function(GlistTodoListsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GlistTodoListsVarsBuilder toBuilder() =>
+      new GlistTodoListsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GlistTodoListsVars && filter == other.filter;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, filter.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GlistTodoListsVars')
+          ..add('filter', filter))
+        .toString();
+  }
+}
+
+class GlistTodoListsVarsBuilder
+    implements Builder<GlistTodoListsVars, GlistTodoListsVarsBuilder> {
+  _$GlistTodoListsVars? _$v;
+
+  _i1.GTableTodoListFilterInputBuilder? _filter;
+  _i1.GTableTodoListFilterInputBuilder get filter =>
+      _$this._filter ??= new _i1.GTableTodoListFilterInputBuilder();
+  set filter(_i1.GTableTodoListFilterInputBuilder? filter) =>
+      _$this._filter = filter;
+
+  GlistTodoListsVarsBuilder();
+
+  GlistTodoListsVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _filter = $v.filter.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GlistTodoListsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GlistTodoListsVars;
+  }
+
+  @override
+  void update(void Function(GlistTodoListsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GlistTodoListsVars build() {
+    _$GlistTodoListsVars _$result;
+    try {
+      _$result = _$v ?? new _$GlistTodoListsVars._(filter: filter.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'filter';
+        filter.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GlistTodoListsVars', _$failedField, e.toString());
       }
       rethrow;
     }

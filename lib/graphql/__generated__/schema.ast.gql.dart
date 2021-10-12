@@ -22,47 +22,47 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'createTodolist'),
+          name: _i1.NameNode(value: 'createTodoList'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'input'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'CreateTodolistInput'),
+                    name: _i1.NameNode(value: 'CreateTodoListInput'),
                     isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false)),
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'deleteTodolist'),
+          name: _i1.NameNode(value: 'deleteTodoList'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'input'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'DeleteTodolistInput'),
+                    name: _i1.NameNode(value: 'DeleteTodoListInput'),
                     isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false)),
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'updateTodolist'),
+          name: _i1.NameNode(value: 'updateTodoList'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'input'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'UpdateTodolistInput'),
+                    name: _i1.NameNode(value: 'UpdateTodoListInput'),
                     isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false))
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false))
     ]);
 const Query = _i1.ObjectTypeDefinitionNode(
     name: _i1.NameNode(value: 'Query'),
@@ -70,27 +70,27 @@ const Query = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'getTodolist'),
+          name: _i1.NameNode(value: 'getTodoList'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'id'),
+                name: _i1.NameNode(value: 'cuid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'ID'), isNonNull: true),
+                    name: _i1.NameNode(value: 'String'), isNonNull: true),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false)),
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'listTodolists'),
+          name: _i1.NameNode(value: 'listTodoLists'),
           directives: [],
           args: [
             _i1.InputValueDefinitionNode(
                 name: _i1.NameNode(value: 'filter'),
                 directives: [],
                 type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'TableTodolistFilterInput'),
+                    name: _i1.NameNode(value: 'TableTodoListFilterInput'),
                     isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
@@ -107,7 +107,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolistConnection'),
+              name: _i1.NameNode(value: 'TodoListConnection'),
               isNonNull: false))
     ]);
 const Subscription = _i1.ObjectTypeDefinitionNode(
@@ -116,7 +116,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'onCreateTodolist'),
+          name: _i1.NameNode(value: 'onCreateTodoList'),
           directives: [
             _i1.DirectiveNode(
                 name: _i1.NameNode(value: 'aws_subscribe'),
@@ -125,40 +125,28 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                       name: _i1.NameNode(value: 'mutations'),
                       value: _i1.ListValueNode(values: [
                         _i1.StringValueNode(
-                            value: 'createTodolist', isBlock: false)
+                            value: 'createTodoList', isBlock: false)
                       ]))
                 ])
           ],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'createdAt'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'id'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'ID'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'memo'),
+                name: _i1.NameNode(value: 'cuid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'title'),
+                name: _i1.NameNode(value: 'tid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false)),
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'onDeleteTodolist'),
+          name: _i1.NameNode(value: 'onDeleteTodoList'),
           directives: [
             _i1.DirectiveNode(
                 name: _i1.NameNode(value: 'aws_subscribe'),
@@ -167,40 +155,28 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                       name: _i1.NameNode(value: 'mutations'),
                       value: _i1.ListValueNode(values: [
                         _i1.StringValueNode(
-                            value: 'deleteTodolist', isBlock: false)
+                            value: 'deleteTodoList', isBlock: false)
                       ]))
                 ])
           ],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'createdAt'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'id'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'ID'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'memo'),
+                name: _i1.NameNode(value: 'cuid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'title'),
+                name: _i1.NameNode(value: 'tid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false)),
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'onUpdateTodolist'),
+          name: _i1.NameNode(value: 'onUpdateTodoList'),
           directives: [
             _i1.DirectiveNode(
                 name: _i1.NameNode(value: 'aws_subscribe'),
@@ -209,64 +185,46 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
                       name: _i1.NameNode(value: 'mutations'),
                       value: _i1.ListValueNode(values: [
                         _i1.StringValueNode(
-                            value: 'updateTodolist', isBlock: false)
+                            value: 'updateTodoList', isBlock: false)
                       ]))
                 ])
           ],
           args: [
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'createdAt'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'Int'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'id'),
-                directives: [],
-                type: _i1.NamedTypeNode(
-                    name: _i1.NameNode(value: 'ID'), isNonNull: false),
-                defaultValue: null),
-            _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'memo'),
+                name: _i1.NameNode(value: 'cuid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null),
             _i1.InputValueDefinitionNode(
-                name: _i1.NameNode(value: 'title'),
+                name: _i1.NameNode(value: 'tid'),
                 directives: [],
                 type: _i1.NamedTypeNode(
                     name: _i1.NameNode(value: 'String'), isNonNull: false),
                 defaultValue: null)
           ],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'todolist'), isNonNull: false))
+              name: _i1.NameNode(value: 'TodoList'), isNonNull: false))
     ]);
-const todolist = _i1.ObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'todolist'),
+const TodoList = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'TodoList'),
     directives: [],
     interfaces: [],
     fields: [
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'createdAt'),
+          name: _i1.NameNode(value: 'cuid'),
           directives: [],
           args: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'Int'), isNonNull: false)),
+              name: _i1.NameNode(value: 'String'), isNonNull: true)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'id'),
-          directives: [],
-          args: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'ID'), isNonNull: true)),
-      _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'memo'),
+          name: _i1.NameNode(value: 'status'),
           directives: [],
           args: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false)),
       _i1.FieldDefinitionNode(
-          name: _i1.NameNode(value: 'status'),
+          name: _i1.NameNode(value: 'tid'),
           directives: [],
           args: [],
           type: _i1.NamedTypeNode(
@@ -278,8 +236,8 @@ const todolist = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true))
     ]);
-const todolistConnection = _i1.ObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'todolistConnection'),
+const TodoListConnection = _i1.ObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'TodoListConnection'),
     directives: [],
     interfaces: [],
     fields: [
@@ -289,7 +247,7 @@ const todolistConnection = _i1.ObjectTypeDefinitionNode(
           args: [],
           type: _i1.ListTypeNode(
               type: _i1.NamedTypeNode(
-                  name: _i1.NameNode(value: 'todolist'), isNonNull: false),
+                  name: _i1.NameNode(value: 'TodoList'), isNonNull: false),
               isNonNull: false)),
       _i1.FieldDefinitionNode(
           name: _i1.NameNode(value: 'nextToken'),
@@ -298,24 +256,24 @@ const todolistConnection = _i1.ObjectTypeDefinitionNode(
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false))
     ]);
-const CreateTodolistInput = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'CreateTodolistInput'),
+const CreateTodoListInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'CreateTodoListInput'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'createdAt'),
+          name: _i1.NameNode(value: 'cuid'),
           directives: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'Int'), isNonNull: false),
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'memo'),
+          name: _i1.NameNode(value: 'status'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'status'),
+          name: _i1.NameNode(value: 'tid'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),
@@ -327,15 +285,15 @@ const CreateTodolistInput = _i1.InputObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'String'), isNonNull: true),
           defaultValue: null)
     ]);
-const DeleteTodolistInput = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'DeleteTodolistInput'),
+const DeleteTodoListInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'DeleteTodoListInput'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'id'),
+          name: _i1.NameNode(value: 'cuid'),
           directives: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'ID'), isNonNull: true),
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
           defaultValue: null)
     ]);
 const TableBooleanFilterInput = _i1.InputObjectTypeDefinitionNode(
@@ -611,26 +569,12 @@ const TableStringFilterInput = _i1.InputObjectTypeDefinitionNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false),
           defaultValue: null)
     ]);
-const TableTodolistFilterInput = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'TableTodolistFilterInput'),
+const TableTodoListFilterInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'TableTodoListFilterInput'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'createdAt'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'TableIntFilterInput'),
-              isNonNull: false),
-          defaultValue: null),
-      _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'id'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'TableIDFilterInput'),
-              isNonNull: false),
-          defaultValue: null),
-      _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'memo'),
+          name: _i1.NameNode(value: 'cuid'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'TableStringFilterInput'),
@@ -644,37 +588,25 @@ const TableTodolistFilterInput = _i1.InputObjectTypeDefinitionNode(
               isNonNull: false),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'title'),
+          name: _i1.NameNode(value: 'tid'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'TableStringFilterInput'),
               isNonNull: false),
           defaultValue: null)
     ]);
-const UpdateTodolistInput = _i1.InputObjectTypeDefinitionNode(
-    name: _i1.NameNode(value: 'UpdateTodolistInput'),
+const UpdateTodoListInput = _i1.InputObjectTypeDefinitionNode(
+    name: _i1.NameNode(value: 'UpdateTodoListInput'),
     directives: [],
     fields: [
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'createdAt'),
+          name: _i1.NameNode(value: 'cuid'),
           directives: [],
           type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'Int'), isNonNull: false),
+              name: _i1.NameNode(value: 'String'), isNonNull: true),
           defaultValue: null),
       _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'id'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'ID'), isNonNull: true),
-          defaultValue: null),
-      _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'memo'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'String'), isNonNull: false),
-          defaultValue: null),
-      _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'title'),
+          name: _i1.NameNode(value: 'tid'),
           directives: [],
           type: _i1.NamedTypeNode(
               name: _i1.NameNode(value: 'String'), isNonNull: false),
@@ -685,15 +617,15 @@ const document = _i1.DocumentNode(definitions: [
   Mutation,
   Query,
   Subscription,
-  todolist,
-  todolistConnection,
-  CreateTodolistInput,
-  DeleteTodolistInput,
+  TodoList,
+  TodoListConnection,
+  CreateTodoListInput,
+  DeleteTodoListInput,
   TableBooleanFilterInput,
   TableFloatFilterInput,
   TableIDFilterInput,
   TableIntFilterInput,
   TableStringFilterInput,
-  TableTodolistFilterInput,
-  UpdateTodolistInput
+  TableTodoListFilterInput,
+  UpdateTodoListInput
 ]);

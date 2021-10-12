@@ -5,26 +5,26 @@ import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
 import 'package:todo_list/graphql/__generated__/schema.schema.gql.dart'
     show
-        GCreateTodolistInput,
-        GDeleteTodolistInput,
+        GCreateTodoListInput,
+        GDeleteTodoListInput,
         GTableBooleanFilterInput,
         GTableFloatFilterInput,
         GTableIDFilterInput,
         GTableIntFilterInput,
         GTableStringFilterInput,
-        GTableTodolistFilterInput,
-        GUpdateTodolistInput;
+        GTableTodoListFilterInput,
+        GUpdateTodoListInput;
 import 'package:todo_list/graphql/__generated__/todo.query.data.gql.dart'
     show
-        GcreateTodolistData,
-        GcreateTodolistData_createTodolist,
-        GlistTodolistsData,
-        GlistTodolistsData_listTodolists,
-        GlistTodolistsData_listTodolists_items;
+        GcreateTodoListData,
+        GcreateTodoListData_createTodoList,
+        GlistTodoListsData,
+        GlistTodoListsData_listTodoLists,
+        GlistTodoListsData_listTodoLists_items;
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart'
-    show GcreateTodolistReq, GlistTodolistsReq;
+    show GcreateTodoListReq, GlistTodoListsReq;
 import 'package:todo_list/graphql/__generated__/todo.query.var.gql.dart'
-    show GcreateTodolistVars, GlistTodolistsVars;
+    show GcreateTodoListVars, GlistTodoListsVars;
 
 part 'serializers.gql.g.dart';
 
@@ -32,23 +32,23 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
-  GCreateTodolistInput,
-  GDeleteTodolistInput,
+  GCreateTodoListInput,
+  GDeleteTodoListInput,
   GTableBooleanFilterInput,
   GTableFloatFilterInput,
   GTableIDFilterInput,
   GTableIntFilterInput,
   GTableStringFilterInput,
-  GTableTodolistFilterInput,
-  GUpdateTodolistInput,
-  GcreateTodolistData,
-  GcreateTodolistData_createTodolist,
-  GcreateTodolistReq,
-  GcreateTodolistVars,
-  GlistTodolistsData,
-  GlistTodolistsData_listTodolists,
-  GlistTodolistsData_listTodolists_items,
-  GlistTodolistsReq,
-  GlistTodolistsVars
+  GTableTodoListFilterInput,
+  GUpdateTodoListInput,
+  GcreateTodoListData,
+  GcreateTodoListData_createTodoList,
+  GcreateTodoListReq,
+  GcreateTodoListVars,
+  GlistTodoListsData,
+  GlistTodoListsData_listTodoLists,
+  GlistTodoListsData_listTodoLists_items,
+  GlistTodoListsReq,
+  GlistTodoListsVars
 ])
 final Serializers serializers = _serializersBuilder.build();

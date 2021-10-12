@@ -7,28 +7,28 @@ part of 'serializers.gql.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(GCreateTodolistInput.serializer)
-      ..add(GDeleteTodolistInput.serializer)
+      ..add(GCreateTodoListInput.serializer)
+      ..add(GDeleteTodoListInput.serializer)
       ..add(GTableBooleanFilterInput.serializer)
       ..add(GTableFloatFilterInput.serializer)
       ..add(GTableIDFilterInput.serializer)
       ..add(GTableIntFilterInput.serializer)
       ..add(GTableStringFilterInput.serializer)
-      ..add(GTableTodolistFilterInput.serializer)
-      ..add(GUpdateTodolistInput.serializer)
-      ..add(GcreateTodolistData.serializer)
-      ..add(GcreateTodolistData_createTodolist.serializer)
-      ..add(GcreateTodolistReq.serializer)
-      ..add(GcreateTodolistVars.serializer)
-      ..add(GlistTodolistsData.serializer)
-      ..add(GlistTodolistsData_listTodolists.serializer)
-      ..add(GlistTodolistsData_listTodolists_items.serializer)
-      ..add(GlistTodolistsReq.serializer)
-      ..add(GlistTodolistsVars.serializer)
+      ..add(GTableTodoListFilterInput.serializer)
+      ..add(GUpdateTodoListInput.serializer)
+      ..add(GcreateTodoListData.serializer)
+      ..add(GcreateTodoListData_createTodoList.serializer)
+      ..add(GcreateTodoListReq.serializer)
+      ..add(GcreateTodoListVars.serializer)
+      ..add(GlistTodoListsData.serializer)
+      ..add(GlistTodoListsData_listTodoLists.serializer)
+      ..add(GlistTodoListsData_listTodoLists_items.serializer)
+      ..add(GlistTodoListsReq.serializer)
+      ..add(GlistTodoListsVars.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList,
-              const [const FullType(GlistTodolistsData_listTodolists_items)]),
-          () => new ListBuilder<GlistTodolistsData_listTodolists_items>())
+              const [const FullType(GlistTodoListsData_listTodoLists_items)]),
+          () => new ListBuilder<GlistTodoListsData_listTodoLists_items>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

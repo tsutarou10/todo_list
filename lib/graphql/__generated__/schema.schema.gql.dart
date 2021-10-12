@@ -7,43 +7,43 @@ import 'package:todo_list/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'schema.schema.gql.g.dart';
 
-abstract class GCreateTodolistInput
-    implements Built<GCreateTodolistInput, GCreateTodolistInputBuilder> {
-  GCreateTodolistInput._();
+abstract class GCreateTodoListInput
+    implements Built<GCreateTodoListInput, GCreateTodoListInputBuilder> {
+  GCreateTodoListInput._();
 
-  factory GCreateTodolistInput(
-          [Function(GCreateTodolistInputBuilder b) updates]) =
-      _$GCreateTodolistInput;
+  factory GCreateTodoListInput(
+          [Function(GCreateTodoListInputBuilder b) updates]) =
+      _$GCreateTodoListInput;
 
-  int? get createdAt;
-  String? get memo;
-  String get status;
+  String get cuid;
+  String? get status;
+  String get tid;
   String get title;
-  static Serializer<GCreateTodolistInput> get serializer =>
-      _$gCreateTodolistInputSerializer;
+  static Serializer<GCreateTodoListInput> get serializer =>
+      _$gCreateTodoListInputSerializer;
   Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GCreateTodolistInput.serializer, this)
+      (_i1.serializers.serializeWith(GCreateTodoListInput.serializer, this)
           as Map<String, dynamic>);
-  static GCreateTodolistInput? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GCreateTodolistInput.serializer, json);
+  static GCreateTodoListInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GCreateTodoListInput.serializer, json);
 }
 
-abstract class GDeleteTodolistInput
-    implements Built<GDeleteTodolistInput, GDeleteTodolistInputBuilder> {
-  GDeleteTodolistInput._();
+abstract class GDeleteTodoListInput
+    implements Built<GDeleteTodoListInput, GDeleteTodoListInputBuilder> {
+  GDeleteTodoListInput._();
 
-  factory GDeleteTodolistInput(
-          [Function(GDeleteTodolistInputBuilder b) updates]) =
-      _$GDeleteTodolistInput;
+  factory GDeleteTodoListInput(
+          [Function(GDeleteTodoListInputBuilder b) updates]) =
+      _$GDeleteTodoListInput;
 
-  String get id;
-  static Serializer<GDeleteTodolistInput> get serializer =>
-      _$gDeleteTodolistInputSerializer;
+  String get cuid;
+  static Serializer<GDeleteTodoListInput> get serializer =>
+      _$gDeleteTodoListInputSerializer;
   Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GDeleteTodolistInput.serializer, this)
+      (_i1.serializers.serializeWith(GDeleteTodoListInput.serializer, this)
           as Map<String, dynamic>);
-  static GDeleteTodolistInput? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GDeleteTodolistInput.serializer, json);
+  static GDeleteTodoListInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GDeleteTodoListInput.serializer, json);
 }
 
 abstract class GTableBooleanFilterInput
@@ -172,47 +172,43 @@ abstract class GTableStringFilterInput
       _i1.serializers.deserializeWith(GTableStringFilterInput.serializer, json);
 }
 
-abstract class GTableTodolistFilterInput
+abstract class GTableTodoListFilterInput
     implements
-        Built<GTableTodolistFilterInput, GTableTodolistFilterInputBuilder> {
-  GTableTodolistFilterInput._();
+        Built<GTableTodoListFilterInput, GTableTodoListFilterInputBuilder> {
+  GTableTodoListFilterInput._();
 
-  factory GTableTodolistFilterInput(
-          [Function(GTableTodolistFilterInputBuilder b) updates]) =
-      _$GTableTodolistFilterInput;
+  factory GTableTodoListFilterInput(
+          [Function(GTableTodoListFilterInputBuilder b) updates]) =
+      _$GTableTodoListFilterInput;
 
-  GTableIntFilterInput? get createdAt;
-  GTableIDFilterInput? get id;
-  GTableStringFilterInput? get memo;
+  GTableStringFilterInput? get cuid;
   GTableStringFilterInput? get status;
-  GTableStringFilterInput? get title;
-  static Serializer<GTableTodolistFilterInput> get serializer =>
-      _$gTableTodolistFilterInputSerializer;
+  GTableStringFilterInput? get tid;
+  static Serializer<GTableTodoListFilterInput> get serializer =>
+      _$gTableTodoListFilterInputSerializer;
   Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GTableTodolistFilterInput.serializer, this)
+      (_i1.serializers.serializeWith(GTableTodoListFilterInput.serializer, this)
           as Map<String, dynamic>);
-  static GTableTodolistFilterInput? fromJson(Map<String, dynamic> json) =>
+  static GTableTodoListFilterInput? fromJson(Map<String, dynamic> json) =>
       _i1.serializers
-          .deserializeWith(GTableTodolistFilterInput.serializer, json);
+          .deserializeWith(GTableTodoListFilterInput.serializer, json);
 }
 
-abstract class GUpdateTodolistInput
-    implements Built<GUpdateTodolistInput, GUpdateTodolistInputBuilder> {
-  GUpdateTodolistInput._();
+abstract class GUpdateTodoListInput
+    implements Built<GUpdateTodoListInput, GUpdateTodoListInputBuilder> {
+  GUpdateTodoListInput._();
 
-  factory GUpdateTodolistInput(
-          [Function(GUpdateTodolistInputBuilder b) updates]) =
-      _$GUpdateTodolistInput;
+  factory GUpdateTodoListInput(
+          [Function(GUpdateTodoListInputBuilder b) updates]) =
+      _$GUpdateTodoListInput;
 
-  int? get createdAt;
-  String get id;
-  String? get memo;
-  String? get title;
-  static Serializer<GUpdateTodolistInput> get serializer =>
-      _$gUpdateTodolistInputSerializer;
+  String get cuid;
+  String? get tid;
+  static Serializer<GUpdateTodoListInput> get serializer =>
+      _$gUpdateTodoListInputSerializer;
   Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GUpdateTodolistInput.serializer, this)
+      (_i1.serializers.serializeWith(GUpdateTodoListInput.serializer, this)
           as Map<String, dynamic>);
-  static GUpdateTodolistInput? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GUpdateTodolistInput.serializer, json);
+  static GUpdateTodoListInput? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GUpdateTodoListInput.serializer, json);
 }

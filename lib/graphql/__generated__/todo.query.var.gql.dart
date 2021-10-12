@@ -7,36 +7,36 @@ import 'package:todo_list/graphql/__generated__/serializers.gql.dart' as _i2;
 
 part 'todo.query.var.gql.g.dart';
 
-abstract class GlistTodolistsVars
-    implements Built<GlistTodolistsVars, GlistTodolistsVarsBuilder> {
-  GlistTodolistsVars._();
+abstract class GcreateTodoListVars
+    implements Built<GcreateTodoListVars, GcreateTodoListVarsBuilder> {
+  GcreateTodoListVars._();
 
-  factory GlistTodolistsVars([Function(GlistTodolistsVarsBuilder b) updates]) =
-      _$GlistTodolistsVars;
+  factory GcreateTodoListVars(
+      [Function(GcreateTodoListVarsBuilder b) updates]) = _$GcreateTodoListVars;
 
-  _i1.GTableTodolistFilterInput? get filter;
-  static Serializer<GlistTodolistsVars> get serializer =>
-      _$glistTodolistsVarsSerializer;
+  _i1.GCreateTodoListInput get createtodolistinput;
+  static Serializer<GcreateTodoListVars> get serializer =>
+      _$gcreateTodoListVarsSerializer;
   Map<String, dynamic> toJson() =>
-      (_i2.serializers.serializeWith(GlistTodolistsVars.serializer, this)
+      (_i2.serializers.serializeWith(GcreateTodoListVars.serializer, this)
           as Map<String, dynamic>);
-  static GlistTodolistsVars? fromJson(Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(GlistTodolistsVars.serializer, json);
+  static GcreateTodoListVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GcreateTodoListVars.serializer, json);
 }
 
-abstract class GcreateTodolistVars
-    implements Built<GcreateTodolistVars, GcreateTodolistVarsBuilder> {
-  GcreateTodolistVars._();
+abstract class GlistTodoListsVars
+    implements Built<GlistTodoListsVars, GlistTodoListsVarsBuilder> {
+  GlistTodoListsVars._();
 
-  factory GcreateTodolistVars(
-      [Function(GcreateTodolistVarsBuilder b) updates]) = _$GcreateTodolistVars;
+  factory GlistTodoListsVars([Function(GlistTodoListsVarsBuilder b) updates]) =
+      _$GlistTodoListsVars;
 
-  _i1.GCreateTodolistInput get createtodolistinput;
-  static Serializer<GcreateTodolistVars> get serializer =>
-      _$gcreateTodolistVarsSerializer;
+  _i1.GTableTodoListFilterInput get filter;
+  static Serializer<GlistTodoListsVars> get serializer =>
+      _$glistTodoListsVarsSerializer;
   Map<String, dynamic> toJson() =>
-      (_i2.serializers.serializeWith(GcreateTodolistVars.serializer, this)
+      (_i2.serializers.serializeWith(GlistTodoListsVars.serializer, this)
           as Map<String, dynamic>);
-  static GcreateTodolistVars? fromJson(Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(GcreateTodolistVars.serializer, json);
+  static GlistTodoListsVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GlistTodoListsVars.serializer, json);
 }

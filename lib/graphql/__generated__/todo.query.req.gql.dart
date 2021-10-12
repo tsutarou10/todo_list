@@ -12,78 +12,78 @@ import 'package:todo_list/graphql/__generated__/todo.query.var.gql.dart' as _i3;
 
 part 'todo.query.req.gql.g.dart';
 
-abstract class GlistTodolistsReq
+abstract class GcreateTodoListReq
     implements
-        Built<GlistTodolistsReq, GlistTodolistsReqBuilder>,
-        _i1.OperationRequest<_i2.GlistTodolistsData, _i3.GlistTodolistsVars> {
-  GlistTodolistsReq._();
+        Built<GcreateTodoListReq, GcreateTodoListReqBuilder>,
+        _i1.OperationRequest<_i2.GcreateTodoListData, _i3.GcreateTodoListVars> {
+  GcreateTodoListReq._();
 
-  factory GlistTodolistsReq([Function(GlistTodolistsReqBuilder b) updates]) =
-      _$GlistTodolistsReq;
+  factory GcreateTodoListReq([Function(GcreateTodoListReqBuilder b) updates]) =
+      _$GcreateTodoListReq;
 
-  static void _initializeBuilder(GlistTodolistsReqBuilder b) => b
+  static void _initializeBuilder(GcreateTodoListReqBuilder b) => b
     ..operation =
-        _i4.Operation(document: _i5.document, operationName: 'listTodolists')
+        _i4.Operation(document: _i5.document, operationName: 'createTodoList')
     ..executeOnListen = true;
-  _i3.GlistTodolistsVars get vars;
+  _i3.GcreateTodoListVars get vars;
   _i4.Operation get operation;
   _i4.Request get execRequest =>
       _i4.Request(operation: operation, variables: vars.toJson());
   String? get requestId;
   @BuiltValueField(serialize: false)
-  _i2.GlistTodolistsData? Function(
-      _i2.GlistTodolistsData?, _i2.GlistTodolistsData?)? get updateResult;
-  _i2.GlistTodolistsData? get optimisticResponse;
+  _i2.GcreateTodoListData? Function(
+      _i2.GcreateTodoListData?, _i2.GcreateTodoListData?)? get updateResult;
+  _i2.GcreateTodoListData? get optimisticResponse;
   String? get updateCacheHandlerKey;
   Map<String, dynamic>? get updateCacheHandlerContext;
   _i1.FetchPolicy? get fetchPolicy;
   bool get executeOnListen;
   @override
-  _i2.GlistTodolistsData? parseData(Map<String, dynamic> json) =>
-      _i2.GlistTodolistsData.fromJson(json);
-  static Serializer<GlistTodolistsReq> get serializer =>
-      _$glistTodolistsReqSerializer;
+  _i2.GcreateTodoListData? parseData(Map<String, dynamic> json) =>
+      _i2.GcreateTodoListData.fromJson(json);
+  static Serializer<GcreateTodoListReq> get serializer =>
+      _$gcreateTodoListReqSerializer;
   Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GlistTodolistsReq.serializer, this)
+      (_i6.serializers.serializeWith(GcreateTodoListReq.serializer, this)
           as Map<String, dynamic>);
-  static GlistTodolistsReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GlistTodolistsReq.serializer, json);
+  static GcreateTodoListReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(GcreateTodoListReq.serializer, json);
 }
 
-abstract class GcreateTodolistReq
+abstract class GlistTodoListsReq
     implements
-        Built<GcreateTodolistReq, GcreateTodolistReqBuilder>,
-        _i1.OperationRequest<_i2.GcreateTodolistData, _i3.GcreateTodolistVars> {
-  GcreateTodolistReq._();
+        Built<GlistTodoListsReq, GlistTodoListsReqBuilder>,
+        _i1.OperationRequest<_i2.GlistTodoListsData, _i3.GlistTodoListsVars> {
+  GlistTodoListsReq._();
 
-  factory GcreateTodolistReq([Function(GcreateTodolistReqBuilder b) updates]) =
-      _$GcreateTodolistReq;
+  factory GlistTodoListsReq([Function(GlistTodoListsReqBuilder b) updates]) =
+      _$GlistTodoListsReq;
 
-  static void _initializeBuilder(GcreateTodolistReqBuilder b) => b
+  static void _initializeBuilder(GlistTodoListsReqBuilder b) => b
     ..operation =
-        _i4.Operation(document: _i5.document, operationName: 'createTodolist')
+        _i4.Operation(document: _i5.document, operationName: 'listTodoLists')
     ..executeOnListen = true;
-  _i3.GcreateTodolistVars get vars;
+  _i3.GlistTodoListsVars get vars;
   _i4.Operation get operation;
   _i4.Request get execRequest =>
       _i4.Request(operation: operation, variables: vars.toJson());
   String? get requestId;
   @BuiltValueField(serialize: false)
-  _i2.GcreateTodolistData? Function(
-      _i2.GcreateTodolistData?, _i2.GcreateTodolistData?)? get updateResult;
-  _i2.GcreateTodolistData? get optimisticResponse;
+  _i2.GlistTodoListsData? Function(
+      _i2.GlistTodoListsData?, _i2.GlistTodoListsData?)? get updateResult;
+  _i2.GlistTodoListsData? get optimisticResponse;
   String? get updateCacheHandlerKey;
   Map<String, dynamic>? get updateCacheHandlerContext;
   _i1.FetchPolicy? get fetchPolicy;
   bool get executeOnListen;
   @override
-  _i2.GcreateTodolistData? parseData(Map<String, dynamic> json) =>
-      _i2.GcreateTodolistData.fromJson(json);
-  static Serializer<GcreateTodolistReq> get serializer =>
-      _$gcreateTodolistReqSerializer;
+  _i2.GlistTodoListsData? parseData(Map<String, dynamic> json) =>
+      _i2.GlistTodoListsData.fromJson(json);
+  static Serializer<GlistTodoListsReq> get serializer =>
+      _$glistTodoListsReqSerializer;
   Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GcreateTodolistReq.serializer, this)
+      (_i6.serializers.serializeWith(GlistTodoListsReq.serializer, this)
           as Map<String, dynamic>);
-  static GcreateTodolistReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GcreateTodolistReq.serializer, json);
+  static GlistTodoListsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(GlistTodoListsReq.serializer, json);
 }

@@ -6,10 +6,10 @@ part of 'schema.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GCreateTodolistInput> _$gCreateTodolistInputSerializer =
-    new _$GCreateTodolistInputSerializer();
-Serializer<GDeleteTodolistInput> _$gDeleteTodolistInputSerializer =
-    new _$GDeleteTodolistInputSerializer();
+Serializer<GCreateTodoListInput> _$gCreateTodoListInputSerializer =
+    new _$GCreateTodoListInputSerializer();
+Serializer<GDeleteTodoListInput> _$gDeleteTodoListInputSerializer =
+    new _$GDeleteTodoListInputSerializer();
 Serializer<GTableBooleanFilterInput> _$gTableBooleanFilterInputSerializer =
     new _$GTableBooleanFilterInputSerializer();
 Serializer<GTableFloatFilterInput> _$gTableFloatFilterInputSerializer =
@@ -20,44 +20,39 @@ Serializer<GTableIntFilterInput> _$gTableIntFilterInputSerializer =
     new _$GTableIntFilterInputSerializer();
 Serializer<GTableStringFilterInput> _$gTableStringFilterInputSerializer =
     new _$GTableStringFilterInputSerializer();
-Serializer<GTableTodolistFilterInput> _$gTableTodolistFilterInputSerializer =
-    new _$GTableTodolistFilterInputSerializer();
-Serializer<GUpdateTodolistInput> _$gUpdateTodolistInputSerializer =
-    new _$GUpdateTodolistInputSerializer();
+Serializer<GTableTodoListFilterInput> _$gTableTodoListFilterInputSerializer =
+    new _$GTableTodoListFilterInputSerializer();
+Serializer<GUpdateTodoListInput> _$gUpdateTodoListInputSerializer =
+    new _$GUpdateTodoListInputSerializer();
 
-class _$GCreateTodolistInputSerializer
-    implements StructuredSerializer<GCreateTodolistInput> {
+class _$GCreateTodoListInputSerializer
+    implements StructuredSerializer<GCreateTodoListInput> {
   @override
   final Iterable<Type> types = const [
-    GCreateTodolistInput,
-    _$GCreateTodolistInput
+    GCreateTodoListInput,
+    _$GCreateTodoListInput
   ];
   @override
-  final String wireName = 'GCreateTodolistInput';
+  final String wireName = 'GCreateTodoListInput';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GCreateTodolistInput object,
+      Serializers serializers, GCreateTodoListInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'status',
-      serializers.serialize(object.status,
-          specifiedType: const FullType(String)),
+      'cuid',
+      serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'tid',
+      serializers.serialize(object.tid, specifiedType: const FullType(String)),
       'title',
       serializers.serialize(object.title,
           specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.createdAt;
+    value = object.status;
     if (value != null) {
       result
-        ..add('createdAt')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
-    value = object.memo;
-    if (value != null) {
-      result
-        ..add('memo')
+        ..add('status')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -65,10 +60,10 @@ class _$GCreateTodolistInputSerializer
   }
 
   @override
-  GCreateTodolistInput deserialize(
+  GCreateTodoListInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GCreateTodolistInputBuilder();
+    final result = new GCreateTodoListInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -76,16 +71,16 @@ class _$GCreateTodolistInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'createdAt':
-          result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
-        case 'memo':
-          result.memo = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+        case 'cuid':
+          result.cuid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'tid':
+          result.tid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'title':
@@ -99,33 +94,33 @@ class _$GCreateTodolistInputSerializer
   }
 }
 
-class _$GDeleteTodolistInputSerializer
-    implements StructuredSerializer<GDeleteTodolistInput> {
+class _$GDeleteTodoListInputSerializer
+    implements StructuredSerializer<GDeleteTodoListInput> {
   @override
   final Iterable<Type> types = const [
-    GDeleteTodolistInput,
-    _$GDeleteTodolistInput
+    GDeleteTodoListInput,
+    _$GDeleteTodoListInput
   ];
   @override
-  final String wireName = 'GDeleteTodolistInput';
+  final String wireName = 'GDeleteTodoListInput';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDeleteTodolistInput object,
+      Serializers serializers, GDeleteTodoListInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'cuid',
+      serializers.serialize(object.cuid, specifiedType: const FullType(String)),
     ];
 
     return result;
   }
 
   @override
-  GDeleteTodolistInput deserialize(
+  GDeleteTodoListInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GDeleteTodolistInputBuilder();
+    final result = new GDeleteTodoListInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -133,8 +128,8 @@ class _$GDeleteTodolistInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'id':
-          result.id = serializers.deserialize(value,
+        case 'cuid':
+          result.cuid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -778,40 +773,26 @@ class _$GTableStringFilterInputSerializer
   }
 }
 
-class _$GTableTodolistFilterInputSerializer
-    implements StructuredSerializer<GTableTodolistFilterInput> {
+class _$GTableTodoListFilterInputSerializer
+    implements StructuredSerializer<GTableTodoListFilterInput> {
   @override
   final Iterable<Type> types = const [
-    GTableTodolistFilterInput,
-    _$GTableTodolistFilterInput
+    GTableTodoListFilterInput,
+    _$GTableTodoListFilterInput
   ];
   @override
-  final String wireName = 'GTableTodolistFilterInput';
+  final String wireName = 'GTableTodoListFilterInput';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GTableTodolistFilterInput object,
+      Serializers serializers, GTableTodoListFilterInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.createdAt;
+    value = object.cuid;
     if (value != null) {
       result
-        ..add('createdAt')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GTableIntFilterInput)));
-    }
-    value = object.id;
-    if (value != null) {
-      result
-        ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GTableIDFilterInput)));
-    }
-    value = object.memo;
-    if (value != null) {
-      result
-        ..add('memo')
+        ..add('cuid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GTableStringFilterInput)));
     }
@@ -822,10 +803,10 @@ class _$GTableTodolistFilterInputSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GTableStringFilterInput)));
     }
-    value = object.title;
+    value = object.tid;
     if (value != null) {
       result
-        ..add('title')
+        ..add('tid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(GTableStringFilterInput)));
     }
@@ -833,10 +814,10 @@ class _$GTableTodolistFilterInputSerializer
   }
 
   @override
-  GTableTodolistFilterInput deserialize(
+  GTableTodoListFilterInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GTableTodolistFilterInputBuilder();
+    final result = new GTableTodoListFilterInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -844,18 +825,8 @@ class _$GTableTodolistFilterInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'createdAt':
-          result.createdAt.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GTableIntFilterInput))!
-              as GTableIntFilterInput);
-          break;
-        case 'id':
-          result.id.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GTableIDFilterInput))!
-              as GTableIDFilterInput);
-          break;
-        case 'memo':
-          result.memo.replace(serializers.deserialize(value,
+        case 'cuid':
+          result.cuid.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GTableStringFilterInput))!
               as GTableStringFilterInput);
           break;
@@ -864,8 +835,8 @@ class _$GTableTodolistFilterInputSerializer
                   specifiedType: const FullType(GTableStringFilterInput))!
               as GTableStringFilterInput);
           break;
-        case 'title':
-          result.title.replace(serializers.deserialize(value,
+        case 'tid':
+          result.tid.replace(serializers.deserialize(value,
                   specifiedType: const FullType(GTableStringFilterInput))!
               as GTableStringFilterInput);
           break;
@@ -876,42 +847,29 @@ class _$GTableTodolistFilterInputSerializer
   }
 }
 
-class _$GUpdateTodolistInputSerializer
-    implements StructuredSerializer<GUpdateTodolistInput> {
+class _$GUpdateTodoListInputSerializer
+    implements StructuredSerializer<GUpdateTodoListInput> {
   @override
   final Iterable<Type> types = const [
-    GUpdateTodolistInput,
-    _$GUpdateTodolistInput
+    GUpdateTodoListInput,
+    _$GUpdateTodoListInput
   ];
   @override
-  final String wireName = 'GUpdateTodolistInput';
+  final String wireName = 'GUpdateTodoListInput';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GUpdateTodolistInput object,
+      Serializers serializers, GUpdateTodoListInput object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(String)),
+      'cuid',
+      serializers.serialize(object.cuid, specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.createdAt;
+    value = object.tid;
     if (value != null) {
       result
-        ..add('createdAt')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
-    value = object.memo;
-    if (value != null) {
-      result
-        ..add('memo')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.title;
-    if (value != null) {
-      result
-        ..add('title')
+        ..add('tid')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -919,10 +877,10 @@ class _$GUpdateTodolistInputSerializer
   }
 
   @override
-  GUpdateTodolistInput deserialize(
+  GUpdateTodoListInput deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GUpdateTodolistInputBuilder();
+    final result = new GUpdateTodoListInputBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -930,20 +888,12 @@ class _$GUpdateTodolistInputSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'createdAt':
-          result.createdAt = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
-        case 'id':
-          result.id = serializers.deserialize(value,
+        case 'cuid':
+          result.cuid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'memo':
-          result.memo = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'title':
-          result.title = serializers.deserialize(value,
+        case 'tid':
+          result.tid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
       }
@@ -953,94 +903,94 @@ class _$GUpdateTodolistInputSerializer
   }
 }
 
-class _$GCreateTodolistInput extends GCreateTodolistInput {
+class _$GCreateTodoListInput extends GCreateTodoListInput {
   @override
-  final int? createdAt;
+  final String cuid;
   @override
-  final String? memo;
+  final String? status;
   @override
-  final String status;
+  final String tid;
   @override
   final String title;
 
-  factory _$GCreateTodolistInput(
-          [void Function(GCreateTodolistInputBuilder)? updates]) =>
-      (new GCreateTodolistInputBuilder()..update(updates)).build();
+  factory _$GCreateTodoListInput(
+          [void Function(GCreateTodoListInputBuilder)? updates]) =>
+      (new GCreateTodoListInputBuilder()..update(updates)).build();
 
-  _$GCreateTodolistInput._(
-      {this.createdAt, this.memo, required this.status, required this.title})
+  _$GCreateTodoListInput._(
+      {required this.cuid, this.status, required this.tid, required this.title})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(cuid, 'GCreateTodoListInput', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(tid, 'GCreateTodoListInput', 'tid');
     BuiltValueNullFieldError.checkNotNull(
-        status, 'GCreateTodolistInput', 'status');
-    BuiltValueNullFieldError.checkNotNull(
-        title, 'GCreateTodolistInput', 'title');
+        title, 'GCreateTodoListInput', 'title');
   }
 
   @override
-  GCreateTodolistInput rebuild(
-          void Function(GCreateTodolistInputBuilder) updates) =>
+  GCreateTodoListInput rebuild(
+          void Function(GCreateTodoListInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GCreateTodolistInputBuilder toBuilder() =>
-      new GCreateTodolistInputBuilder()..replace(this);
+  GCreateTodoListInputBuilder toBuilder() =>
+      new GCreateTodoListInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GCreateTodolistInput &&
-        createdAt == other.createdAt &&
-        memo == other.memo &&
+    return other is GCreateTodoListInput &&
+        cuid == other.cuid &&
         status == other.status &&
+        tid == other.tid &&
         title == other.title;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, createdAt.hashCode), memo.hashCode), status.hashCode),
+        $jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode),
         title.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GCreateTodolistInput')
-          ..add('createdAt', createdAt)
-          ..add('memo', memo)
+    return (newBuiltValueToStringHelper('GCreateTodoListInput')
+          ..add('cuid', cuid)
           ..add('status', status)
+          ..add('tid', tid)
           ..add('title', title))
         .toString();
   }
 }
 
-class GCreateTodolistInputBuilder
-    implements Builder<GCreateTodolistInput, GCreateTodolistInputBuilder> {
-  _$GCreateTodolistInput? _$v;
+class GCreateTodoListInputBuilder
+    implements Builder<GCreateTodoListInput, GCreateTodoListInputBuilder> {
+  _$GCreateTodoListInput? _$v;
 
-  int? _createdAt;
-  int? get createdAt => _$this._createdAt;
-  set createdAt(int? createdAt) => _$this._createdAt = createdAt;
-
-  String? _memo;
-  String? get memo => _$this._memo;
-  set memo(String? memo) => _$this._memo = memo;
+  String? _cuid;
+  String? get cuid => _$this._cuid;
+  set cuid(String? cuid) => _$this._cuid = cuid;
 
   String? _status;
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
+  String? _tid;
+  String? get tid => _$this._tid;
+  set tid(String? tid) => _$this._tid = tid;
+
   String? _title;
   String? get title => _$this._title;
   set title(String? title) => _$this._title = title;
 
-  GCreateTodolistInputBuilder();
+  GCreateTodoListInputBuilder();
 
-  GCreateTodolistInputBuilder get _$this {
+  GCreateTodoListInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _createdAt = $v.createdAt;
-      _memo = $v.memo;
+      _cuid = $v.cuid;
       _status = $v.status;
+      _tid = $v.tid;
       _title = $v.title;
       _$v = null;
     }
@@ -1048,106 +998,108 @@ class GCreateTodolistInputBuilder
   }
 
   @override
-  void replace(GCreateTodolistInput other) {
+  void replace(GCreateTodoListInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GCreateTodolistInput;
+    _$v = other as _$GCreateTodoListInput;
   }
 
   @override
-  void update(void Function(GCreateTodolistInputBuilder)? updates) {
+  void update(void Function(GCreateTodoListInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GCreateTodolistInput build() {
+  _$GCreateTodoListInput build() {
     final _$result = _$v ??
-        new _$GCreateTodolistInput._(
-            createdAt: createdAt,
-            memo: memo,
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, 'GCreateTodolistInput', 'status'),
+        new _$GCreateTodoListInput._(
+            cuid: BuiltValueNullFieldError.checkNotNull(
+                cuid, 'GCreateTodoListInput', 'cuid'),
+            status: status,
+            tid: BuiltValueNullFieldError.checkNotNull(
+                tid, 'GCreateTodoListInput', 'tid'),
             title: BuiltValueNullFieldError.checkNotNull(
-                title, 'GCreateTodolistInput', 'title'));
+                title, 'GCreateTodoListInput', 'title'));
     replace(_$result);
     return _$result;
   }
 }
 
-class _$GDeleteTodolistInput extends GDeleteTodolistInput {
+class _$GDeleteTodoListInput extends GDeleteTodoListInput {
   @override
-  final String id;
+  final String cuid;
 
-  factory _$GDeleteTodolistInput(
-          [void Function(GDeleteTodolistInputBuilder)? updates]) =>
-      (new GDeleteTodolistInputBuilder()..update(updates)).build();
+  factory _$GDeleteTodoListInput(
+          [void Function(GDeleteTodoListInputBuilder)? updates]) =>
+      (new GDeleteTodoListInputBuilder()..update(updates)).build();
 
-  _$GDeleteTodolistInput._({required this.id}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'GDeleteTodolistInput', 'id');
+  _$GDeleteTodoListInput._({required this.cuid}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(cuid, 'GDeleteTodoListInput', 'cuid');
   }
 
   @override
-  GDeleteTodolistInput rebuild(
-          void Function(GDeleteTodolistInputBuilder) updates) =>
+  GDeleteTodoListInput rebuild(
+          void Function(GDeleteTodoListInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GDeleteTodolistInputBuilder toBuilder() =>
-      new GDeleteTodolistInputBuilder()..replace(this);
+  GDeleteTodoListInputBuilder toBuilder() =>
+      new GDeleteTodoListInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GDeleteTodolistInput && id == other.id;
+    return other is GDeleteTodoListInput && cuid == other.cuid;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(0, id.hashCode));
+    return $jf($jc(0, cuid.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GDeleteTodolistInput')..add('id', id))
+    return (newBuiltValueToStringHelper('GDeleteTodoListInput')
+          ..add('cuid', cuid))
         .toString();
   }
 }
 
-class GDeleteTodolistInputBuilder
-    implements Builder<GDeleteTodolistInput, GDeleteTodolistInputBuilder> {
-  _$GDeleteTodolistInput? _$v;
+class GDeleteTodoListInputBuilder
+    implements Builder<GDeleteTodoListInput, GDeleteTodoListInputBuilder> {
+  _$GDeleteTodoListInput? _$v;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
+  String? _cuid;
+  String? get cuid => _$this._cuid;
+  set cuid(String? cuid) => _$this._cuid = cuid;
 
-  GDeleteTodolistInputBuilder();
+  GDeleteTodoListInputBuilder();
 
-  GDeleteTodolistInputBuilder get _$this {
+  GDeleteTodoListInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _id = $v.id;
+      _cuid = $v.cuid;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GDeleteTodolistInput other) {
+  void replace(GDeleteTodoListInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GDeleteTodolistInput;
+    _$v = other as _$GDeleteTodoListInput;
   }
 
   @override
-  void update(void Function(GDeleteTodolistInputBuilder)? updates) {
+  void update(void Function(GDeleteTodoListInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GDeleteTodolistInput build() {
+  _$GDeleteTodoListInput build() {
     final _$result = _$v ??
-        new _$GDeleteTodolistInput._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, 'GDeleteTodolistInput', 'id'));
+        new _$GDeleteTodoListInput._(
+            cuid: BuiltValueNullFieldError.checkNotNull(
+                cuid, 'GDeleteTodoListInput', 'cuid'));
     replace(_$result);
     return _$result;
   }
@@ -2058,150 +2010,118 @@ class GTableStringFilterInputBuilder
   }
 }
 
-class _$GTableTodolistFilterInput extends GTableTodolistFilterInput {
+class _$GTableTodoListFilterInput extends GTableTodoListFilterInput {
   @override
-  final GTableIntFilterInput? createdAt;
-  @override
-  final GTableIDFilterInput? id;
-  @override
-  final GTableStringFilterInput? memo;
+  final GTableStringFilterInput? cuid;
   @override
   final GTableStringFilterInput? status;
   @override
-  final GTableStringFilterInput? title;
+  final GTableStringFilterInput? tid;
 
-  factory _$GTableTodolistFilterInput(
-          [void Function(GTableTodolistFilterInputBuilder)? updates]) =>
-      (new GTableTodolistFilterInputBuilder()..update(updates)).build();
+  factory _$GTableTodoListFilterInput(
+          [void Function(GTableTodoListFilterInputBuilder)? updates]) =>
+      (new GTableTodoListFilterInputBuilder()..update(updates)).build();
 
-  _$GTableTodolistFilterInput._(
-      {this.createdAt, this.id, this.memo, this.status, this.title})
-      : super._();
+  _$GTableTodoListFilterInput._({this.cuid, this.status, this.tid}) : super._();
 
   @override
-  GTableTodolistFilterInput rebuild(
-          void Function(GTableTodolistFilterInputBuilder) updates) =>
+  GTableTodoListFilterInput rebuild(
+          void Function(GTableTodoListFilterInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GTableTodolistFilterInputBuilder toBuilder() =>
-      new GTableTodolistFilterInputBuilder()..replace(this);
+  GTableTodoListFilterInputBuilder toBuilder() =>
+      new GTableTodoListFilterInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GTableTodolistFilterInput &&
-        createdAt == other.createdAt &&
-        id == other.id &&
-        memo == other.memo &&
+    return other is GTableTodoListFilterInput &&
+        cuid == other.cuid &&
         status == other.status &&
-        title == other.title;
+        tid == other.tid;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc($jc(0, createdAt.hashCode), id.hashCode), memo.hashCode),
-            status.hashCode),
-        title.hashCode));
+    return $jf($jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GTableTodolistFilterInput')
-          ..add('createdAt', createdAt)
-          ..add('id', id)
-          ..add('memo', memo)
+    return (newBuiltValueToStringHelper('GTableTodoListFilterInput')
+          ..add('cuid', cuid)
           ..add('status', status)
-          ..add('title', title))
+          ..add('tid', tid))
         .toString();
   }
 }
 
-class GTableTodolistFilterInputBuilder
+class GTableTodoListFilterInputBuilder
     implements
-        Builder<GTableTodolistFilterInput, GTableTodolistFilterInputBuilder> {
-  _$GTableTodolistFilterInput? _$v;
+        Builder<GTableTodoListFilterInput, GTableTodoListFilterInputBuilder> {
+  _$GTableTodoListFilterInput? _$v;
 
-  GTableIntFilterInputBuilder? _createdAt;
-  GTableIntFilterInputBuilder get createdAt =>
-      _$this._createdAt ??= new GTableIntFilterInputBuilder();
-  set createdAt(GTableIntFilterInputBuilder? createdAt) =>
-      _$this._createdAt = createdAt;
-
-  GTableIDFilterInputBuilder? _id;
-  GTableIDFilterInputBuilder get id =>
-      _$this._id ??= new GTableIDFilterInputBuilder();
-  set id(GTableIDFilterInputBuilder? id) => _$this._id = id;
-
-  GTableStringFilterInputBuilder? _memo;
-  GTableStringFilterInputBuilder get memo =>
-      _$this._memo ??= new GTableStringFilterInputBuilder();
-  set memo(GTableStringFilterInputBuilder? memo) => _$this._memo = memo;
+  GTableStringFilterInputBuilder? _cuid;
+  GTableStringFilterInputBuilder get cuid =>
+      _$this._cuid ??= new GTableStringFilterInputBuilder();
+  set cuid(GTableStringFilterInputBuilder? cuid) => _$this._cuid = cuid;
 
   GTableStringFilterInputBuilder? _status;
   GTableStringFilterInputBuilder get status =>
       _$this._status ??= new GTableStringFilterInputBuilder();
   set status(GTableStringFilterInputBuilder? status) => _$this._status = status;
 
-  GTableStringFilterInputBuilder? _title;
-  GTableStringFilterInputBuilder get title =>
-      _$this._title ??= new GTableStringFilterInputBuilder();
-  set title(GTableStringFilterInputBuilder? title) => _$this._title = title;
+  GTableStringFilterInputBuilder? _tid;
+  GTableStringFilterInputBuilder get tid =>
+      _$this._tid ??= new GTableStringFilterInputBuilder();
+  set tid(GTableStringFilterInputBuilder? tid) => _$this._tid = tid;
 
-  GTableTodolistFilterInputBuilder();
+  GTableTodoListFilterInputBuilder();
 
-  GTableTodolistFilterInputBuilder get _$this {
+  GTableTodoListFilterInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _createdAt = $v.createdAt?.toBuilder();
-      _id = $v.id?.toBuilder();
-      _memo = $v.memo?.toBuilder();
+      _cuid = $v.cuid?.toBuilder();
       _status = $v.status?.toBuilder();
-      _title = $v.title?.toBuilder();
+      _tid = $v.tid?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GTableTodolistFilterInput other) {
+  void replace(GTableTodoListFilterInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GTableTodolistFilterInput;
+    _$v = other as _$GTableTodoListFilterInput;
   }
 
   @override
-  void update(void Function(GTableTodolistFilterInputBuilder)? updates) {
+  void update(void Function(GTableTodoListFilterInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GTableTodolistFilterInput build() {
-    _$GTableTodolistFilterInput _$result;
+  _$GTableTodoListFilterInput build() {
+    _$GTableTodoListFilterInput _$result;
     try {
       _$result = _$v ??
-          new _$GTableTodolistFilterInput._(
-              createdAt: _createdAt?.build(),
-              id: _id?.build(),
-              memo: _memo?.build(),
+          new _$GTableTodoListFilterInput._(
+              cuid: _cuid?.build(),
               status: _status?.build(),
-              title: _title?.build());
+              tid: _tid?.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'createdAt';
-        _createdAt?.build();
-        _$failedField = 'id';
-        _id?.build();
-        _$failedField = 'memo';
-        _memo?.build();
+        _$failedField = 'cuid';
+        _cuid?.build();
         _$failedField = 'status';
         _status?.build();
-        _$failedField = 'title';
-        _title?.build();
+        _$failedField = 'tid';
+        _tid?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GTableTodolistFilterInput', _$failedField, e.toString());
+            'GTableTodoListFilterInput', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -2210,117 +2130,93 @@ class GTableTodolistFilterInputBuilder
   }
 }
 
-class _$GUpdateTodolistInput extends GUpdateTodolistInput {
+class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   @override
-  final int? createdAt;
+  final String cuid;
   @override
-  final String id;
-  @override
-  final String? memo;
-  @override
-  final String? title;
+  final String? tid;
 
-  factory _$GUpdateTodolistInput(
-          [void Function(GUpdateTodolistInputBuilder)? updates]) =>
-      (new GUpdateTodolistInputBuilder()..update(updates)).build();
+  factory _$GUpdateTodoListInput(
+          [void Function(GUpdateTodoListInputBuilder)? updates]) =>
+      (new GUpdateTodoListInputBuilder()..update(updates)).build();
 
-  _$GUpdateTodolistInput._(
-      {this.createdAt, required this.id, this.memo, this.title})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(id, 'GUpdateTodolistInput', 'id');
+  _$GUpdateTodoListInput._({required this.cuid, this.tid}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(cuid, 'GUpdateTodoListInput', 'cuid');
   }
 
   @override
-  GUpdateTodolistInput rebuild(
-          void Function(GUpdateTodolistInputBuilder) updates) =>
+  GUpdateTodoListInput rebuild(
+          void Function(GUpdateTodoListInputBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GUpdateTodolistInputBuilder toBuilder() =>
-      new GUpdateTodolistInputBuilder()..replace(this);
+  GUpdateTodoListInputBuilder toBuilder() =>
+      new GUpdateTodoListInputBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GUpdateTodolistInput &&
-        createdAt == other.createdAt &&
-        id == other.id &&
-        memo == other.memo &&
-        title == other.title;
+    return other is GUpdateTodoListInput &&
+        cuid == other.cuid &&
+        tid == other.tid;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, createdAt.hashCode), id.hashCode), memo.hashCode),
-        title.hashCode));
+    return $jf($jc($jc(0, cuid.hashCode), tid.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GUpdateTodolistInput')
-          ..add('createdAt', createdAt)
-          ..add('id', id)
-          ..add('memo', memo)
-          ..add('title', title))
+    return (newBuiltValueToStringHelper('GUpdateTodoListInput')
+          ..add('cuid', cuid)
+          ..add('tid', tid))
         .toString();
   }
 }
 
-class GUpdateTodolistInputBuilder
-    implements Builder<GUpdateTodolistInput, GUpdateTodolistInputBuilder> {
-  _$GUpdateTodolistInput? _$v;
+class GUpdateTodoListInputBuilder
+    implements Builder<GUpdateTodoListInput, GUpdateTodoListInputBuilder> {
+  _$GUpdateTodoListInput? _$v;
 
-  int? _createdAt;
-  int? get createdAt => _$this._createdAt;
-  set createdAt(int? createdAt) => _$this._createdAt = createdAt;
+  String? _cuid;
+  String? get cuid => _$this._cuid;
+  set cuid(String? cuid) => _$this._cuid = cuid;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
+  String? _tid;
+  String? get tid => _$this._tid;
+  set tid(String? tid) => _$this._tid = tid;
 
-  String? _memo;
-  String? get memo => _$this._memo;
-  set memo(String? memo) => _$this._memo = memo;
+  GUpdateTodoListInputBuilder();
 
-  String? _title;
-  String? get title => _$this._title;
-  set title(String? title) => _$this._title = title;
-
-  GUpdateTodolistInputBuilder();
-
-  GUpdateTodolistInputBuilder get _$this {
+  GUpdateTodoListInputBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _createdAt = $v.createdAt;
-      _id = $v.id;
-      _memo = $v.memo;
-      _title = $v.title;
+      _cuid = $v.cuid;
+      _tid = $v.tid;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GUpdateTodolistInput other) {
+  void replace(GUpdateTodoListInput other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GUpdateTodolistInput;
+    _$v = other as _$GUpdateTodoListInput;
   }
 
   @override
-  void update(void Function(GUpdateTodolistInputBuilder)? updates) {
+  void update(void Function(GUpdateTodoListInputBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GUpdateTodolistInput build() {
+  _$GUpdateTodoListInput build() {
     final _$result = _$v ??
-        new _$GUpdateTodolistInput._(
-            createdAt: createdAt,
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, 'GUpdateTodolistInput', 'id'),
-            memo: memo,
-            title: title);
+        new _$GUpdateTodoListInput._(
+            cuid: BuiltValueNullFieldError.checkNotNull(
+                cuid, 'GUpdateTodoListInput', 'cuid'),
+            tid: tid);
     replace(_$result);
     return _$result;
   }

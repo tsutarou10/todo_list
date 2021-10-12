@@ -1,21 +1,17 @@
-query listTodolists($filter: TableTodolistFilterInput = {}) {
-  listTodolists(filter: $filter) {
-    items {
-      createdAt
-      id
-      memo
-      title
-      status
-    }
+mutation createTodoList($createtodolistinput: CreateTodoListInput!) {
+  createTodoList(input: $createtodolistinput) {
+    cuid
+    tid
   }
 }
 
-mutation createTodolist($createtodolistinput: CreateTodolistInput!) {
-  createTodolist(input: $createtodolistinput) {
-    id
-    title
-    memo
-    createdAt
-    status
+query listTodoLists($filter: TableTodoListFilterInput!) {
+  listTodoLists(filter: $filter) {
+    items {
+      cuid
+      tid
+      title
+      status
+    }
   }
 }

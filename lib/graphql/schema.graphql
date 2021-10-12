@@ -5,44 +5,43 @@ schema {
 }
 
 type Mutation {
-  createTodolist(input: CreateTodolistInput!): todolist
-  deleteTodolist(input: DeleteTodolistInput!): todolist
-  updateTodolist(input: UpdateTodolistInput!): todolist
+  createTodoList(input: CreateTodoListInput!): TodoList
+  deleteTodoList(input: DeleteTodoListInput!): TodoList
+  updateTodoList(input: UpdateTodoListInput!): TodoList
 }
 
 type Query {
-  getTodolist(id: ID!): todolist
-  listTodolists(filter: TableTodolistFilterInput, limit: Int, nextToken: String): todolistConnection
+  getTodoList(cuid: String!): TodoList
+  listTodoLists(filter: TableTodoListFilterInput, limit: Int, nextToken: String): TodoListConnection
 }
 
 type Subscription {
-  onCreateTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["createTodolist"])
-  onDeleteTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["deleteTodolist"])
-  onUpdateTodolist(createdAt: Int, id: ID, memo: String, title: String): todolist @aws_subscribe(mutations : ["updateTodolist"])
+  onCreateTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["createTodoList"])
+  onDeleteTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["deleteTodoList"])
+  onUpdateTodoList(cuid: String, tid: String): TodoList @aws_subscribe(mutations : ["updateTodoList"])
 }
 
-type todolist {
-  createdAt: Int
-  id: ID!
-  memo: String
-  status: String!
+type TodoList {
+  cuid: String!
+  status: String
+  tid: String!
   title: String!
 }
 
-type todolistConnection {
-  items: [todolist]
+type TodoListConnection {
+  items: [TodoList]
   nextToken: String
 }
 
-input CreateTodolistInput {
-  createdAt: Int
-  memo: String
-  status: String!
+input CreateTodoListInput {
+  cuid: String!
+  status: String
+  tid: String!
   title: String!
 }
 
-input DeleteTodolistInput {
-  id: ID!
+input DeleteTodoListInput {
+  cuid: String!
 }
 
 input TableBooleanFilterInput {
@@ -100,17 +99,13 @@ input TableStringFilterInput {
   notContains: String
 }
 
-input TableTodolistFilterInput {
-  createdAt: TableIntFilterInput
-  id: TableIDFilterInput
-  memo: TableStringFilterInput
+input TableTodoListFilterInput {
+  cuid: TableStringFilterInput
   status: TableStringFilterInput
-  title: TableStringFilterInput
+  tid: TableStringFilterInput
 }
 
-input UpdateTodolistInput {
-  createdAt: Int
-  id: ID!
-  memo: String
-  title: String
+input UpdateTodoListInput {
+  cuid: String!
+  tid: String
 }

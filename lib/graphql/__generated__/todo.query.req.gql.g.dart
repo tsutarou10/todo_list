@@ -6,144 +6,26 @@ part of 'todo.query.req.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GlistTodolistsReq> _$glistTodolistsReqSerializer =
-    new _$GlistTodolistsReqSerializer();
-Serializer<GcreateTodolistReq> _$gcreateTodolistReqSerializer =
-    new _$GcreateTodolistReqSerializer();
+Serializer<GcreateTodoListReq> _$gcreateTodoListReqSerializer =
+    new _$GcreateTodoListReqSerializer();
+Serializer<GlistTodoListsReq> _$glistTodoListsReqSerializer =
+    new _$GlistTodoListsReqSerializer();
 
-class _$GlistTodolistsReqSerializer
-    implements StructuredSerializer<GlistTodolistsReq> {
+class _$GcreateTodoListReqSerializer
+    implements StructuredSerializer<GcreateTodoListReq> {
   @override
-  final Iterable<Type> types = const [GlistTodolistsReq, _$GlistTodolistsReq];
+  final Iterable<Type> types = const [GcreateTodoListReq, _$GcreateTodoListReq];
   @override
-  final String wireName = 'GlistTodolistsReq';
-
-  @override
-  Iterable<Object?> serialize(Serializers serializers, GlistTodolistsReq object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object?>[
-      'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GlistTodolistsVars)),
-      'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
-      'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
-    ];
-    Object? value;
-    value = object.requestId;
-    if (value != null) {
-      result
-        ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.optimisticResponse;
-    if (value != null) {
-      result
-        ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GlistTodolistsData)));
-    }
-    value = object.updateCacheHandlerKey;
-    if (value != null) {
-      result
-        ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
-    value = object.updateCacheHandlerContext;
-    if (value != null) {
-      result
-        ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
-    }
-    value = object.fetchPolicy;
-    if (value != null) {
-      result
-        ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
-    }
-    return result;
-  }
-
-  @override
-  GlistTodolistsReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new GlistTodolistsReqBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GlistTodolistsVars))!
-              as _i3.GlistTodolistsVars);
-          break;
-        case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation)) as _i4.Operation;
-          break;
-        case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GlistTodolistsData))!
-              as _i2.GlistTodolistsData);
-          break;
-        case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
-          break;
-        case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
-          break;
-        case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GcreateTodolistReqSerializer
-    implements StructuredSerializer<GcreateTodolistReq> {
-  @override
-  final Iterable<Type> types = const [GcreateTodolistReq, _$GcreateTodolistReq];
-  @override
-  final String wireName = 'GcreateTodolistReq';
+  final String wireName = 'GcreateTodoListReq';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GcreateTodolistReq object,
+      Serializers serializers, GcreateTodoListReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GcreateTodolistVars)),
+          specifiedType: const FullType(_i3.GcreateTodoListVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
@@ -164,7 +46,7 @@ class _$GcreateTodolistReqSerializer
       result
         ..add('optimisticResponse')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GcreateTodolistData)));
+            specifiedType: const FullType(_i2.GcreateTodoListData)));
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
@@ -192,10 +74,10 @@ class _$GcreateTodolistReqSerializer
   }
 
   @override
-  GcreateTodolistReq deserialize(
+  GcreateTodoListReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GcreateTodolistReqBuilder();
+    final result = new GcreateTodoListReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -205,8 +87,8 @@ class _$GcreateTodolistReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GcreateTodolistVars))!
-              as _i3.GcreateTodolistVars);
+                  specifiedType: const FullType(_i3.GcreateTodoListVars))!
+              as _i3.GcreateTodoListVars);
           break;
         case 'operation':
           result.operation = serializers.deserialize(value,
@@ -218,8 +100,8 @@ class _$GcreateTodolistReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GcreateTodolistData))!
-              as _i2.GcreateTodolistData);
+                  specifiedType: const FullType(_i2.GcreateTodoListData))!
+              as _i2.GcreateTodoListData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -248,18 +130,136 @@ class _$GcreateTodolistReqSerializer
   }
 }
 
-class _$GlistTodolistsReq extends GlistTodolistsReq {
+class _$GlistTodoListsReqSerializer
+    implements StructuredSerializer<GlistTodoListsReq> {
   @override
-  final _i3.GlistTodolistsVars vars;
+  final Iterable<Type> types = const [GlistTodoListsReq, _$GlistTodoListsReq];
+  @override
+  final String wireName = 'GlistTodoListsReq';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GlistTodoListsReq object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'vars',
+      serializers.serialize(object.vars,
+          specifiedType: const FullType(_i3.GlistTodoListsVars)),
+      'operation',
+      serializers.serialize(object.operation,
+          specifiedType: const FullType(_i4.Operation)),
+      'executeOnListen',
+      serializers.serialize(object.executeOnListen,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.requestId;
+    if (value != null) {
+      result
+        ..add('requestId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.optimisticResponse;
+    if (value != null) {
+      result
+        ..add('optimisticResponse')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i2.GlistTodoListsData)));
+    }
+    value = object.updateCacheHandlerKey;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerKey')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.updateCacheHandlerContext;
+    if (value != null) {
+      result
+        ..add('updateCacheHandlerContext')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])));
+    }
+    value = object.fetchPolicy;
+    if (value != null) {
+      result
+        ..add('fetchPolicy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(_i1.FetchPolicy)));
+    }
+    return result;
+  }
+
+  @override
+  GlistTodoListsReq deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GlistTodoListsReqBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'vars':
+          result.vars.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i3.GlistTodoListsVars))!
+              as _i3.GlistTodoListsVars);
+          break;
+        case 'operation':
+          result.operation = serializers.deserialize(value,
+              specifiedType: const FullType(_i4.Operation)) as _i4.Operation;
+          break;
+        case 'requestId':
+          result.requestId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'optimisticResponse':
+          result.optimisticResponse.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i2.GlistTodoListsData))!
+              as _i2.GlistTodoListsData);
+          break;
+        case 'updateCacheHandlerKey':
+          result.updateCacheHandlerKey = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'updateCacheHandlerContext':
+          result.updateCacheHandlerContext = serializers.deserialize(value,
+              specifiedType: const FullType(Map, const [
+                const FullType(String),
+                const FullType(dynamic)
+              ])) as Map<String, dynamic>?;
+          break;
+        case 'fetchPolicy':
+          result.fetchPolicy = serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.FetchPolicy))
+              as _i1.FetchPolicy?;
+          break;
+        case 'executeOnListen':
+          result.executeOnListen = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GcreateTodoListReq extends GcreateTodoListReq {
+  @override
+  final _i3.GcreateTodoListVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GlistTodolistsData? Function(
-      _i2.GlistTodolistsData?, _i2.GlistTodolistsData?)? updateResult;
+  final _i2.GcreateTodoListData? Function(
+      _i2.GcreateTodoListData?, _i2.GcreateTodoListData?)? updateResult;
   @override
-  final _i2.GlistTodolistsData? optimisticResponse;
+  final _i2.GcreateTodoListData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -269,11 +269,11 @@ class _$GlistTodolistsReq extends GlistTodolistsReq {
   @override
   final bool executeOnListen;
 
-  factory _$GlistTodolistsReq(
-          [void Function(GlistTodolistsReqBuilder)? updates]) =>
-      (new GlistTodolistsReqBuilder()..update(updates)).build();
+  factory _$GcreateTodoListReq(
+          [void Function(GcreateTodoListReqBuilder)? updates]) =>
+      (new GcreateTodoListReqBuilder()..update(updates)).build();
 
-  _$GlistTodolistsReq._(
+  _$GcreateTodoListReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -284,26 +284,27 @@ class _$GlistTodolistsReq extends GlistTodolistsReq {
       this.fetchPolicy,
       required this.executeOnListen})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, 'GlistTodolistsReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(vars, 'GcreateTodoListReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, 'GlistTodolistsReq', 'operation');
+        operation, 'GcreateTodoListReq', 'operation');
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, 'GlistTodolistsReq', 'executeOnListen');
+        executeOnListen, 'GcreateTodoListReq', 'executeOnListen');
   }
 
   @override
-  GlistTodolistsReq rebuild(void Function(GlistTodolistsReqBuilder) updates) =>
+  GcreateTodoListReq rebuild(
+          void Function(GcreateTodoListReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GlistTodolistsReqBuilder toBuilder() =>
-      new GlistTodolistsReqBuilder()..replace(this);
+  GcreateTodoListReqBuilder toBuilder() =>
+      new GcreateTodoListReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GlistTodolistsReq &&
+    return other is GcreateTodoListReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -335,7 +336,7 @@ class _$GlistTodolistsReq extends GlistTodolistsReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GlistTodolistsReq')
+    return (newBuiltValueToStringHelper('GcreateTodoListReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -349,14 +350,14 @@ class _$GlistTodolistsReq extends GlistTodolistsReq {
   }
 }
 
-class GlistTodolistsReqBuilder
-    implements Builder<GlistTodolistsReq, GlistTodolistsReqBuilder> {
-  _$GlistTodolistsReq? _$v;
+class GcreateTodoListReqBuilder
+    implements Builder<GcreateTodoListReq, GcreateTodoListReqBuilder> {
+  _$GcreateTodoListReq? _$v;
 
-  _i3.GlistTodolistsVarsBuilder? _vars;
-  _i3.GlistTodolistsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GlistTodolistsVarsBuilder();
-  set vars(_i3.GlistTodolistsVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GcreateTodoListVarsBuilder? _vars;
+  _i3.GcreateTodoListVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GcreateTodoListVarsBuilder();
+  set vars(_i3.GcreateTodoListVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -366,21 +367,21 @@ class GlistTodolistsReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GlistTodolistsData? Function(
-      _i2.GlistTodolistsData?, _i2.GlistTodolistsData?)? _updateResult;
-  _i2.GlistTodolistsData? Function(
-          _i2.GlistTodolistsData?, _i2.GlistTodolistsData?)?
+  _i2.GcreateTodoListData? Function(
+      _i2.GcreateTodoListData?, _i2.GcreateTodoListData?)? _updateResult;
+  _i2.GcreateTodoListData? Function(
+          _i2.GcreateTodoListData?, _i2.GcreateTodoListData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GlistTodolistsData? Function(
-                  _i2.GlistTodolistsData?, _i2.GlistTodolistsData?)?
+          _i2.GcreateTodoListData? Function(
+                  _i2.GcreateTodoListData?, _i2.GcreateTodoListData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GlistTodolistsDataBuilder? _optimisticResponse;
-  _i2.GlistTodolistsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GlistTodolistsDataBuilder();
-  set optimisticResponse(_i2.GlistTodolistsDataBuilder? optimisticResponse) =>
+  _i2.GcreateTodoListDataBuilder? _optimisticResponse;
+  _i2.GcreateTodoListDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GcreateTodoListDataBuilder();
+  set optimisticResponse(_i2.GcreateTodoListDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -405,11 +406,11 @@ class GlistTodolistsReqBuilder
   set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
-  GlistTodolistsReqBuilder() {
-    GlistTodolistsReq._initializeBuilder(this);
+  GcreateTodoListReqBuilder() {
+    GcreateTodoListReq._initializeBuilder(this);
   }
 
-  GlistTodolistsReqBuilder get _$this {
+  GcreateTodoListReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -427,25 +428,25 @@ class GlistTodolistsReqBuilder
   }
 
   @override
-  void replace(GlistTodolistsReq other) {
+  void replace(GcreateTodoListReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GlistTodolistsReq;
+    _$v = other as _$GcreateTodoListReq;
   }
 
   @override
-  void update(void Function(GlistTodolistsReqBuilder)? updates) {
+  void update(void Function(GcreateTodoListReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GlistTodolistsReq build() {
-    _$GlistTodolistsReq _$result;
+  _$GcreateTodoListReq build() {
+    _$GcreateTodoListReq _$result;
     try {
       _$result = _$v ??
-          new _$GlistTodolistsReq._(
+          new _$GcreateTodoListReq._(
               vars: vars.build(),
               operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, 'GlistTodolistsReq', 'operation'),
+                  operation, 'GcreateTodoListReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
@@ -453,7 +454,7 @@ class GlistTodolistsReqBuilder
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
               executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, 'GlistTodolistsReq', 'executeOnListen'));
+                  executeOnListen, 'GcreateTodoListReq', 'executeOnListen'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -464,7 +465,7 @@ class GlistTodolistsReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GlistTodolistsReq', _$failedField, e.toString());
+            'GcreateTodoListReq', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -473,18 +474,18 @@ class GlistTodolistsReqBuilder
   }
 }
 
-class _$GcreateTodolistReq extends GcreateTodolistReq {
+class _$GlistTodoListsReq extends GlistTodoListsReq {
   @override
-  final _i3.GcreateTodolistVars vars;
+  final _i3.GlistTodoListsVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GcreateTodolistData? Function(
-      _i2.GcreateTodolistData?, _i2.GcreateTodolistData?)? updateResult;
+  final _i2.GlistTodoListsData? Function(
+      _i2.GlistTodoListsData?, _i2.GlistTodoListsData?)? updateResult;
   @override
-  final _i2.GcreateTodolistData? optimisticResponse;
+  final _i2.GlistTodoListsData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -494,11 +495,11 @@ class _$GcreateTodolistReq extends GcreateTodolistReq {
   @override
   final bool executeOnListen;
 
-  factory _$GcreateTodolistReq(
-          [void Function(GcreateTodolistReqBuilder)? updates]) =>
-      (new GcreateTodolistReqBuilder()..update(updates)).build();
+  factory _$GlistTodoListsReq(
+          [void Function(GlistTodoListsReqBuilder)? updates]) =>
+      (new GlistTodoListsReqBuilder()..update(updates)).build();
 
-  _$GcreateTodolistReq._(
+  _$GlistTodoListsReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -509,27 +510,26 @@ class _$GcreateTodolistReq extends GcreateTodolistReq {
       this.fetchPolicy,
       required this.executeOnListen})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, 'GcreateTodolistReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(vars, 'GlistTodoListsReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, 'GcreateTodolistReq', 'operation');
+        operation, 'GlistTodoListsReq', 'operation');
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, 'GcreateTodolistReq', 'executeOnListen');
+        executeOnListen, 'GlistTodoListsReq', 'executeOnListen');
   }
 
   @override
-  GcreateTodolistReq rebuild(
-          void Function(GcreateTodolistReqBuilder) updates) =>
+  GlistTodoListsReq rebuild(void Function(GlistTodoListsReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GcreateTodolistReqBuilder toBuilder() =>
-      new GcreateTodolistReqBuilder()..replace(this);
+  GlistTodoListsReqBuilder toBuilder() =>
+      new GlistTodoListsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GcreateTodolistReq &&
+    return other is GlistTodoListsReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -561,7 +561,7 @@ class _$GcreateTodolistReq extends GcreateTodolistReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('GcreateTodolistReq')
+    return (newBuiltValueToStringHelper('GlistTodoListsReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -575,14 +575,14 @@ class _$GcreateTodolistReq extends GcreateTodolistReq {
   }
 }
 
-class GcreateTodolistReqBuilder
-    implements Builder<GcreateTodolistReq, GcreateTodolistReqBuilder> {
-  _$GcreateTodolistReq? _$v;
+class GlistTodoListsReqBuilder
+    implements Builder<GlistTodoListsReq, GlistTodoListsReqBuilder> {
+  _$GlistTodoListsReq? _$v;
 
-  _i3.GcreateTodolistVarsBuilder? _vars;
-  _i3.GcreateTodolistVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GcreateTodolistVarsBuilder();
-  set vars(_i3.GcreateTodolistVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GlistTodoListsVarsBuilder? _vars;
+  _i3.GlistTodoListsVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GlistTodoListsVarsBuilder();
+  set vars(_i3.GlistTodoListsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -592,21 +592,21 @@ class GcreateTodolistReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GcreateTodolistData? Function(
-      _i2.GcreateTodolistData?, _i2.GcreateTodolistData?)? _updateResult;
-  _i2.GcreateTodolistData? Function(
-          _i2.GcreateTodolistData?, _i2.GcreateTodolistData?)?
+  _i2.GlistTodoListsData? Function(
+      _i2.GlistTodoListsData?, _i2.GlistTodoListsData?)? _updateResult;
+  _i2.GlistTodoListsData? Function(
+          _i2.GlistTodoListsData?, _i2.GlistTodoListsData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GcreateTodolistData? Function(
-                  _i2.GcreateTodolistData?, _i2.GcreateTodolistData?)?
+          _i2.GlistTodoListsData? Function(
+                  _i2.GlistTodoListsData?, _i2.GlistTodoListsData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GcreateTodolistDataBuilder? _optimisticResponse;
-  _i2.GcreateTodolistDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GcreateTodolistDataBuilder();
-  set optimisticResponse(_i2.GcreateTodolistDataBuilder? optimisticResponse) =>
+  _i2.GlistTodoListsDataBuilder? _optimisticResponse;
+  _i2.GlistTodoListsDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GlistTodoListsDataBuilder();
+  set optimisticResponse(_i2.GlistTodoListsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -631,11 +631,11 @@ class GcreateTodolistReqBuilder
   set executeOnListen(bool? executeOnListen) =>
       _$this._executeOnListen = executeOnListen;
 
-  GcreateTodolistReqBuilder() {
-    GcreateTodolistReq._initializeBuilder(this);
+  GlistTodoListsReqBuilder() {
+    GlistTodoListsReq._initializeBuilder(this);
   }
 
-  GcreateTodolistReqBuilder get _$this {
+  GlistTodoListsReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -653,25 +653,25 @@ class GcreateTodolistReqBuilder
   }
 
   @override
-  void replace(GcreateTodolistReq other) {
+  void replace(GlistTodoListsReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GcreateTodolistReq;
+    _$v = other as _$GlistTodoListsReq;
   }
 
   @override
-  void update(void Function(GcreateTodolistReqBuilder)? updates) {
+  void update(void Function(GlistTodoListsReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$GcreateTodolistReq build() {
-    _$GcreateTodolistReq _$result;
+  _$GlistTodoListsReq build() {
+    _$GlistTodoListsReq _$result;
     try {
       _$result = _$v ??
-          new _$GcreateTodolistReq._(
+          new _$GlistTodoListsReq._(
               vars: vars.build(),
               operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, 'GcreateTodolistReq', 'operation'),
+                  operation, 'GlistTodoListsReq', 'operation'),
               requestId: requestId,
               updateResult: updateResult,
               optimisticResponse: _optimisticResponse?.build(),
@@ -679,7 +679,7 @@ class GcreateTodolistReqBuilder
               updateCacheHandlerContext: updateCacheHandlerContext,
               fetchPolicy: fetchPolicy,
               executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, 'GcreateTodolistReq', 'executeOnListen'));
+                  executeOnListen, 'GlistTodoListsReq', 'executeOnListen'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -690,7 +690,7 @@ class GcreateTodolistReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'GcreateTodolistReq', _$failedField, e.toString());
+            'GlistTodoListsReq', _$failedField, e.toString());
       }
       rethrow;
     }

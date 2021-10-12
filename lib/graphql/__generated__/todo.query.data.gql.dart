@@ -7,131 +7,127 @@ import 'package:todo_list/graphql/__generated__/serializers.gql.dart' as _i1;
 
 part 'todo.query.data.gql.g.dart';
 
-abstract class GlistTodolistsData
-    implements Built<GlistTodolistsData, GlistTodolistsDataBuilder> {
-  GlistTodolistsData._();
+abstract class GcreateTodoListData
+    implements Built<GcreateTodoListData, GcreateTodoListDataBuilder> {
+  GcreateTodoListData._();
 
-  factory GlistTodolistsData([Function(GlistTodolistsDataBuilder b) updates]) =
-      _$GlistTodolistsData;
+  factory GcreateTodoListData(
+      [Function(GcreateTodoListDataBuilder b) updates]) = _$GcreateTodoListData;
 
-  static void _initializeBuilder(GlistTodolistsDataBuilder b) =>
-      b..G__typename = 'Query';
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  GlistTodolistsData_listTodolists? get listTodolists;
-  static Serializer<GlistTodolistsData> get serializer =>
-      _$glistTodolistsDataSerializer;
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GlistTodolistsData.serializer, this)
-          as Map<String, dynamic>);
-  static GlistTodolistsData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GlistTodolistsData.serializer, json);
-}
-
-abstract class GlistTodolistsData_listTodolists
-    implements
-        Built<GlistTodolistsData_listTodolists,
-            GlistTodolistsData_listTodolistsBuilder> {
-  GlistTodolistsData_listTodolists._();
-
-  factory GlistTodolistsData_listTodolists(
-          [Function(GlistTodolistsData_listTodolistsBuilder b) updates]) =
-      _$GlistTodolistsData_listTodolists;
-
-  static void _initializeBuilder(GlistTodolistsData_listTodolistsBuilder b) =>
-      b..G__typename = 'todolistConnection';
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  BuiltList<GlistTodolistsData_listTodolists_items>? get items;
-  static Serializer<GlistTodolistsData_listTodolists> get serializer =>
-      _$glistTodolistsDataListTodolistsSerializer;
-  Map<String, dynamic> toJson() => (_i1.serializers
-          .serializeWith(GlistTodolistsData_listTodolists.serializer, this)
-      as Map<String, dynamic>);
-  static GlistTodolistsData_listTodolists? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers
-          .deserializeWith(GlistTodolistsData_listTodolists.serializer, json);
-}
-
-abstract class GlistTodolistsData_listTodolists_items
-    implements
-        Built<GlistTodolistsData_listTodolists_items,
-            GlistTodolistsData_listTodolists_itemsBuilder> {
-  GlistTodolistsData_listTodolists_items._();
-
-  factory GlistTodolistsData_listTodolists_items(
-          [Function(GlistTodolistsData_listTodolists_itemsBuilder b) updates]) =
-      _$GlistTodolistsData_listTodolists_items;
-
-  static void _initializeBuilder(
-          GlistTodolistsData_listTodolists_itemsBuilder b) =>
-      b..G__typename = 'todolist';
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  int? get createdAt;
-  String get id;
-  String? get memo;
-  String get title;
-  String get status;
-  static Serializer<GlistTodolistsData_listTodolists_items> get serializer =>
-      _$glistTodolistsDataListTodolistsItemsSerializer;
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-          GlistTodolistsData_listTodolists_items.serializer, this)
-      as Map<String, dynamic>);
-  static GlistTodolistsData_listTodolists_items? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-          GlistTodolistsData_listTodolists_items.serializer, json);
-}
-
-abstract class GcreateTodolistData
-    implements Built<GcreateTodolistData, GcreateTodolistDataBuilder> {
-  GcreateTodolistData._();
-
-  factory GcreateTodolistData(
-      [Function(GcreateTodolistDataBuilder b) updates]) = _$GcreateTodolistData;
-
-  static void _initializeBuilder(GcreateTodolistDataBuilder b) =>
+  static void _initializeBuilder(GcreateTodoListDataBuilder b) =>
       b..G__typename = 'Mutation';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  GcreateTodolistData_createTodolist? get createTodolist;
-  static Serializer<GcreateTodolistData> get serializer =>
-      _$gcreateTodolistDataSerializer;
+  GcreateTodoListData_createTodoList? get createTodoList;
+  static Serializer<GcreateTodoListData> get serializer =>
+      _$gcreateTodoListDataSerializer;
   Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GcreateTodolistData.serializer, this)
+      (_i1.serializers.serializeWith(GcreateTodoListData.serializer, this)
           as Map<String, dynamic>);
-  static GcreateTodolistData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GcreateTodolistData.serializer, json);
+  static GcreateTodoListData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GcreateTodoListData.serializer, json);
 }
 
-abstract class GcreateTodolistData_createTodolist
+abstract class GcreateTodoListData_createTodoList
     implements
-        Built<GcreateTodolistData_createTodolist,
-            GcreateTodolistData_createTodolistBuilder> {
-  GcreateTodolistData_createTodolist._();
+        Built<GcreateTodoListData_createTodoList,
+            GcreateTodoListData_createTodoListBuilder> {
+  GcreateTodoListData_createTodoList._();
 
-  factory GcreateTodolistData_createTodolist(
-          [Function(GcreateTodolistData_createTodolistBuilder b) updates]) =
-      _$GcreateTodolistData_createTodolist;
+  factory GcreateTodoListData_createTodoList(
+          [Function(GcreateTodoListData_createTodoListBuilder b) updates]) =
+      _$GcreateTodoListData_createTodoList;
 
-  static void _initializeBuilder(GcreateTodolistData_createTodolistBuilder b) =>
-      b..G__typename = 'todolist';
+  static void _initializeBuilder(GcreateTodoListData_createTodoListBuilder b) =>
+      b..G__typename = 'TodoList';
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String get id;
-  String get title;
-  String? get memo;
-  int? get createdAt;
-  String get status;
-  static Serializer<GcreateTodolistData_createTodolist> get serializer =>
-      _$gcreateTodolistDataCreateTodolistSerializer;
+  String get cuid;
+  String get tid;
+  static Serializer<GcreateTodoListData_createTodoList> get serializer =>
+      _$gcreateTodoListDataCreateTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
-          .serializeWith(GcreateTodolistData_createTodolist.serializer, this)
+          .serializeWith(GcreateTodoListData_createTodoList.serializer, this)
       as Map<String, dynamic>);
-  static GcreateTodolistData_createTodolist? fromJson(
+  static GcreateTodoListData_createTodoList? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers
-          .deserializeWith(GcreateTodolistData_createTodolist.serializer, json);
+          .deserializeWith(GcreateTodoListData_createTodoList.serializer, json);
+}
+
+abstract class GlistTodoListsData
+    implements Built<GlistTodoListsData, GlistTodoListsDataBuilder> {
+  GlistTodoListsData._();
+
+  factory GlistTodoListsData([Function(GlistTodoListsDataBuilder b) updates]) =
+      _$GlistTodoListsData;
+
+  static void _initializeBuilder(GlistTodoListsDataBuilder b) =>
+      b..G__typename = 'Query';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GlistTodoListsData_listTodoLists? get listTodoLists;
+  static Serializer<GlistTodoListsData> get serializer =>
+      _$glistTodoListsDataSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GlistTodoListsData.serializer, this)
+          as Map<String, dynamic>);
+  static GlistTodoListsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GlistTodoListsData.serializer, json);
+}
+
+abstract class GlistTodoListsData_listTodoLists
+    implements
+        Built<GlistTodoListsData_listTodoLists,
+            GlistTodoListsData_listTodoListsBuilder> {
+  GlistTodoListsData_listTodoLists._();
+
+  factory GlistTodoListsData_listTodoLists(
+          [Function(GlistTodoListsData_listTodoListsBuilder b) updates]) =
+      _$GlistTodoListsData_listTodoLists;
+
+  static void _initializeBuilder(GlistTodoListsData_listTodoListsBuilder b) =>
+      b..G__typename = 'TodoListConnection';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<GlistTodoListsData_listTodoLists_items>? get items;
+  static Serializer<GlistTodoListsData_listTodoLists> get serializer =>
+      _$glistTodoListsDataListTodoListsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GlistTodoListsData_listTodoLists.serializer, this)
+      as Map<String, dynamic>);
+  static GlistTodoListsData_listTodoLists? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers
+          .deserializeWith(GlistTodoListsData_listTodoLists.serializer, json);
+}
+
+abstract class GlistTodoListsData_listTodoLists_items
+    implements
+        Built<GlistTodoListsData_listTodoLists_items,
+            GlistTodoListsData_listTodoLists_itemsBuilder> {
+  GlistTodoListsData_listTodoLists_items._();
+
+  factory GlistTodoListsData_listTodoLists_items(
+          [Function(GlistTodoListsData_listTodoLists_itemsBuilder b) updates]) =
+      _$GlistTodoListsData_listTodoLists_items;
+
+  static void _initializeBuilder(
+          GlistTodoListsData_listTodoLists_itemsBuilder b) =>
+      b..G__typename = 'TodoList';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get cuid;
+  String get tid;
+  String get title;
+  String? get status;
+  static Serializer<GlistTodoListsData_listTodoLists_items> get serializer =>
+      _$glistTodoListsDataListTodoListsItemsSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+          GlistTodoListsData_listTodoLists_items.serializer, this)
+      as Map<String, dynamic>);
+  static GlistTodoListsData_listTodoLists_items? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+          GlistTodoListsData_listTodoLists_items.serializer, json);
 }

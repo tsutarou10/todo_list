@@ -2,29 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
+import 'package:todo_list/ui/home/home_page.dart';
 import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/done_view_model.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
-class DonePage extends ConsumerWidget {
+class DonePage extends StatelessWidget {
   final String title;
-  List<ToDoItem> items = [];
-  DonePage({Key? key, required this.title, required this.items}) : super(key: key);
+  final graphQlClient = GraphQLApiClient();
+  DonePage({Key? key, required this.title}) : super(key: key);
 
 
-  List<Widget> _getListItems(BuildContext context) => items
+  List<Widget> _getListItems(BuildContext context, List<ToDoItem> items) => items
       .asMap()
       .map((index, item) => MapEntry(index, _buildRow(context, index, item)))
       .values
       .toList();
 
-  Widget _buildReorderableListView(BuildContext context) {
+  Widget _buildReorderableListView(BuildContext context, List<ToDoItem> items) {
     return ReorderableListView(
         onReorder: (oldIndex, newIndex) {
           context.read(todoContentProvider).reorderData(oldIndex, newIndex);
         },
-        children: _getListItems(context),
+        children: _getListItems(context, items),
     );
   }
 
@@ -53,20 +54,22 @@ class DonePage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    items = watch(doneContentProvider).items;
-    print('done todo: ${items}');
-    //final graphQlClient = GraphQLApiClient();
-    //graphQlClient.mutationTodo("testTitle", "testMemo", "TODO");
-    //dynamic resp = graphQlClient.queryTodo("TODO");
+  Widget build(BuildContext context) {
+    print('todo_tabs');
     return Scaffold(
         appBar: AppBar(
             title: Text(title),
         ),
-        body: _buildReorderableListView(context),
+        body: Consumer(
+            builder: (context, watch, child) {
+              List<ToDoItem> items = watch(doneContentProvider).items;
+              print('todo items: ${items}');
+              return _buildReorderableListView(context, items);
+            }
+        ),
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              var result = await Navigator.of(context).pushNamed(editPageRoute);
+              //context.read(todoContentProvider).fetch("TODO");
             },
             child: const Icon(Icons.add),
         ),
