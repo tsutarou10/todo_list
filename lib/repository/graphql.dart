@@ -37,6 +37,7 @@ class GraphQLApiClient implements GraphQLGateway {
         print('before: ${items}');
         for(dynamic item in items) {
           rsl.add(ToDoItem(
+                  tid: item['tid'],
                   title: item['title'],
                   status: item['status'],
           ));
@@ -66,11 +67,11 @@ class GraphQLApiClient implements GraphQLGateway {
       if(data != null) {
         final item = data.createTodoList?.toJson();
         print('mutation: ${item}');
-        return ToDoItem(title: item['title'], status: item['status'], priority: item['priority']);
+        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: item['priority']);
       } else {
         print('not found');
       }
     }
-    return ToDoItem(title: "title", status: "status");
+    return ToDoItem(tid: generateUUID(), title: "title", status: "status");
   }
 }

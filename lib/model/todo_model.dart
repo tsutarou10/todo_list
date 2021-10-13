@@ -10,6 +10,7 @@ Map<Priority, String> priorityToString = {
 };
 
 class ToDoItem {
+  String tid;
   String title;
   String status;
   String? memo;
@@ -20,6 +21,7 @@ class ToDoItem {
 
   ToDoItem(
       {
+        required this.tid,
         required this.title,
         required this.status,
         this.memo,
@@ -31,7 +33,8 @@ class ToDoItem {
     );
 
   ToDoItem.fromMap(Map<String, dynamic> map)
-      : title = map['title'] as String,
+      : tid = map['tid'] as String,
+        title = map['title'] as String,
         status = map['status'] as String,
         memo = map['memo'] ? map['memo'] as String : null,
         createdAt = map['createdAt'] ? map['createdAt'] as int : null,
