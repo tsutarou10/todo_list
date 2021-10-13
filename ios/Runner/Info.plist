@@ -11,7 +11,9 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>todo_list</string>
+    <string>todo_list$(APP_ID_SUFFIX)</string>
+    <key>CFBundleDisplayName</key>
+    <string>todo_list$(APP_ID_SUFFIX)</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>

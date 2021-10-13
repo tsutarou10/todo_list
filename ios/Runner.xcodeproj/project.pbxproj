@@ -46,6 +46,9 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6BFD4C92717A18100D2A40B /* dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = dev.xcconfig; path = Flutter/dev.xcconfig; sourceTree = "<group>"; };
+		B6BFD4CA2717A19800D2A40B /* stg.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = stg.xcconfig; path = Flutter/stg.xcconfig; sourceTree = "<group>"; };
+		B6BFD4CB2717A1AC00D2A40B /* prd.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = prd.xcconfig; path = Flutter/prd.xcconfig; sourceTree = "<group>"; };
 		C0E6639AB363C516DFAA7CC1 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +88,9 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				B6BFD4C92717A18100D2A40B /* dev.xcconfig */,
+				B6BFD4CA2717A19800D2A40B /* stg.xcconfig */,
+				B6BFD4CB2717A1AC00D2A40B /* prd.xcconfig */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -345,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tsutarou.todo-list";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tsutarou.todo-list$(APP_ID_SUFFIX)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
