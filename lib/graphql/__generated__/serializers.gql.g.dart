@@ -29,6 +29,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GlistTodoListsData_listTodoLists_items.serializer)
       ..add(GlistTodoListsReq.serializer)
       ..add(GlistTodoListsVars.serializer)
+      ..add(GupdateTodoListData.serializer)
+      ..add(GupdateTodoListData_updateTodoList.serializer)
+      ..add(GupdateTodoListReq.serializer)
+      ..add(GupdateTodoListVars.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList,
               const [const FullType(GlistTodoListsData_listTodoLists_items)]),

@@ -187,3 +187,55 @@ abstract class GdeleteTodoListData_deleteTodoList
       _i1.serializers
           .deserializeWith(GdeleteTodoListData_deleteTodoList.serializer, json);
 }
+
+abstract class GupdateTodoListData
+    implements Built<GupdateTodoListData, GupdateTodoListDataBuilder> {
+  GupdateTodoListData._();
+
+  factory GupdateTodoListData(
+      [Function(GupdateTodoListDataBuilder b) updates]) = _$GupdateTodoListData;
+
+  static void _initializeBuilder(GupdateTodoListDataBuilder b) =>
+      b..G__typename = 'Mutation';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GupdateTodoListData_updateTodoList? get updateTodoList;
+  static Serializer<GupdateTodoListData> get serializer =>
+      _$gupdateTodoListDataSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GupdateTodoListData.serializer, this)
+          as Map<String, dynamic>);
+  static GupdateTodoListData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GupdateTodoListData.serializer, json);
+}
+
+abstract class GupdateTodoListData_updateTodoList
+    implements
+        Built<GupdateTodoListData_updateTodoList,
+            GupdateTodoListData_updateTodoListBuilder> {
+  GupdateTodoListData_updateTodoList._();
+
+  factory GupdateTodoListData_updateTodoList(
+          [Function(GupdateTodoListData_updateTodoListBuilder b) updates]) =
+      _$GupdateTodoListData_updateTodoList;
+
+  static void _initializeBuilder(GupdateTodoListData_updateTodoListBuilder b) =>
+      b..G__typename = 'TodoList';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get cuid;
+  String? get memo;
+  String get priority;
+  String? get status;
+  String get tid;
+  String? get title;
+  static Serializer<GupdateTodoListData_updateTodoList> get serializer =>
+      _$gupdateTodoListDataUpdateTodoListSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GupdateTodoListData_updateTodoList.serializer, this)
+      as Map<String, dynamic>);
+  static GupdateTodoListData_updateTodoList? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers
+          .deserializeWith(GupdateTodoListData_updateTodoList.serializer, json);
+}

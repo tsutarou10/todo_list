@@ -24,6 +24,11 @@ Serializer<GdeleteTodoListData> _$gdeleteTodoListDataSerializer =
 Serializer<GdeleteTodoListData_deleteTodoList>
     _$gdeleteTodoListDataDeleteTodoListSerializer =
     new _$GdeleteTodoListData_deleteTodoListSerializer();
+Serializer<GupdateTodoListData> _$gupdateTodoListDataSerializer =
+    new _$GupdateTodoListDataSerializer();
+Serializer<GupdateTodoListData_updateTodoList>
+    _$gupdateTodoListDataUpdateTodoListSerializer =
+    new _$GupdateTodoListData_updateTodoListSerializer();
 
 class _$GcreateTodoListDataSerializer
     implements StructuredSerializer<GcreateTodoListData> {
@@ -490,6 +495,163 @@ class _$GdeleteTodoListData_deleteTodoListSerializer
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GdeleteTodoListData_deleteTodoListBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'cuid':
+          result.cuid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'memo':
+          result.memo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'priority':
+          result.priority = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'tid':
+          result.tid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GupdateTodoListDataSerializer
+    implements StructuredSerializer<GupdateTodoListData> {
+  @override
+  final Iterable<Type> types = const [
+    GupdateTodoListData,
+    _$GupdateTodoListData
+  ];
+  @override
+  final String wireName = 'GupdateTodoListData';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GupdateTodoListData object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.updateTodoList;
+    if (value != null) {
+      result
+        ..add('updateTodoList')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(GupdateTodoListData_updateTodoList)));
+    }
+    return result;
+  }
+
+  @override
+  GupdateTodoListData deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GupdateTodoListDataBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'updateTodoList':
+          result.updateTodoList.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(GupdateTodoListData_updateTodoList))!
+              as GupdateTodoListData_updateTodoList);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GupdateTodoListData_updateTodoListSerializer
+    implements StructuredSerializer<GupdateTodoListData_updateTodoList> {
+  @override
+  final Iterable<Type> types = const [
+    GupdateTodoListData_updateTodoList,
+    _$GupdateTodoListData_updateTodoList
+  ];
+  @override
+  final String wireName = 'GupdateTodoListData_updateTodoList';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GupdateTodoListData_updateTodoList object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'cuid',
+      serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'priority',
+      serializers.serialize(object.priority,
+          specifiedType: const FullType(String)),
+      'tid',
+      serializers.serialize(object.tid, specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.memo;
+    if (value != null) {
+      result
+        ..add('memo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.status;
+    if (value != null) {
+      result
+        ..add('status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    return result;
+  }
+
+  @override
+  GupdateTodoListData_updateTodoList deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GupdateTodoListData_updateTodoListBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1485,6 +1647,296 @@ class GdeleteTodoListData_deleteTodoListBuilder
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GdeleteTodoListData_deleteTodoList', 'tid'),
+            title: title);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GupdateTodoListData extends GupdateTodoListData {
+  @override
+  final String G__typename;
+  @override
+  final GupdateTodoListData_updateTodoList? updateTodoList;
+
+  factory _$GupdateTodoListData(
+          [void Function(GupdateTodoListDataBuilder)? updates]) =>
+      (new GupdateTodoListDataBuilder()..update(updates)).build();
+
+  _$GupdateTodoListData._({required this.G__typename, this.updateTodoList})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GupdateTodoListData', 'G__typename');
+  }
+
+  @override
+  GupdateTodoListData rebuild(
+          void Function(GupdateTodoListDataBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GupdateTodoListDataBuilder toBuilder() =>
+      new GupdateTodoListDataBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GupdateTodoListData &&
+        G__typename == other.G__typename &&
+        updateTodoList == other.updateTodoList;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, G__typename.hashCode), updateTodoList.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GupdateTodoListData')
+          ..add('G__typename', G__typename)
+          ..add('updateTodoList', updateTodoList))
+        .toString();
+  }
+}
+
+class GupdateTodoListDataBuilder
+    implements Builder<GupdateTodoListData, GupdateTodoListDataBuilder> {
+  _$GupdateTodoListData? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GupdateTodoListData_updateTodoListBuilder? _updateTodoList;
+  GupdateTodoListData_updateTodoListBuilder get updateTodoList =>
+      _$this._updateTodoList ??=
+          new GupdateTodoListData_updateTodoListBuilder();
+  set updateTodoList(
+          GupdateTodoListData_updateTodoListBuilder? updateTodoList) =>
+      _$this._updateTodoList = updateTodoList;
+
+  GupdateTodoListDataBuilder() {
+    GupdateTodoListData._initializeBuilder(this);
+  }
+
+  GupdateTodoListDataBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _updateTodoList = $v.updateTodoList?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GupdateTodoListData other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GupdateTodoListData;
+  }
+
+  @override
+  void update(void Function(GupdateTodoListDataBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GupdateTodoListData build() {
+    _$GupdateTodoListData _$result;
+    try {
+      _$result = _$v ??
+          new _$GupdateTodoListData._(
+              G__typename: BuiltValueNullFieldError.checkNotNull(
+                  G__typename, 'GupdateTodoListData', 'G__typename'),
+              updateTodoList: _updateTodoList?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'updateTodoList';
+        _updateTodoList?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GupdateTodoListData', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GupdateTodoListData_updateTodoList
+    extends GupdateTodoListData_updateTodoList {
+  @override
+  final String G__typename;
+  @override
+  final String cuid;
+  @override
+  final String? memo;
+  @override
+  final String priority;
+  @override
+  final String? status;
+  @override
+  final String tid;
+  @override
+  final String? title;
+
+  factory _$GupdateTodoListData_updateTodoList(
+          [void Function(GupdateTodoListData_updateTodoListBuilder)?
+              updates]) =>
+      (new GupdateTodoListData_updateTodoListBuilder()..update(updates))
+          .build();
+
+  _$GupdateTodoListData_updateTodoList._(
+      {required this.G__typename,
+      required this.cuid,
+      this.memo,
+      required this.priority,
+      this.status,
+      required this.tid,
+      this.title})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename, 'GupdateTodoListData_updateTodoList', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        cuid, 'GupdateTodoListData_updateTodoList', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(
+        priority, 'GupdateTodoListData_updateTodoList', 'priority');
+    BuiltValueNullFieldError.checkNotNull(
+        tid, 'GupdateTodoListData_updateTodoList', 'tid');
+  }
+
+  @override
+  GupdateTodoListData_updateTodoList rebuild(
+          void Function(GupdateTodoListData_updateTodoListBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GupdateTodoListData_updateTodoListBuilder toBuilder() =>
+      new GupdateTodoListData_updateTodoListBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GupdateTodoListData_updateTodoList &&
+        G__typename == other.G__typename &&
+        cuid == other.cuid &&
+        memo == other.memo &&
+        priority == other.priority &&
+        status == other.status &&
+        tid == other.tid &&
+        title == other.title;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode),
+                        memo.hashCode),
+                    priority.hashCode),
+                status.hashCode),
+            tid.hashCode),
+        title.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GupdateTodoListData_updateTodoList')
+          ..add('G__typename', G__typename)
+          ..add('cuid', cuid)
+          ..add('memo', memo)
+          ..add('priority', priority)
+          ..add('status', status)
+          ..add('tid', tid)
+          ..add('title', title))
+        .toString();
+  }
+}
+
+class GupdateTodoListData_updateTodoListBuilder
+    implements
+        Builder<GupdateTodoListData_updateTodoList,
+            GupdateTodoListData_updateTodoListBuilder> {
+  _$GupdateTodoListData_updateTodoList? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _cuid;
+  String? get cuid => _$this._cuid;
+  set cuid(String? cuid) => _$this._cuid = cuid;
+
+  String? _memo;
+  String? get memo => _$this._memo;
+  set memo(String? memo) => _$this._memo = memo;
+
+  String? _priority;
+  String? get priority => _$this._priority;
+  set priority(String? priority) => _$this._priority = priority;
+
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
+  String? _tid;
+  String? get tid => _$this._tid;
+  set tid(String? tid) => _$this._tid = tid;
+
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  GupdateTodoListData_updateTodoListBuilder() {
+    GupdateTodoListData_updateTodoList._initializeBuilder(this);
+  }
+
+  GupdateTodoListData_updateTodoListBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _cuid = $v.cuid;
+      _memo = $v.memo;
+      _priority = $v.priority;
+      _status = $v.status;
+      _tid = $v.tid;
+      _title = $v.title;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GupdateTodoListData_updateTodoList other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GupdateTodoListData_updateTodoList;
+  }
+
+  @override
+  void update(
+      void Function(GupdateTodoListData_updateTodoListBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GupdateTodoListData_updateTodoList build() {
+    final _$result = _$v ??
+        new _$GupdateTodoListData_updateTodoList._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                'GupdateTodoListData_updateTodoList', 'G__typename'),
+            cuid: BuiltValueNullFieldError.checkNotNull(
+                cuid, 'GupdateTodoListData_updateTodoList', 'cuid'),
+            memo: memo,
+            priority: BuiltValueNullFieldError.checkNotNull(
+                priority, 'GupdateTodoListData_updateTodoList', 'priority'),
+            status: status,
+            tid: BuiltValueNullFieldError.checkNotNull(
+                tid, 'GupdateTodoListData_updateTodoList', 'tid'),
             title: title);
     replace(_$result);
     return _$result;

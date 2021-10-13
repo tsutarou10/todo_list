@@ -6,6 +6,8 @@ import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
+import 'input_dialog.dart';
+
 typedef BuildRow = Widget Function(BuildContext, int, ToDoItem, OnDismissedCondition, dynamic);
 typedef OnDismissedCondition = void Function(BuildContext, ToDoItem, int, dynamic);
 
@@ -36,7 +38,9 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
           radius: 30,
           backgroundColor: Colors.white,
           child: IconButton(
-            onPressed:(){},
+            onPressed:(){
+              InputDialog(context, item.tid, item.title, item.memo, item.priority, false);
+            },
             icon: Icon(FontAwesomeIcons.edit, color: Colors.black),
           ),
       ),

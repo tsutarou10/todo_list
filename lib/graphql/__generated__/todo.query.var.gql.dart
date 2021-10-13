@@ -57,3 +57,20 @@ abstract class GdeleteTodoListVars
   static GdeleteTodoListVars? fromJson(Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(GdeleteTodoListVars.serializer, json);
 }
+
+abstract class GupdateTodoListVars
+    implements Built<GupdateTodoListVars, GupdateTodoListVarsBuilder> {
+  GupdateTodoListVars._();
+
+  factory GupdateTodoListVars(
+      [Function(GupdateTodoListVarsBuilder b) updates]) = _$GupdateTodoListVars;
+
+  _i1.GUpdateTodoListInput get input;
+  static Serializer<GupdateTodoListVars> get serializer =>
+      _$gupdateTodoListVarsSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GupdateTodoListVars.serializer, this)
+          as Map<String, dynamic>);
+  static GupdateTodoListVars? fromJson(Map<String, dynamic> json) =>
+      _i2.serializers.deserializeWith(GupdateTodoListVars.serializer, json);
+}

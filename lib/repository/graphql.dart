@@ -56,7 +56,7 @@ class GraphQLApiClient implements GraphQLGateway {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
     final request = GcreateTodoListReq(
         (b) => b
-        ..vars.createtodolistinput.cuid = 'test cuid'
+        ..vars.createtodolistinput.cuid = cuid
         ..vars.createtodolistinput.tid = generateUUID()
         ..vars.createtodolistinput.status = status
         ..vars.createtodolistinput.title = title
@@ -76,10 +76,34 @@ class GraphQLApiClient implements GraphQLGateway {
     return ToDoItem(tid: generateUUID(), title: "title", status: "status");
   }
 
+  Future<ToDoItem> updateTodo(String cuid, String tid, String title, String memo, String status, Priority priority) async {
+    int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
+    final request = GupdateTodoListReq(
+        (b) => b
+        ..vars.input.cuid = cuid
+        ..vars.input.tid = tid
+        ..vars.input.status = status
+        ..vars.input.title = title
+        ..vars.input.priority = priorityToString[priority]);
+        //..vars.createtodolistinput.title = title);
+    Stream<dynamic> events = _client.request(request);
+    await for(dynamic event in events) {
+      final data = event.data;
+      if(data != null) {
+        final item = data.updateTodoList?.toJson();
+        print('mutation: ${item}');
+        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
+      } else {
+        print('not found');
+      }
+    }
+    return ToDoItem(tid: generateUUID(), title: "title", status: "status");
+  }
+
   Future<ToDoItem> deleteTodo(String cuid, String tid) async {
     final request = GdeleteTodoListReq(
         (b) => b
-        ..vars.input.cuid = 'test cuid'
+        ..vars.input.cuid = cuid
         ..vars.input.tid = tid);
     Stream<dynamic> events = _client.request(request);
     await for(dynamic event in events) {

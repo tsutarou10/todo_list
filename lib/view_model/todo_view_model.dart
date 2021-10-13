@@ -51,6 +51,27 @@ class TodoContentViewModel extends ChangeNotifier {
     });
   }
 
+  Future<void> updateTodo(String cuid, String tid, String title, String memo, String status, Priority priority) async {
+    Future<ToDoItem> future = _client.updateTodo(cuid, tid, title, memo, status, priority);
+    print('start create');
+    future.then((value) {
+        _items.add(value);
+        _items.asMap().forEach((int i, ToDoItem v) {
+          print(v.tid);
+          if(v.tid == value.tid) {
+            _items.removeAt(i);
+          }
+        });
+      })
+    .catchError((dynamic error) {
+      print(error);
+    })
+    .whenComplete(() {
+      print('complete');
+      notifyListeners();
+    });
+  }
+
   Future<void> deleteTodo(String cuid, String tid) async {
     Future<ToDoItem> future = _client.deleteTodo(cuid, tid);
     print('start delete');

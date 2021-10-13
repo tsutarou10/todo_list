@@ -10,10 +10,10 @@ Map<Priority, String> priorityToRadioButtonText = {
   Priority.LOW: '低',
 };
 
-Future<void> InputDialog(BuildContext context) async {
-  Priority _gValue = Priority.HIGH;
-  var _titleController = TextEditingController();
-  var _memoController = TextEditingController();
+Future<void> InputDialog(BuildContext context, [String? tid, String? title, String? memo, Priority? priority, bool? isCreated]) async {
+  Priority _gValue = priority != null ? priority : Priority.HIGH;
+  var _titleController = TextEditingController(text: title);
+  var _memoController = TextEditingController(text: memo);
   void _onRadioSelected(value) {
     _gValue = value;
   }
@@ -94,13 +94,25 @@ Future<void> InputDialog(BuildContext context) async {
                 textColor: Colors.blue,
                 child: Text('ok'),
                 onPressed: () {
-                  context.read(todoContentProvider).createTodo(
-                      "TEST_CUID",
-                      _titleController.text,
-                      _memoController.text,
-                      "TODO",
-                      _gValue,
-                      );
+                  print(isCreated);
+                  if(isCreated == null || isCreated) {
+                    context.read(todoContentProvider).createTodo(
+                        "TEST_CUID",
+                        _titleController.text,
+                        _memoController.text,
+                        "TODO",
+                        _gValue,
+                        );
+                  } else {
+                    context.read(todoContentProvider).updateTodo(
+                        "TEST_CUID",
+                        tid!,
+                        _titleController.text,
+                        _memoController.text,
+                        "TODO",
+                        _gValue,
+                        );
+                  }
                   Navigator.pop(context);
                 },
             ),
