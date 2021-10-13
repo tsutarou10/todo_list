@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
@@ -50,7 +51,9 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
         ),
       ),
       title: Text(item.title),
-      onTap:() {},
+      onTap:() {
+        Navigator.of(context).pushNamed(todoDetailPageRoute, arguments: item);
+      },
     ),
   );
 }
