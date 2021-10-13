@@ -36,6 +36,43 @@ class DoneContentViewModel extends ChangeNotifier {
     });
   }
 
+  Future<void> createTodo(String cuid, String title, String memo, String status, Priority priority) async {
+    Future<ToDoItem> future = _client.createTodo(cuid, title, memo, status, priority);
+    print('start create');
+    future.then((value) {
+        _items.add(value);
+      })
+    .catchError((dynamic error) {
+      print(error);
+    })
+    .whenComplete(() {
+      print('complete');
+      notifyListeners();
+    });
+  }
+
+  Future<void> deleteTodo(String cuid, String tid) async {
+    Future<ToDoItem> future = _client.deleteTodo(cuid, tid);
+    print('start delete');
+    future.then((value) {
+      print(value.tid);
+      _items.asMap().forEach((int i, ToDoItem v) {
+        print(v.tid);
+        if(v.tid == value.tid) {
+          _items.removeAt(i);
+        }
+      });
+      })
+    .catchError((dynamic error) {
+      print(error);
+    })
+    .whenComplete(() {
+      print('delete complete');
+      print(_items);
+      notifyListeners();
+    });
+  }
+
   void reorderData(int oldIndex, int newIndex) {
     if(newIndex > oldIndex) {
       newIndex -= 1;
@@ -47,10 +84,11 @@ class DoneContentViewModel extends ChangeNotifier {
     });
   }
 
-  void add(String tid, String title, String status, String? memo) {
-    _items.add(ToDoItem(tid: tid, title: title, status: status));
+  void add(String tid, String title, String status, Priority priority, String? memo) {
+    _items.add(ToDoItem(tid: tid, title: title, status: status, priority: priority));
     notifyListeners();
   }
+
   void remove(int index) {
     _items.removeAt(index);
     notifyListeners();

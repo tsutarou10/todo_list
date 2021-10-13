@@ -10,6 +10,8 @@ Serializer<GcreateTodoListVars> _$gcreateTodoListVarsSerializer =
     new _$GcreateTodoListVarsSerializer();
 Serializer<GlistTodoListsVars> _$glistTodoListsVarsSerializer =
     new _$GlistTodoListsVarsSerializer();
+Serializer<GdeleteTodoListVars> _$gdeleteTodoListVarsSerializer =
+    new _$GdeleteTodoListVarsSerializer();
 
 class _$GcreateTodoListVarsSerializer
     implements StructuredSerializer<GcreateTodoListVars> {
@@ -94,6 +96,53 @@ class _$GlistTodoListsVarsSerializer
           result.filter.replace(serializers.deserialize(value,
                   specifiedType: const FullType(_i1.GTableTodoListFilterInput))!
               as _i1.GTableTodoListFilterInput);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GdeleteTodoListVarsSerializer
+    implements StructuredSerializer<GdeleteTodoListVars> {
+  @override
+  final Iterable<Type> types = const [
+    GdeleteTodoListVars,
+    _$GdeleteTodoListVars
+  ];
+  @override
+  final String wireName = 'GdeleteTodoListVars';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GdeleteTodoListVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'input',
+      serializers.serialize(object.input,
+          specifiedType: const FullType(_i1.GDeleteTodoListInput)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GdeleteTodoListVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GdeleteTodoListVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'input':
+          result.input.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(_i1.GDeleteTodoListInput))!
+              as _i1.GDeleteTodoListInput);
           break;
       }
     }
@@ -286,6 +335,99 @@ class GlistTodoListsVarsBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'GlistTodoListsVars', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GdeleteTodoListVars extends GdeleteTodoListVars {
+  @override
+  final _i1.GDeleteTodoListInput input;
+
+  factory _$GdeleteTodoListVars(
+          [void Function(GdeleteTodoListVarsBuilder)? updates]) =>
+      (new GdeleteTodoListVarsBuilder()..update(updates)).build();
+
+  _$GdeleteTodoListVars._({required this.input}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        input, 'GdeleteTodoListVars', 'input');
+  }
+
+  @override
+  GdeleteTodoListVars rebuild(
+          void Function(GdeleteTodoListVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GdeleteTodoListVarsBuilder toBuilder() =>
+      new GdeleteTodoListVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GdeleteTodoListVars && input == other.input;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(0, input.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GdeleteTodoListVars')
+          ..add('input', input))
+        .toString();
+  }
+}
+
+class GdeleteTodoListVarsBuilder
+    implements Builder<GdeleteTodoListVars, GdeleteTodoListVarsBuilder> {
+  _$GdeleteTodoListVars? _$v;
+
+  _i1.GDeleteTodoListInputBuilder? _input;
+  _i1.GDeleteTodoListInputBuilder get input =>
+      _$this._input ??= new _i1.GDeleteTodoListInputBuilder();
+  set input(_i1.GDeleteTodoListInputBuilder? input) => _$this._input = input;
+
+  GdeleteTodoListVarsBuilder();
+
+  GdeleteTodoListVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _input = $v.input.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GdeleteTodoListVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GdeleteTodoListVars;
+  }
+
+  @override
+  void update(void Function(GdeleteTodoListVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GdeleteTodoListVars build() {
+    _$GdeleteTodoListVars _$result;
+    try {
+      _$result = _$v ?? new _$GdeleteTodoListVars._(input: input.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'input';
+        input.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GdeleteTodoListVars', _$failedField, e.toString());
       }
       rethrow;
     }

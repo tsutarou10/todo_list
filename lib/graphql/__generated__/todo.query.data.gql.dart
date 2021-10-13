@@ -46,6 +46,7 @@ abstract class GcreateTodoListData_createTodoList
   String get tid;
   String? get title;
   String? get status;
+  String get priority;
   static Serializer<GcreateTodoListData_createTodoList> get serializer =>
       _$gcreateTodoListDataCreateTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
@@ -123,6 +124,7 @@ abstract class GlistTodoListsData_listTodoLists_items
   String get tid;
   String? get title;
   String? get status;
+  String get priority;
   static Serializer<GlistTodoListsData_listTodoLists_items> get serializer =>
       _$glistTodoListsDataListTodoListsItemsSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -132,4 +134,56 @@ abstract class GlistTodoListsData_listTodoLists_items
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
           GlistTodoListsData_listTodoLists_items.serializer, json);
+}
+
+abstract class GdeleteTodoListData
+    implements Built<GdeleteTodoListData, GdeleteTodoListDataBuilder> {
+  GdeleteTodoListData._();
+
+  factory GdeleteTodoListData(
+      [Function(GdeleteTodoListDataBuilder b) updates]) = _$GdeleteTodoListData;
+
+  static void _initializeBuilder(GdeleteTodoListDataBuilder b) =>
+      b..G__typename = 'Mutation';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  GdeleteTodoListData_deleteTodoList? get deleteTodoList;
+  static Serializer<GdeleteTodoListData> get serializer =>
+      _$gdeleteTodoListDataSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GdeleteTodoListData.serializer, this)
+          as Map<String, dynamic>);
+  static GdeleteTodoListData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GdeleteTodoListData.serializer, json);
+}
+
+abstract class GdeleteTodoListData_deleteTodoList
+    implements
+        Built<GdeleteTodoListData_deleteTodoList,
+            GdeleteTodoListData_deleteTodoListBuilder> {
+  GdeleteTodoListData_deleteTodoList._();
+
+  factory GdeleteTodoListData_deleteTodoList(
+          [Function(GdeleteTodoListData_deleteTodoListBuilder b) updates]) =
+      _$GdeleteTodoListData_deleteTodoList;
+
+  static void _initializeBuilder(GdeleteTodoListData_deleteTodoListBuilder b) =>
+      b..G__typename = 'TodoList';
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get cuid;
+  String? get memo;
+  String get priority;
+  String? get status;
+  String get tid;
+  String? get title;
+  static Serializer<GdeleteTodoListData_deleteTodoList> get serializer =>
+      _$gdeleteTodoListDataDeleteTodoListSerializer;
+  Map<String, dynamic> toJson() => (_i1.serializers
+          .serializeWith(GdeleteTodoListData_deleteTodoList.serializer, this)
+      as Map<String, dynamic>);
+  static GdeleteTodoListData_deleteTodoList? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers
+          .deserializeWith(GdeleteTodoListData_deleteTodoList.serializer, json);
 }

@@ -18,13 +18,15 @@ import 'package:todo_list/graphql/__generated__/todo.query.data.gql.dart'
     show
         GcreateTodoListData,
         GcreateTodoListData_createTodoList,
+        GdeleteTodoListData,
+        GdeleteTodoListData_deleteTodoList,
         GlistTodoListsData,
         GlistTodoListsData_listTodoLists,
         GlistTodoListsData_listTodoLists_items;
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart'
-    show GcreateTodoListReq, GlistTodoListsReq;
+    show GcreateTodoListReq, GdeleteTodoListReq, GlistTodoListsReq;
 import 'package:todo_list/graphql/__generated__/todo.query.var.gql.dart'
-    show GcreateTodoListVars, GlistTodoListsVars;
+    show GcreateTodoListVars, GdeleteTodoListVars, GlistTodoListsVars;
 
 part 'serializers.gql.g.dart';
 
@@ -45,6 +47,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GcreateTodoListData_createTodoList,
   GcreateTodoListReq,
   GcreateTodoListVars,
+  GdeleteTodoListData,
+  GdeleteTodoListData_deleteTodoList,
+  GdeleteTodoListReq,
+  GdeleteTodoListVars,
   GlistTodoListsData,
   GlistTodoListsData_listTodoLists,
   GlistTodoListsData_listTodoLists_items,

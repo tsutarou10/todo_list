@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
+import 'package:todo_list/ui/component/input_dialog.dart';
 import 'package:todo_list/ui/component/list_items.dart';
 import 'package:todo_list/ui/home/home_page.dart';
 import 'package:todo_list/ui/route/route_page.dart';
@@ -17,8 +18,9 @@ class DonePage extends HookWidget {
   DonePage({Key? key, required this.title}) : super(key: key);
 
   OnDismissedCondition odc = (BuildContext context, ToDoItem item, int index, direction) {
+    Priority priority = item.priority != null ? item.priority! : Priority.LOW;
     if(direction == DismissDirection.endToStart) {
-      context.read(inProgressContentProvider).add(item.tid, item.title, item.status, item.memo);
+      context.read(inProgressContentProvider).add(item.tid, item.title, item.status, priority, item.memo);
     } else {
     }
     context.read(doneContentProvider).remove(index);
@@ -34,12 +36,12 @@ class DonePage extends HookWidget {
         body: Consumer(
             builder: (context, watch, child) {
               items = watch(doneContentProvider).items;
-              return buildReorderableListView(context, items, odc);
+              return buildReorderableListView(context, items, odc, doneContentProvider);
             }
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              //context.read(todoContentProvider).fetch("TODO");
+              InputDialog(context);
             },
             child: const Icon(Icons.add),
         ),

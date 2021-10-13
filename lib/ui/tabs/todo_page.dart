@@ -20,7 +20,8 @@ class ToDoPage extends HookWidget {
   OnDismissedCondition odc = (BuildContext context, ToDoItem item, int index, direction) {
       if(direction == DismissDirection.endToStart) {
       } else {
-        context.read(inProgressContentProvider).add(item.tid, item.title, item.status, item.memo);
+        Priority priority = item.priority != null ? item.priority! : Priority.LOW;
+        context.read(inProgressContentProvider).add(item.tid, item.title, item.status, priority, item.memo);
       }
       context.read(todoContentProvider).remove(index);
   };
@@ -35,7 +36,7 @@ class ToDoPage extends HookWidget {
         body: Consumer(
             builder: (context, watch, child) {
               items = watch(todoContentProvider).items;
-              return buildReorderableListView(context, items, odc);
+              return buildReorderableListView(context, items, odc, todoContentProvider);
             }
         ),
         floatingActionButton: FloatingActionButton(

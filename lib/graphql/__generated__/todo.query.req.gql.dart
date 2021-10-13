@@ -87,3 +87,41 @@ abstract class GlistTodoListsReq
   static GlistTodoListsReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(GlistTodoListsReq.serializer, json);
 }
+
+abstract class GdeleteTodoListReq
+    implements
+        Built<GdeleteTodoListReq, GdeleteTodoListReqBuilder>,
+        _i1.OperationRequest<_i2.GdeleteTodoListData, _i3.GdeleteTodoListVars> {
+  GdeleteTodoListReq._();
+
+  factory GdeleteTodoListReq([Function(GdeleteTodoListReqBuilder b) updates]) =
+      _$GdeleteTodoListReq;
+
+  static void _initializeBuilder(GdeleteTodoListReqBuilder b) => b
+    ..operation =
+        _i4.Operation(document: _i5.document, operationName: 'deleteTodoList')
+    ..executeOnListen = true;
+  _i3.GdeleteTodoListVars get vars;
+  _i4.Operation get operation;
+  _i4.Request get execRequest =>
+      _i4.Request(operation: operation, variables: vars.toJson());
+  String? get requestId;
+  @BuiltValueField(serialize: false)
+  _i2.GdeleteTodoListData? Function(
+      _i2.GdeleteTodoListData?, _i2.GdeleteTodoListData?)? get updateResult;
+  _i2.GdeleteTodoListData? get optimisticResponse;
+  String? get updateCacheHandlerKey;
+  Map<String, dynamic>? get updateCacheHandlerContext;
+  _i1.FetchPolicy? get fetchPolicy;
+  bool get executeOnListen;
+  @override
+  _i2.GdeleteTodoListData? parseData(Map<String, dynamic> json) =>
+      _i2.GdeleteTodoListData.fromJson(json);
+  static Serializer<GdeleteTodoListReq> get serializer =>
+      _$gdeleteTodoListReqSerializer;
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GdeleteTodoListReq.serializer, this)
+          as Map<String, dynamic>);
+  static GdeleteTodoListReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(GdeleteTodoListReq.serializer, json);
+}

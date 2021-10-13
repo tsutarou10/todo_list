@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:todo_list/utils/utils.dart';
 
 enum Priority { HIGH, MID, LOW }
@@ -8,6 +9,20 @@ Map<Priority, String> priorityToString = {
   Priority.MID: 'MID',
   Priority.LOW: 'LOW',
 };
+
+Map<String, Priority> stringToPriority = {
+  'HIGH': Priority.HIGH,
+  'MID': Priority.MID,
+  'LOW': Priority.LOW,
+};
+
+Map<Priority, dynamic> priorityToColor = {
+  Priority.HIGH: Colors.red,
+  Priority.MID: Colors.blue,
+  Priority.LOW: Colors.grey,
+};
+
+
 
 class ToDoItem {
   String tid;

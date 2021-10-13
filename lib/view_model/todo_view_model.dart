@@ -51,21 +51,44 @@ class TodoContentViewModel extends ChangeNotifier {
     });
   }
 
+  Future<void> deleteTodo(String cuid, String tid) async {
+    Future<ToDoItem> future = _client.deleteTodo(cuid, tid);
+    print('start delete');
+    future.then((value) {
+      print(value.tid);
+      _items.asMap().forEach((int i, ToDoItem v) {
+        print(v.tid);
+        if(v.tid == value.tid) {
+          _items.removeAt(i);
+        }
+      });
+      })
+    .catchError((dynamic error) {
+      print(error);
+    })
+    .whenComplete(() {
+      print('delete complete');
+      print(_items);
+      notifyListeners();
+    });
+  }
+
   void reorderData(int oldIndex, int newIndex) {
     if(newIndex > oldIndex) {
       newIndex -= 1;
     }
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(Duration(milliseconds: 10), () {
       final items = _items.removeAt(oldIndex);
       _items.insert(newIndex, items);
       notifyListeners();
     });
   }
 
-  void add(String tid, String title, String status, String? memo) {
-    _items.add(ToDoItem(tid: tid, title: title, status: status));
+  void add(String tid, String title, String status, Priority priority, String? memo) {
+    _items.add(ToDoItem(tid: tid, title: title, status: status, priority: priority));
     notifyListeners();
   }
+
   void remove(int index) {
     _items.removeAt(index);
     notifyListeners();

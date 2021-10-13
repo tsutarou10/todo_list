@@ -40,6 +40,7 @@ class GraphQLApiClient implements GraphQLGateway {
                   tid: item['tid'],
                   title: item['title'],
                   status: item['status'],
+                  priority: stringToPriority[item['priority']],
           ));
         }
         print('after: ${rsl}');
@@ -67,7 +68,26 @@ class GraphQLApiClient implements GraphQLGateway {
       if(data != null) {
         final item = data.createTodoList?.toJson();
         print('mutation: ${item}');
-        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: item['priority']);
+        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
+      } else {
+        print('not found');
+      }
+    }
+    return ToDoItem(tid: generateUUID(), title: "title", status: "status");
+  }
+
+  Future<ToDoItem> deleteTodo(String cuid, String tid) async {
+    final request = GdeleteTodoListReq(
+        (b) => b
+        ..vars.input.cuid = 'test cuid'
+        ..vars.input.tid = tid);
+    Stream<dynamic> events = _client.request(request);
+    await for(dynamic event in events) {
+      final data = event.data;
+      if(data != null) {
+        final item = data.deleteTodoList?.toJson();
+        print('delete: ${item}');
+        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
       } else {
         print('not found');
       }

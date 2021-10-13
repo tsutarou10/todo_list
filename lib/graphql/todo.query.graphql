@@ -4,6 +4,7 @@ mutation createTodoList($createtodolistinput: CreateTodoListInput!) {
     tid
     title
     status
+    priority
   }
 }
 
@@ -14,6 +15,18 @@ query listTodoLists($filter: TableTodoListFilterInput!) {
       tid
       title
       status
+      priority
     }
+  }
+}
+
+mutation deleteTodoList($input: DeleteTodoListInput!) {
+  deleteTodoList(input: $input) {
+    cuid
+      memo
+      priority
+      status
+      tid
+      title
   }
 }
