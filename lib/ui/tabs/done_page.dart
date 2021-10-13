@@ -13,7 +13,6 @@ import 'package:todo_list/view_model/todo_view_model.dart';
 
 class DonePage extends HookWidget {
   final String title;
-  List<ToDoItem> items = [];
   final graphQlClient = GraphQLApiClient();
   DonePage({Key? key, required this.title}) : super(key: key);
 
@@ -31,11 +30,22 @@ class DonePage extends HookWidget {
     print('done_tabs');
     return Scaffold(
         appBar: AppBar(
-            title: Text(title),
+            title: Consumer(
+              builder: (context, watch, child) {
+                List<ToDoItem> items = watch(doneContentProvider).items;
+                return Text(title + ' (' + items.length.toString() + ')');
+              }
+            ),
+            actions: [
+              IconButton (
+                icon: Icon(Icons.more_horiz),
+                onPressed: () {},
+              ),
+            ],
         ),
         body: Consumer(
             builder: (context, watch, child) {
-              items = watch(doneContentProvider).items;
+              List<ToDoItem> items = watch(doneContentProvider).items;
               return buildReorderableListView(context, items, odc, doneContentProvider);
             }
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/ui/tabs/done_page.dart';
@@ -10,7 +11,7 @@ import 'package:todo_list/view_model/inprogress_view_model.dart';
 import 'package:todo_list/view_model/todo_view_model.dart';
 
 
-class HomePage extends ConsumerWidget {
+class HomePage extends HookWidget {
   final String title;
   HomePage({Key? key, required this.title}) : super(key: key);
   var currentTab;
@@ -24,34 +25,43 @@ class HomePage extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
+  Widget build(BuildContext context) {
     print('home_page.dart');
-    int currentIndex = watch(bottomNavigationBarProvider).currentIndex;
     initCurrentTab();
     return Scaffold(
-      body: currentTab[currentIndex],
-      bottomNavigationBar:  BottomNavigationBar(
-        backgroundColor: Colors.white,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          context.read(bottomNavigationBarProvider).currentIndex = index;
+      body: Consumer (
+        builder: (context, watch, child) {
+          int currentIndex = watch(bottomNavigationBarProvider).currentIndex;
+          return currentTab[currentIndex];
+        }
+      ),
+      bottomNavigationBar: Consumer(
+        builder: (context, watch, child) {
+          int currentIndex = watch(bottomNavigationBarProvider).currentIndex;
+          return BottomNavigationBar(
+            backgroundColor: Colors.white,
+            currentIndex: currentIndex,
+            onTap: (index) {
+              context.read(bottomNavigationBarProvider).currentIndex = index;
+            },
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.blue,
+            items:[
+              BottomNavigationBarItem(
+                  icon: Icon (Icons.favorite),
+                  title: Text('ToDo'),
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon (Icons.home),
+                  title: Text('In Progress'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon (Icons.search),
+                title: Text('Done'),
+              ),
+            ],
+          );
         },
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        items:[
-          BottomNavigationBarItem(
-              icon: Icon (Icons.favorite),
-              title: Text('ToDo'),
-          ),
-          BottomNavigationBarItem(
-              icon: Icon (Icons.home),
-              title: Text('In Progress'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon (Icons.search),
-            title: Text('Done'),
-          ),
-        ],
       ),
     );
   }

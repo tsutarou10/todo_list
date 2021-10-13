@@ -9,13 +9,10 @@ import 'package:todo_list/view_model/todo_view_model.dart';
 class App extends HookWidget {
 	@override
 	Widget build(BuildContext context) {
-    final todoContent = useProvider(todoContentProvider);
-    final inProgressContent = useProvider(inProgressContentProvider);
-    final doneContent = useProvider(doneContentProvider);
     useEffect(() {
-      todoContent.fetch("TODO");
-      inProgressContent.fetch("IN_PROGRESS");
-      doneContent.fetch("DONE");
+      context.read(todoContentProvider).fetch("TODO");
+      context.read(inProgressContentProvider).fetch("IN_PROGRESS");
+      context.read(doneContentProvider).fetch("DONE");
     }, const []);
 		return MaterialApp(
 				title: 'Flutter Demo',

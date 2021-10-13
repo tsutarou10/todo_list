@@ -13,7 +13,6 @@ import 'package:todo_list/view_model/todo_view_model.dart';
 
 class InProgressPage extends HookWidget {
   final String title;
-  List<ToDoItem> items = [];
   final graphQlClient = GraphQLApiClient();
   InProgressPage({Key? key, required this.title}) : super(key: key);
 
@@ -32,11 +31,22 @@ class InProgressPage extends HookWidget {
     print('inProgress tabs');
     return Scaffold(
         appBar: AppBar(
-            title: Text(title),
+            title: Consumer(
+              builder: (context, watch, child) {
+                List<ToDoItem> items = watch(inProgressContentProvider).items;
+                return Text(title + ' (' + items.length.toString() + ')');
+              }
+            ),
+            actions: [
+              IconButton (
+                icon: Icon(Icons.more_horiz),
+                onPressed: () {},
+              ),
+            ],
         ),
         body: Consumer(
             builder: (context, watch, child) {
-              items = watch(inProgressContentProvider).items;
+              List<ToDoItem> items = watch(inProgressContentProvider).items;
               return buildReorderableListView(context, items, odc, inProgressContentProvider);
             }
         ),
