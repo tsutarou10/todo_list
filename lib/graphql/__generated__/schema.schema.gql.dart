@@ -16,6 +16,8 @@ abstract class GCreateTodoListInput
       _$GCreateTodoListInput;
 
   String get cuid;
+  String? get memo;
+  String get priority;
   String? get status;
   String get tid;
   String? get title;
@@ -205,6 +207,8 @@ abstract class GUpdateTodoListInput
       _$GUpdateTodoListInput;
 
   String get cuid;
+  String? get memo;
+  String get priority;
   String? get status;
   String get tid;
   String? get title;

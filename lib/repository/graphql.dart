@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/utils/utils.dart';
 import 'package:todo_list/view_model/user_view_model.dart';
 
 final graphQLApiClientProvider = Provider((ref) => GraphQLApiClient());
@@ -36,8 +37,8 @@ class GraphQLApiClient implements GraphQLGateway {
         print('before: ${items}');
         for(dynamic item in items) {
           rsl.add(ToDoItem(
-                  item['title'],
-                  item['status'],
+                  title: item['title'],
+                  status: item['status'],
           ));
         }
         print('after: ${rsl}');
@@ -49,27 +50,27 @@ class GraphQLApiClient implements GraphQLGateway {
     return rsl;
   }
 
-  Future<ToDoItem> createTodo(String cuid, String title, String memo, String status) async {
+  Future<ToDoItem> createTodo(String cuid, String title, String memo, String status, Priority priority) async {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
     final request = GcreateTodoListReq(
         (b) => b
         ..vars.createtodolistinput.cuid = 'test cuid'
-        ..vars.createtodolistinput.tid = 'test tid_' + id.toString()
+        ..vars.createtodolistinput.tid = generateUUID()
         ..vars.createtodolistinput.status = status
-        ..vars.createtodolistinput.title = 'hoge title_' + id.toString());
+        ..vars.createtodolistinput.title = title
+        ..vars.createtodolistinput.priority = priorityToString[priority]);
         //..vars.createtodolistinput.title = title);
-    id++;
-    Stream<dynamic> hoge = _client.request(request);
-    await for(dynamic event in hoge) {
+    Stream<dynamic> events = _client.request(request);
+    await for(dynamic event in events) {
       final data = event.data;
       if(data != null) {
         final item = data.createTodoList?.toJson();
         print('mutation: ${item}');
-        return ToDoItem(item['title'], item['status']);
+        return ToDoItem(title: item['title'], status: item['status'], priority: item['priority']);
       } else {
         print('not found');
       }
     }
-    return ToDoItem("title", "status");
+    return ToDoItem(title: "title", status: "status");
   }
 }

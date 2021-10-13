@@ -23,6 +23,8 @@ type Subscription {
 
 type TodoList {
   cuid: String!
+  memo: String
+  priority: String!
   status: String
   tid: String!
   title: String
@@ -35,6 +37,8 @@ type TodoListConnection {
 
 input CreateTodoListInput {
   cuid: String!
+  memo: String
+  priority: String!
   status: String
   tid: String!
   title: String
@@ -109,6 +113,8 @@ input TableTodoListFilterInput {
 
 input UpdateTodoListInput {
   cuid: String!
+  memo: String
+  priority: String!
   status: String
   tid: String!
   title: String

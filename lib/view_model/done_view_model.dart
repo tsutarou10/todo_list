@@ -48,7 +48,7 @@ class DoneContentViewModel extends ChangeNotifier {
   }
 
   void add(String title, String status, String? memo) {
-    _items.add(ToDoItem(title, status));
+    _items.add(ToDoItem(title: title, status: status));
     notifyListeners();
   }
   void remove(int index) {

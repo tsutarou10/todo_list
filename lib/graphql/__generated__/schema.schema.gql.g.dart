@@ -42,10 +42,20 @@ class _$GCreateTodoListInputSerializer
     final result = <Object?>[
       'cuid',
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'priority',
+      serializers.serialize(object.priority,
+          specifiedType: const FullType(String)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.memo;
+    if (value != null) {
+      result
+        ..add('memo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.status;
     if (value != null) {
       result
@@ -77,6 +87,14 @@ class _$GCreateTodoListInputSerializer
       switch (key) {
         case 'cuid':
           result.cuid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'memo':
+          result.memo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'priority':
+          result.priority = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'status':
@@ -886,10 +904,20 @@ class _$GUpdateTodoListInputSerializer
     final result = <Object?>[
       'cuid',
       serializers.serialize(object.cuid, specifiedType: const FullType(String)),
+      'priority',
+      serializers.serialize(object.priority,
+          specifiedType: const FullType(String)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.memo;
+    if (value != null) {
+      result
+        ..add('memo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.status;
     if (value != null) {
       result
@@ -923,6 +951,14 @@ class _$GUpdateTodoListInputSerializer
           result.cuid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'memo':
+          result.memo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'priority':
+          result.priority = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'status':
           result.status = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -946,6 +982,10 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
   @override
   final String cuid;
   @override
+  final String? memo;
+  @override
+  final String priority;
+  @override
   final String? status;
   @override
   final String tid;
@@ -957,9 +997,16 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
       (new GCreateTodoListInputBuilder()..update(updates)).build();
 
   _$GCreateTodoListInput._(
-      {required this.cuid, this.status, required this.tid, this.title})
+      {required this.cuid,
+      this.memo,
+      required this.priority,
+      this.status,
+      required this.tid,
+      this.title})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GCreateTodoListInput', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(
+        priority, 'GCreateTodoListInput', 'priority');
     BuiltValueNullFieldError.checkNotNull(tid, 'GCreateTodoListInput', 'tid');
   }
 
@@ -977,6 +1024,8 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
     if (identical(other, this)) return true;
     return other is GCreateTodoListInput &&
         cuid == other.cuid &&
+        memo == other.memo &&
+        priority == other.priority &&
         status == other.status &&
         tid == other.tid &&
         title == other.title;
@@ -985,7 +1034,12 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, cuid.hashCode), memo.hashCode),
+                    priority.hashCode),
+                status.hashCode),
+            tid.hashCode),
         title.hashCode));
   }
 
@@ -993,6 +1047,8 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
   String toString() {
     return (newBuiltValueToStringHelper('GCreateTodoListInput')
           ..add('cuid', cuid)
+          ..add('memo', memo)
+          ..add('priority', priority)
           ..add('status', status)
           ..add('tid', tid)
           ..add('title', title))
@@ -1007,6 +1063,14 @@ class GCreateTodoListInputBuilder
   String? _cuid;
   String? get cuid => _$this._cuid;
   set cuid(String? cuid) => _$this._cuid = cuid;
+
+  String? _memo;
+  String? get memo => _$this._memo;
+  set memo(String? memo) => _$this._memo = memo;
+
+  String? _priority;
+  String? get priority => _$this._priority;
+  set priority(String? priority) => _$this._priority = priority;
 
   String? _status;
   String? get status => _$this._status;
@@ -1026,6 +1090,8 @@ class GCreateTodoListInputBuilder
     final $v = _$v;
     if ($v != null) {
       _cuid = $v.cuid;
+      _memo = $v.memo;
+      _priority = $v.priority;
       _status = $v.status;
       _tid = $v.tid;
       _title = $v.title;
@@ -1051,6 +1117,9 @@ class GCreateTodoListInputBuilder
         new _$GCreateTodoListInput._(
             cuid: BuiltValueNullFieldError.checkNotNull(
                 cuid, 'GCreateTodoListInput', 'cuid'),
+            memo: memo,
+            priority: BuiltValueNullFieldError.checkNotNull(
+                priority, 'GCreateTodoListInput', 'priority'),
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GCreateTodoListInput', 'tid'),
@@ -2200,6 +2269,10 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   @override
   final String cuid;
   @override
+  final String? memo;
+  @override
+  final String priority;
+  @override
   final String? status;
   @override
   final String tid;
@@ -2211,9 +2284,16 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
       (new GUpdateTodoListInputBuilder()..update(updates)).build();
 
   _$GUpdateTodoListInput._(
-      {required this.cuid, this.status, required this.tid, this.title})
+      {required this.cuid,
+      this.memo,
+      required this.priority,
+      this.status,
+      required this.tid,
+      this.title})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GUpdateTodoListInput', 'cuid');
+    BuiltValueNullFieldError.checkNotNull(
+        priority, 'GUpdateTodoListInput', 'priority');
     BuiltValueNullFieldError.checkNotNull(tid, 'GUpdateTodoListInput', 'tid');
   }
 
@@ -2231,6 +2311,8 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
     if (identical(other, this)) return true;
     return other is GUpdateTodoListInput &&
         cuid == other.cuid &&
+        memo == other.memo &&
+        priority == other.priority &&
         status == other.status &&
         tid == other.tid &&
         title == other.title;
@@ -2239,7 +2321,12 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, cuid.hashCode), status.hashCode), tid.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, cuid.hashCode), memo.hashCode),
+                    priority.hashCode),
+                status.hashCode),
+            tid.hashCode),
         title.hashCode));
   }
 
@@ -2247,6 +2334,8 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   String toString() {
     return (newBuiltValueToStringHelper('GUpdateTodoListInput')
           ..add('cuid', cuid)
+          ..add('memo', memo)
+          ..add('priority', priority)
           ..add('status', status)
           ..add('tid', tid)
           ..add('title', title))
@@ -2261,6 +2350,14 @@ class GUpdateTodoListInputBuilder
   String? _cuid;
   String? get cuid => _$this._cuid;
   set cuid(String? cuid) => _$this._cuid = cuid;
+
+  String? _memo;
+  String? get memo => _$this._memo;
+  set memo(String? memo) => _$this._memo = memo;
+
+  String? _priority;
+  String? get priority => _$this._priority;
+  set priority(String? priority) => _$this._priority = priority;
 
   String? _status;
   String? get status => _$this._status;
@@ -2280,6 +2377,8 @@ class GUpdateTodoListInputBuilder
     final $v = _$v;
     if ($v != null) {
       _cuid = $v.cuid;
+      _memo = $v.memo;
+      _priority = $v.priority;
       _status = $v.status;
       _tid = $v.tid;
       _title = $v.title;
@@ -2305,6 +2404,9 @@ class GUpdateTodoListInputBuilder
         new _$GUpdateTodoListInput._(
             cuid: BuiltValueNullFieldError.checkNotNull(
                 cuid, 'GUpdateTodoListInput', 'cuid'),
+            memo: memo,
+            priority: BuiltValueNullFieldError.checkNotNull(
+                priority, 'GUpdateTodoListInput', 'priority'),
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GUpdateTodoListInput', 'tid'),

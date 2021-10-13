@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
+import 'package:todo_list/ui/component/input_dialog.dart';
 import 'package:todo_list/ui/home/home_page.dart';
 import 'package:todo_list/ui/route/route_page.dart';
 import 'package:todo_list/view_model/inprogress_view_model.dart';
@@ -69,8 +70,7 @@ class ToDoPage extends HookWidget {
         ),
         floatingActionButton: FloatingActionButton(
             onPressed: () async {
-              print('hoge');
-              context.read(todoContentProvider).createTodo("TEST_CUID", "test title", "test memo", "TODO");
+              InputDialog(context);
             },
             child: const Icon(Icons.add),
         ),

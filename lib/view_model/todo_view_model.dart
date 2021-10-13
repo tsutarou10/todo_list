@@ -36,8 +36,8 @@ class TodoContentViewModel extends ChangeNotifier {
     });
   }
 
-  Future<void> createTodo(String cuid, String title, String memo, String status) async {
-    Future<ToDoItem> future = _client.createTodo(cuid, title, memo, status);
+  Future<void> createTodo(String cuid, String title, String memo, String status, Priority priority) async {
+    Future<ToDoItem> future = _client.createTodo(cuid, title, memo, status, priority);
     print('start create');
     future.then((value) {
         _items.add(value);
@@ -63,7 +63,7 @@ class TodoContentViewModel extends ChangeNotifier {
   }
 
   void add(String title, String status, String? memo) {
-    _items.add(ToDoItem(title, status));
+    _items.add(ToDoItem(title: title, status: status));
     notifyListeners();
   }
   void remove(int index) {
