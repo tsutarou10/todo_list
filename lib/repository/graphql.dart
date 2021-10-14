@@ -14,33 +14,30 @@ class GraphQLApiClient implements GraphQLGateway {
   late final Client _client;
   GraphQLApiClient() {
     final link = HttpLink(
-        'https://jysbajoanvatjmvixye73inwse.appsync-api.ap-northeast-1.amazonaws.com/graphql',
-        defaultHeaders: <String, String> {
-          'x-api-key': 'da2-p4ehmits3vh2dbw24mdvp7eal4',
-        },
-
+      'https://jysbajoanvatjmvixye73inwse.appsync-api.ap-northeast-1.amazonaws.com/graphql',
+      defaultHeaders: <String, String>{
+        'x-api-key': 'da2-p4ehmits3vh2dbw24mdvp7eal4',
+      },
     );
     this._client = Client(link: link);
   }
 
   Future<List<ToDoItem>> queryTodo(String status) async {
     List<ToDoItem> rsl = [];
-    final request = GlistTodoListsReq(
-        (b) => b
-        ..vars.filter.status.eq = status);
+    final request = GlistTodoListsReq((b) => b..vars.filter.status.eq = status);
 
     Stream<dynamic> events = _client.request(request);
-    await for(dynamic event in events) {
+    await for (dynamic event in events) {
       final data = event.data;
-      if(data != null && data.listTodoLists != null) {
+      if (data != null && data.listTodoLists != null) {
         final items = data.listTodoLists?.toJson()['items'];
         print('before: ${items}');
-        for(dynamic item in items) {
+        for (dynamic item in items) {
           rsl.add(ToDoItem(
-                  tid: item['tid'],
-                  title: item['title'],
-                  status: item['status'],
-                  priority: stringToPriority[item['priority']],
+            tid: item['tid'],
+            title: item['title'],
+            status: item['status'],
+            priority: stringToPriority[item['priority']],
           ));
         }
         print('after: ${rsl}');
@@ -54,21 +51,25 @@ class GraphQLApiClient implements GraphQLGateway {
 
   Future<ToDoItem> createTodo(String cuid, ToDoItem todoItem) async {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
-    final request = GcreateTodoListReq(
-        (b) => b
-        ..vars.createtodolistinput.cuid = cuid
-        ..vars.createtodolistinput.tid = todoItem.tid
-        ..vars.createtodolistinput.status = todoItem.status
-        ..vars.createtodolistinput.title = todoItem.title
-        ..vars.createtodolistinput.priority = priorityToString[todoItem.priority]);
-        //..vars.createtodolistinput.title = title);
+    final request = GcreateTodoListReq((b) => b
+      ..vars.createtodolistinput.cuid = cuid
+      ..vars.createtodolistinput.tid = todoItem.tid
+      ..vars.createtodolistinput.status = todoItem.status
+      ..vars.createtodolistinput.title = todoItem.title
+      ..vars.createtodolistinput.priority =
+          priorityToString[todoItem.priority]);
+    //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.request(request);
-    await for(dynamic event in events) {
+    await for (dynamic event in events) {
       final data = event.data;
-      if(data != null) {
+      if (data != null) {
         final item = data.createTodoList?.toJson();
         print('mutation: ${item}');
-        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
+        return ToDoItem(
+            tid: item['tid'],
+            title: item['title'],
+            status: item['status'],
+            priority: stringToPriority[item['priority']]);
       } else {
         print('not found');
       }
@@ -78,21 +79,24 @@ class GraphQLApiClient implements GraphQLGateway {
 
   Future<ToDoItem> updateTodo(String cuid, ToDoItem todoItem) async {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
-    final request = GupdateTodoListReq(
-        (b) => b
-        ..vars.input.cuid = cuid
-        ..vars.input.tid = todoItem.tid
-        ..vars.input.status = todoItem.status
-        ..vars.input.title = todoItem.title
-        ..vars.input.priority = priorityToString[todoItem.priority]);
-        //..vars.createtodolistinput.title = title);
+    final request = GupdateTodoListReq((b) => b
+      ..vars.input.cuid = cuid
+      ..vars.input.tid = todoItem.tid
+      ..vars.input.status = todoItem.status
+      ..vars.input.title = todoItem.title
+      ..vars.input.priority = priorityToString[todoItem.priority]);
+    //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.request(request);
-    await for(dynamic event in events) {
+    await for (dynamic event in events) {
       final data = event.data;
-      if(data != null) {
+      if (data != null) {
         final item = data.updateTodoList?.toJson();
         print('mutation: ${item}');
-        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
+        return ToDoItem(
+            tid: item['tid'],
+            title: item['title'],
+            status: item['status'],
+            priority: stringToPriority[item['priority']]);
       } else {
         print('not found');
       }
@@ -101,17 +105,20 @@ class GraphQLApiClient implements GraphQLGateway {
   }
 
   Future<ToDoItem> deleteTodo(String cuid, String tid) async {
-    final request = GdeleteTodoListReq(
-        (b) => b
-        ..vars.input.cuid = cuid
-        ..vars.input.tid = tid);
+    final request = GdeleteTodoListReq((b) => b
+      ..vars.input.cuid = cuid
+      ..vars.input.tid = tid);
     Stream<dynamic> events = _client.request(request);
-    await for(dynamic event in events) {
+    await for (dynamic event in events) {
       final data = event.data;
-      if(data != null) {
+      if (data != null) {
         final item = data.deleteTodoList?.toJson();
         print('delete: ${item}');
-        return ToDoItem(tid: item['tid'], title: item['title'], status: item['status'], priority: stringToPriority[item['priority']]);
+        return ToDoItem(
+            tid: item['tid'],
+            title: item['title'],
+            status: item['status'],
+            priority: stringToPriority[item['priority']]);
       } else {
         print('not found');
       }

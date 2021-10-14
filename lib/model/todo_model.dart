@@ -26,7 +26,6 @@ Map<Priority, dynamic> priorityToColor = {
   Priority.LOW: Colors.grey,
 };
 
-
 @freezed
 class ToDoItem with _$ToDoItem {
   const ToDoItem._();
@@ -41,5 +40,6 @@ class ToDoItem with _$ToDoItem {
     @JsonKey(name: 'hidden') bool? hidden,
   }) = _ToDoItem;
 
-  factory ToDoItem.fromJson(Map<String, dynamic> json) => _$ToDoItemFromJson(json);
+  factory ToDoItem.fromJson(Map<String, dynamic> json) =>
+      _$ToDoItemFromJson(json);
 }

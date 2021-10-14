@@ -6,17 +6,15 @@ import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
-
 final doneContentProvider = ChangeNotifierProvider(
     (ref) => DoneContentViewModel(client: ref.read(graphQLApiClientProvider)));
-
 
 class DoneContentViewModel extends ChangeNotifier {
   final GraphQLApiClient _client;
 
   DoneContentViewModel({required GraphQLApiClient client})
       : _client = client,
-        _items= [];
+        _items = [];
 
   List<ToDoItem> _items;
   List<ToDoItem> get items => _items;
@@ -25,12 +23,10 @@ class DoneContentViewModel extends ChangeNotifier {
     Future<List<ToDoItem>> future = _client.queryTodo(status);
     print('start fetch');
     future.then((value) {
-        _items = value;
-      })
-    .catchError((dynamic error) {
+      _items = value;
+    }).catchError((dynamic error) {
       print(error);
-    })
-    .whenComplete(() {
+    }).whenComplete(() {
       print('complete');
       notifyListeners();
     });
@@ -40,12 +36,10 @@ class DoneContentViewModel extends ChangeNotifier {
     Future<ToDoItem> future = _client.createTodo(cuid, todoItem);
     print('start create');
     future.then((value) {
-        _items.add(value);
-      })
-    .catchError((dynamic error) {
+      _items.add(value);
+    }).catchError((dynamic error) {
       print(error);
-    })
-    .whenComplete(() {
+    }).whenComplete(() {
       print('complete');
       notifyListeners();
     });
@@ -58,15 +52,13 @@ class DoneContentViewModel extends ChangeNotifier {
       print(value.tid);
       _items.asMap().forEach((int i, ToDoItem v) {
         print(v.tid);
-        if(v.tid == value.tid) {
+        if (v.tid == value.tid) {
           _items.removeAt(i);
         }
       });
-      })
-    .catchError((dynamic error) {
+    }).catchError((dynamic error) {
       print(error);
-    })
-    .whenComplete(() {
+    }).whenComplete(() {
       print('delete complete');
       print(_items);
       notifyListeners();
@@ -74,7 +66,7 @@ class DoneContentViewModel extends ChangeNotifier {
   }
 
   void reorderData(int oldIndex, int newIndex) {
-    if(newIndex > oldIndex) {
+    if (newIndex > oldIndex) {
       newIndex -= 1;
     }
     Future.delayed(Duration(milliseconds: 100), () {
@@ -84,8 +76,10 @@ class DoneContentViewModel extends ChangeNotifier {
     });
   }
 
-  void add(String tid, String title, String status, Priority priority, String? memo) {
-    _items.add(ToDoItem(tid: tid, title: title, status: status, priority: priority));
+  void add(String tid, String title, String status, Priority priority,
+      String? memo) {
+    _items.add(
+        ToDoItem(tid: tid, title: title, status: status, priority: priority));
     notifyListeners();
   }
 
@@ -94,4 +88,3 @@ class DoneContentViewModel extends ChangeNotifier {
     notifyListeners();
   }
 }
-

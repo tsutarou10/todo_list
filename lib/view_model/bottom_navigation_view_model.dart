@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final bottomNavigationBarProvider = ChangeNotifierProvider((ref) => BottomNavigationBarViewModel());
+final bottomNavigationBarProvider =
+    ChangeNotifierProvider((ref) => BottomNavigationBarViewModel());
 
 class BottomNavigationBarViewModel with ChangeNotifier {
   int _currentIndex = 0;

@@ -22,30 +22,31 @@ class RadioButtonForPriority extends HookWidget {
 
   Widget _createRadioButtonForPriority() {
     return Container(
-        alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(Priority.values.length, (index) {
-            String title = priorityToRadioButtonText[Priority.values[index]].toString();
-            return Flexible(
-              child: Consumer(
-                builder: (context, watch, child) {
-                  Priority currentPriority = watch(radioButtonProvider).currentValue;
-                  print(currentPriority);
-                  return RadioListTile(
-                    title: Text(title),
-                    value: Priority.values[index],
-                    groupValue: currentPriority,
-                    onChanged: (value) {
-                      context.read(radioButtonProvider).setValue(value);
-                    },
-                  );
-                },
-              ),
-            );
-          }),
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: List.generate(Priority.values.length, (index) {
+          String title =
+              priorityToRadioButtonText[Priority.values[index]].toString();
+          return Flexible(
+            child: Consumer(
+              builder: (context, watch, child) {
+                Priority currentPriority =
+                    watch(radioButtonProvider).currentValue;
+                print(currentPriority);
+                return RadioListTile(
+                  title: Text(title),
+                  value: Priority.values[index],
+                  groupValue: currentPriority,
+                  onChanged: (value) {
+                    context.read(radioButtonProvider).setValue(value);
+                  },
+                );
+              },
+            ),
+          );
+        }),
       ),
     );
   }
 }
-

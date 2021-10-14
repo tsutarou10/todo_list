@@ -7,5 +7,3 @@ void main() {
   print(flavor); // dev
   runApp(ProviderScope(child: App()));
 }
-
-

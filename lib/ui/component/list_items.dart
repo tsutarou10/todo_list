@@ -8,16 +8,22 @@ import 'package:todo_list/view_model/todo_view_model.dart';
 
 import 'input_dialog.dart';
 
-typedef BuildRow = Widget Function(BuildContext, int, ToDoItem, OnDismissedCondition, dynamic);
-typedef OnDismissedCondition = void Function(BuildContext, ToDoItem, int, dynamic);
+typedef BuildRow = Widget Function(
+    BuildContext, int, ToDoItem, OnDismissedCondition, dynamic);
+typedef OnDismissedCondition = void Function(
+    BuildContext, ToDoItem, int, dynamic);
 
-List<Widget> getListItems(BuildContext context, List<ToDoItem> items, OnDismissedCondition odc, dynamic provider) => items
-    .asMap()
-    .map((index, item) => MapEntry(index, buildRow(context, index, item, odc, provider)))
-    .values
-    .toList();
+List<Widget> getListItems(BuildContext context, List<ToDoItem> items,
+        OnDismissedCondition odc, dynamic provider) =>
+    items
+        .asMap()
+        .map((index, item) =>
+            MapEntry(index, buildRow(context, index, item, odc, provider)))
+        .values
+        .toList();
 
-Widget buildReorderableListView(BuildContext context, List<ToDoItem> items, OnDismissedCondition odc, dynamic provider) {
+Widget buildReorderableListView(BuildContext context, List<ToDoItem> items,
+    OnDismissedCondition odc, dynamic provider) {
   return ReorderableListView(
     padding: EdgeInsets.all(10.0),
     onReorder: (oldIndex, newIndex) {
@@ -37,32 +43,38 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
       leading: CircleAvatar(
         radius: 30,
         backgroundColor: Colors.white,
-        child: ActionButtonWithInputDialog(icon: Icon(FontAwesomeIcons.edit, color: Colors.black), tid: item.tid, title: item.title, memo: item.memo, priority: item.priority, isCreated: false),
+        child: ActionButtonWithInputDialog(
+            icon: Icon(FontAwesomeIcons.edit, color: Colors.black),
+            tid: item.tid,
+            title: item.title,
+            memo: item.memo,
+            priority: item.priority,
+            isCreated: false),
       ),
       trailing: CircleAvatar(
-          radius: 20,
-          backgroundColor:  Colors.white,
-          child:  IconButton(
-            onPressed:(){
+        radius: 20,
+        backgroundColor: Colors.white,
+        child: IconButton(
+            onPressed: () {
               context.read(provider).deleteTodo('test cuid', item.tid);
             },
-            icon: Icon(FontAwesomeIcons.trashAlt)
-        ),
+            icon: Icon(FontAwesomeIcons.trashAlt)),
       ),
       title: Text(item.title),
-      onTap:() {
+      onTap: () {
         Navigator.of(context).pushNamed(todoDetailPageRoute, arguments: item);
       },
     ),
   );
 }
 
-BuildRow buildRow = (BuildContext context, int index, ToDoItem item, OnDismissedCondition odc, dynamic provider) {
+BuildRow buildRow = (BuildContext context, int index, ToDoItem item,
+    OnDismissedCondition odc, dynamic provider) {
   return Dismissible(
-      key: Key(item.title),
-      onDismissed:  (direction) {
-        odc(context, item, index, direction);
-      },
-      child: createListTile(context, item, provider),
+    key: Key(item.title),
+    onDismissed: (direction) {
+      odc(context, item, index, direction);
+    },
+    child: createListTile(context, item, provider),
   );
 };

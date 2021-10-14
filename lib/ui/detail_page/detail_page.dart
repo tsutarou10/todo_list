@@ -13,7 +13,7 @@ class TodoDetailPage extends HookWidget {
     print(item);
     return Scaffold(
       appBar: AppBar(
-          title: Text(title),
+        title: Text(title),
       ),
       body: Text(item.title),
     );

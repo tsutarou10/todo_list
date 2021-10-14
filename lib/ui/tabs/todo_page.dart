@@ -15,45 +15,44 @@ class ToDoPage extends HookWidget {
   final graphQlClient = GraphQLApiClient();
   ToDoPage({Key? key, required this.title}) : super(key: key);
 
-
-  OnDismissedCondition odc = (BuildContext context, ToDoItem item, int index, direction) {
-      if(direction == DismissDirection.endToStart) {
-      } else {
-        Priority priority = item.priority != null ? item.priority! : Priority.LOW;
-        context.read(inProgressContentProvider).add(item.tid, item.title, item.status, priority, item.memo);
-      }
-      context.read(todoContentProvider).remove(index);
+  OnDismissedCondition odc =
+      (BuildContext context, ToDoItem item, int index, direction) {
+    if (direction == DismissDirection.endToStart) {
+    } else {
+      Priority priority = item.priority != null ? item.priority! : Priority.LOW;
+      context
+          .read(inProgressContentProvider)
+          .add(item.tid, item.title, item.status, priority, item.memo);
+    }
+    context.read(todoContentProvider).remove(index);
   };
 
   @override
   Widget build(BuildContext context) {
     print('todo_tabs');
     return Scaffold(
-        appBar: AppBar(
-            title: Consumer(
-              builder: (context, watch, child) {
-                List<ToDoItem> items = watch(todoContentProvider).items;
-                return Text(title + ' (' + items.length.toString() + ')');
-              }
-            ),
-            actions: [
-              Consumer(
-                builder: (context, watch, child) {
-                  return ActionButtonWithInputDialog(icon: Icon(Icons.add));
-                },
-              ),
-              IconButton (
-                icon: Icon(Icons.more_horiz),
-                onPressed: () {},
-              ),
-            ],
-        ),
-        body: Consumer(
+      appBar: AppBar(
+        title: Consumer(builder: (context, watch, child) {
+          List<ToDoItem> items = watch(todoContentProvider).items;
+          return Text(title + ' (' + items.length.toString() + ')');
+        }),
+        actions: [
+          Consumer(
             builder: (context, watch, child) {
-              List<ToDoItem> items = watch(todoContentProvider).items;
-              return buildReorderableListView(context, items, odc, todoContentProvider);
-            }
-        ),
+              return ActionButtonWithInputDialog(icon: Icon(Icons.add));
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.more_horiz),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: Consumer(builder: (context, watch, child) {
+        List<ToDoItem> items = watch(todoContentProvider).items;
+        return buildReorderableListView(
+            context, items, odc, todoContentProvider);
+      }),
     );
   }
 }

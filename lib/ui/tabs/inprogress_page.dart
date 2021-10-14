@@ -16,41 +16,43 @@ class InProgressPage extends HookWidget {
   final graphQlClient = GraphQLApiClient();
   InProgressPage({Key? key, required this.title}) : super(key: key);
 
-  OnDismissedCondition odc = (BuildContext context, ToDoItem item, int index, direction) {
-        Priority priority = item.priority != null ? item.priority! : Priority.LOW;
-        if(direction == DismissDirection.endToStart) {
-          context.read(todoContentProvider).add(item.tid, item.title, item.status, priority, item.memo);
-        } else {
-          context.read(doneContentProvider).add(item.tid, item.title, item.status, priority, item.memo);
-        }
-        context.read(inProgressContentProvider).remove(index);
+  OnDismissedCondition odc =
+      (BuildContext context, ToDoItem item, int index, direction) {
+    Priority priority = item.priority != null ? item.priority! : Priority.LOW;
+    if (direction == DismissDirection.endToStart) {
+      context
+          .read(todoContentProvider)
+          .add(item.tid, item.title, item.status, priority, item.memo);
+    } else {
+      context
+          .read(doneContentProvider)
+          .add(item.tid, item.title, item.status, priority, item.memo);
+    }
+    context.read(inProgressContentProvider).remove(index);
   };
 
   @override
   Widget build(BuildContext context) {
     print('inProgress tabs');
     return Scaffold(
-        appBar: AppBar(
-            title: Consumer(
-              builder: (context, watch, child) {
-                List<ToDoItem> items = watch(inProgressContentProvider).items;
-                return Text(title + ' (' + items.length.toString() + ')');
-              }
-            ),
-            actions: [
-              IconButton (
-                icon: Icon(Icons.more_horiz),
-                onPressed: () {},
-              ),
-            ],
-        ),
-        body: Consumer(
-            builder: (context, watch, child) {
-              List<ToDoItem> items = watch(inProgressContentProvider).items;
-              return buildReorderableListView(context, items, odc, inProgressContentProvider);
-            }
-        ),
-        floatingActionButton: ActionButtonWithInputDialog(icon: Icon(Icons.add)),
+      appBar: AppBar(
+        title: Consumer(builder: (context, watch, child) {
+          List<ToDoItem> items = watch(inProgressContentProvider).items;
+          return Text(title + ' (' + items.length.toString() + ')');
+        }),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.more_horiz),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: Consumer(builder: (context, watch, child) {
+        List<ToDoItem> items = watch(inProgressContentProvider).items;
+        return buildReorderableListView(
+            context, items, odc, inProgressContentProvider);
+      }),
+      floatingActionButton: ActionButtonWithInputDialog(icon: Icon(Icons.add)),
     );
   }
 }
