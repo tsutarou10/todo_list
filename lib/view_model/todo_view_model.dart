@@ -6,9 +6,6 @@ import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
-final todoContentProvider = ChangeNotifierProvider(
-    (ref) => TodoContentViewModel(client: ref.read(graphQLApiClientProvider)));
-
 class TodoContentViewModel extends ChangeNotifier {
   final GraphQLApiClient _client;
 
@@ -95,7 +92,7 @@ class TodoContentViewModel extends ChangeNotifier {
     });
   }
 
-  void add(String tid, String title, String status, Priority priority,
+  void add(String tid, String title, Status status, Priority priority,
       String? memo) {
     _items.add(
         ToDoItem(tid: tid, title: title, status: status, priority: priority));

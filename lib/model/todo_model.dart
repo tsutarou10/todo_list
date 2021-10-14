@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_list/utils/utils.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'todo_model.freezed.dart';
@@ -20,6 +19,26 @@ Map<String, Priority> stringToPriority = {
   'LOW': Priority.LOW,
 };
 
+Map<Priority, String> priorityToRadioButtonText = {
+  Priority.HIGH: '高',
+  Priority.MID: '中',
+  Priority.LOW: '低',
+};
+
+enum Status { TODO, IN_PROGRESS, DONE }
+
+Map<Status, String> statusToString = {
+  Status.TODO: 'TODO',
+  Status.IN_PROGRESS: 'IN_PROGRESS',
+  Status.DONE: 'DONE',
+};
+
+Map<String, Status> stringToStatus = {
+  'TODO': Status.TODO,
+  'IN_PROGRESS': Status.IN_PROGRESS,
+  'DONE': Status.DONE,
+};
+
 Map<Priority, dynamic> priorityToColor = {
   Priority.HIGH: Colors.red,
   Priority.MID: Colors.blue,
@@ -32,7 +51,7 @@ class ToDoItem with _$ToDoItem {
   const factory ToDoItem({
     @JsonKey(name: 'tid') required String tid,
     @JsonKey(name: 'title') required String title,
-    @JsonKey(name: 'name') required String status,
+    @JsonKey(name: 'status') required Status status,
     @JsonKey(name: 'memo') String? memo,
     @JsonKey(name: 'createdAt') int? createdAt,
     @JsonKey(name: 'updatedAt') int? updatedAt,

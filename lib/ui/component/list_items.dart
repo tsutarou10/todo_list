@@ -56,7 +56,7 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
         backgroundColor: Colors.white,
         child: IconButton(
             onPressed: () {
-              context.read(provider).deleteTodo('test cuid', item.tid);
+              context.read(provider).deleteTodo('TEST_CUID', item.tid);
             },
             icon: Icon(FontAwesomeIcons.trashAlt)),
       ),

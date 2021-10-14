@@ -10,7 +10,7 @@ _$_ToDoItem _$_$_ToDoItemFromJson(Map<String, dynamic> json) {
   return _$_ToDoItem(
     tid: json['tid'] as String,
     title: json['title'] as String,
-    status: json['name'] as String,
+    status: _$enumDecode(_$StatusEnumMap, json['status']),
     memo: json['memo'] as String?,
     createdAt: json['createdAt'] as int?,
     updatedAt: json['updatedAt'] as int?,
@@ -23,7 +23,7 @@ Map<String, dynamic> _$_$_ToDoItemToJson(_$_ToDoItem instance) =>
     <String, dynamic>{
       'tid': instance.tid,
       'title': instance.title,
-      'name': instance.status,
+      'status': _$StatusEnumMap[instance.status],
       'memo': instance.memo,
       'createdAt': instance.createdAt,
       'updatedAt': instance.updatedAt,
@@ -56,6 +56,12 @@ K _$enumDecode<K, V>(
     },
   ).key;
 }
+
+const _$StatusEnumMap = {
+  Status.TODO: 'TODO',
+  Status.IN_PROGRESS: 'IN_PROGRESS',
+  Status.DONE: 'DONE',
+};
 
 K? _$enumDecodeNullable<K, V>(
   Map<K, V> enumValues,

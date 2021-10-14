@@ -23,7 +23,7 @@ class _$ToDoItemTearOff {
   _ToDoItem call(
       {@JsonKey(name: 'tid') required String tid,
       @JsonKey(name: 'title') required String title,
-      @JsonKey(name: 'name') required String status,
+      @JsonKey(name: 'status') required Status status,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -55,8 +55,8 @@ mixin _$ToDoItem {
   String get tid => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  Status get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'memo')
   String? get memo => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
@@ -81,7 +81,7 @@ abstract class $ToDoItemCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'tid') String tid,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'name') String status,
+      @JsonKey(name: 'status') Status status,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -120,7 +120,7 @@ class _$ToDoItemCopyWithImpl<$Res> implements $ToDoItemCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -153,7 +153,7 @@ abstract class _$ToDoItemCopyWith<$Res> implements $ToDoItemCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'tid') String tid,
       @JsonKey(name: 'title') String title,
-      @JsonKey(name: 'name') String status,
+      @JsonKey(name: 'status') Status status,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -193,7 +193,7 @@ class __$ToDoItemCopyWithImpl<$Res> extends _$ToDoItemCopyWithImpl<$Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Status,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -224,7 +224,7 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
   const _$_ToDoItem(
       {@JsonKey(name: 'tid') required this.tid,
       @JsonKey(name: 'title') required this.title,
-      @JsonKey(name: 'name') required this.status,
+      @JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'memo') this.memo,
       @JsonKey(name: 'createdAt') this.createdAt,
       @JsonKey(name: 'updatedAt') this.updatedAt,
@@ -242,8 +242,8 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
   @JsonKey(name: 'title')
   final String title;
   @override
-  @JsonKey(name: 'name')
-  final String status;
+  @JsonKey(name: 'status')
+  final Status status;
   @override
   @JsonKey(name: 'memo')
   final String? memo;
@@ -332,7 +332,7 @@ abstract class _ToDoItem extends ToDoItem {
   const factory _ToDoItem(
       {@JsonKey(name: 'tid') required String tid,
       @JsonKey(name: 'title') required String title,
-      @JsonKey(name: 'name') required String status,
+      @JsonKey(name: 'status') required Status status,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -349,8 +349,8 @@ abstract class _ToDoItem extends ToDoItem {
   @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @override
-  @JsonKey(name: 'name')
-  String get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  Status get status => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'memo')
   String? get memo => throw _privateConstructorUsedError;

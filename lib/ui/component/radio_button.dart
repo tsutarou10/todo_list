@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/model/todo_model.dart';
-import 'package:todo_list/view_model/radio_button_view_model.dart';
-
-Map<Priority, String> priorityToRadioButtonText = {
-  Priority.HIGH: '高',
-  Priority.MID: '中',
-  Priority.LOW: '低',
-};
+import 'package:todo_list/view_model/provider.dart';
 
 class RadioButtonForPriority extends HookWidget {
   RadioButtonForPriority({Key? key}) : super(key: key);

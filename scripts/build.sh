@@ -9,5 +9,5 @@ flutter clean && flutter pub get
 
 ${SCRIPT_DIR}/build_graphql.sh ${ENV}
 
-flutter run --dart-define=FLAVOR=${ENV}
+#flutter run --dart-define=FLAVOR=${ENV}
 #flutter build ios --dart-define=FLAVOR=${ENV}
