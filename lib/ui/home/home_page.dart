@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:todo_list/main.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/component/list_items.dart';
@@ -11,17 +10,18 @@ import 'package:todo_list/view_model/bottom_navigation_view_model.dart';
 
 class HomePage extends HookWidget {
   final String title;
-  HomePage({Key? key, required this.title}) : super(key: key);
   var currentTab;
+  HomePage({Key? key, required this.title}) {
+    initCurrentTab();
+  }
 
   OnDismissedCondition odcForTodo =
       (BuildContext context, ToDoItem item, int index, direction) {
     if (direction == DismissDirection.endToStart) {
     } else {
       Priority priority = item.priority != null ? item.priority! : Priority.LOW;
-      context
-          .read(inProgressContentProvider)
-          .add(item.tid, item.title, item.status, priority, item.memo);
+      ToDoItem newItem = item.copyWith(status: Status.IN_PROGRESS);
+      context.read(inProgressContentProvider).add(newItem);
     }
     context.read(todoContentProvider).remove(index);
   };
@@ -30,13 +30,11 @@ class HomePage extends HookWidget {
       (BuildContext context, ToDoItem item, int index, direction) {
     Priority priority = item.priority != null ? item.priority! : Priority.LOW;
     if (direction == DismissDirection.endToStart) {
-      context
-          .read(todoContentProvider)
-          .add(item.tid, item.title, item.status, priority, item.memo);
+      ToDoItem newItem = item.copyWith(status: Status.TODO);
+      context.read(todoContentProvider).add(newItem);
     } else {
-      context
-          .read(doneContentProvider)
-          .add(item.tid, item.title, item.status, priority, item.memo);
+      ToDoItem newItem = item.copyWith(status: Status.DONE);
+      context.read(doneContentProvider).add(newItem);
     }
     context.read(inProgressContentProvider).remove(index);
   };
@@ -45,9 +43,8 @@ class HomePage extends HookWidget {
       (BuildContext context, ToDoItem item, int index, direction) {
     Priority priority = item.priority != null ? item.priority! : Priority.LOW;
     if (direction == DismissDirection.endToStart) {
-      context
-          .read(inProgressContentProvider)
-          .add(item.tid, item.title, item.status, priority, item.memo);
+      ToDoItem newItem = item.copyWith(status: Status.IN_PROGRESS);
+      context.read(inProgressContentProvider).add(newItem);
     } else {}
     context.read(doneContentProvider).remove(index);
   };
@@ -66,7 +63,6 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     print('home_page.dart');
-    initCurrentTab();
     return Scaffold(
       body: Consumer(builder: (context, watch, child) {
         int currentIndex = watch(bottomNavigationBarProvider).currentIndex;

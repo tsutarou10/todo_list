@@ -7,6 +7,6 @@ abstract class GraphQLClientGateway {
 abstract class GraphQLGateway {
   Future<ToDoItem> createTodo(String cuid, ToDoItem todoItem);
   Future<ToDoItem> updateTodo(String cuid, ToDoItem todoItem);
-  Future<List<ToDoItem>> queryTodo(String status);
+  Future<List<ToDoItem>> queryTodo(Status status);
   Future<ToDoItem> deleteTodo(String cuid, String tid);
 }

@@ -9,9 +9,10 @@ class GraphQLRepository implements GraphQLGateway {
   GraphQLRepository(this._client);
 
   @override
-  Future<List<ToDoItem>> queryTodo(String status) async {
+  Future<List<ToDoItem>> queryTodo(Status status) async {
     List<ToDoItem> rsl = [];
-    final request = GlistTodoListsReq((b) => b..vars.filter.status.eq = status);
+    final request = GlistTodoListsReq(
+        (b) => b..vars.filter.status.eq = statusToString[status]);
 
     Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
