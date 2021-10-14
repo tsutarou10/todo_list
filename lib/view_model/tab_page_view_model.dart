@@ -1,15 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
-class DoneContentViewModel extends ChangeNotifier {
-  final GraphQLRepository _client;
+class TabPageViewModel extends ChangeNotifier {
+  final GraphQLGateway _client;
 
-  DoneContentViewModel({required GraphQLRepository client})
+  TabPageViewModel({required GraphQLGateway client})
       : _client = client,
         _items = [];
 
@@ -42,6 +39,25 @@ class DoneContentViewModel extends ChangeNotifier {
     });
   }
 
+  Future<void> updateTodo(String cuid, ToDoItem todoItem) async {
+    Future<ToDoItem> future = _client.updateTodo(cuid, todoItem);
+    print('start create');
+    future.then((value) {
+      _items.add(value);
+      _items.asMap().forEach((int i, ToDoItem v) {
+        print(v.tid);
+        if (v.tid == value.tid) {
+          _items.removeAt(i);
+        }
+      });
+    }).catchError((dynamic error) {
+      print(error);
+    }).whenComplete(() {
+      print('complete');
+      notifyListeners();
+    });
+  }
+
   Future<void> deleteTodo(String cuid, String tid) async {
     Future<ToDoItem> future = _client.deleteTodo(cuid, tid);
     print('start delete');
@@ -66,7 +82,7 @@ class DoneContentViewModel extends ChangeNotifier {
     if (newIndex > oldIndex) {
       newIndex -= 1;
     }
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(Duration(milliseconds: 10), () {
       final items = _items.removeAt(oldIndex);
       _items.insert(newIndex, items);
       notifyListeners();
