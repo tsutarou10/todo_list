@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_list/main.dart';
 import 'package:todo_list/model/todo_model.dart';
-import 'package:todo_list/repository/graphql.dart';
+import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/component/input_dialog.dart';
 import 'package:todo_list/ui/component/list_items.dart';
-import 'package:todo_list/view_model/provider.dart';
 
 class TabPage extends HookWidget {
   final String title;
   final Status status;
   final OnDismissedCondition odc;
-  final graphQlClient = GraphQLApiClient();
   TabPage(
       {Key? key, required this.title, required this.status, required this.odc})
       : super(key: key);

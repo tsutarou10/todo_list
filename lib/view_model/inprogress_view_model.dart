@@ -7,9 +7,9 @@ import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
 class InProgressContentViewModel extends ChangeNotifier {
-  final GraphQLApiClient _client;
+  final GraphQLRepository _client;
 
-  InProgressContentViewModel({required GraphQLApiClient client})
+  InProgressContentViewModel({required GraphQLRepository client})
       : _client = client,
         _items = [];
 

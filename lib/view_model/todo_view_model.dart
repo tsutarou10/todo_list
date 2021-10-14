@@ -1,15 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
 class TodoContentViewModel extends ChangeNotifier {
-  final GraphQLApiClient _client;
+  final GraphQLGateway _client;
 
-  TodoContentViewModel({required GraphQLApiClient client})
+  TodoContentViewModel({required GraphQLGateway client})
       : _client = client,
         _items = [];
 

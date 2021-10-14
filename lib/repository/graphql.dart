@@ -1,32 +1,19 @@
-import 'package:ferry/ferry.dart';
-import 'package:gql_http_link/gql_http_link.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/utils/utils.dart';
 
-final graphQLApiClientProvider = Provider((ref) => GraphQLApiClient());
-
-class GraphQLApiClient implements GraphQLGateway {
+class GraphQLRepository implements GraphQLGateway {
   int id = 8;
-  late final Client _client;
-  GraphQLApiClient() {
-    final link = HttpLink(
-      'https://jysbajoanvatjmvixye73inwse.appsync-api.ap-northeast-1.amazonaws.com/graphql',
-      defaultHeaders: <String, String>{
-        'x-api-key': 'da2-p4ehmits3vh2dbw24mdvp7eal4',
-      },
-    );
-    _client = Client(link: link);
-  }
+  final GraphQLClientGateway _client;
+  GraphQLRepository(this._client);
 
   @override
   Future<List<ToDoItem>> queryTodo(String status) async {
     List<ToDoItem> rsl = [];
     final request = GlistTodoListsReq((b) => b..vars.filter.status.eq = status);
 
-    Stream<dynamic> events = _client.request(request);
+    Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
       final data = event.data;
       if (data != null && data.listTodoLists != null) {
@@ -55,7 +42,7 @@ class GraphQLApiClient implements GraphQLGateway {
       ..vars.createtodolistinput.priority =
           priorityToString[todoItem.priority]);
     //..vars.createtodolistinput.title = title);
-    Stream<dynamic> events = _client.request(request);
+    Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
       final data = event.data;
       if (data != null) {
@@ -79,7 +66,7 @@ class GraphQLApiClient implements GraphQLGateway {
       ..vars.input.title = todoItem.title
       ..vars.input.priority = priorityToString[todoItem.priority]);
     //..vars.createtodolistinput.title = title);
-    Stream<dynamic> events = _client.request(request);
+    Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
       final data = event.data;
       if (data != null) {
@@ -98,7 +85,7 @@ class GraphQLApiClient implements GraphQLGateway {
     final request = GdeleteTodoListReq((b) => b
       ..vars.input.cuid = cuid
       ..vars.input.tid = tid);
-    Stream<dynamic> events = _client.request(request);
+    Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
       final data = event.data;
       if (data != null) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_list/main.dart';
+import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/route/route_page.dart';
-
-import 'view_model/provider.dart';
 
 class App extends HookWidget {
   @override

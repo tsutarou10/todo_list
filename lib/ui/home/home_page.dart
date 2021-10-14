@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/src/provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:todo_list/main.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/component/list_items.dart';
 import 'package:todo_list/ui/tabs/tab_page.dart';
 import 'package:todo_list/view_model/bottom_navigation_view_model.dart';
-import 'package:todo_list/view_model/provider.dart';
 
 class HomePage extends HookWidget {
   final String title;

@@ -9,5 +9,8 @@ flutter clean && flutter pub get
 
 ${SCRIPT_DIR}/build_graphql.sh ${ENV}
 
-#flutter run --dart-define=FLAVOR=${ENV}
+flutter run \
+  --dart-define=FLAVOR=${ENV} \
+  --dart-define=APPSYNC_URL=${APPSYNC_URL[$ENV]} \
+  --dart-define=APPSYNC_API_KEY=${APPSYNC_API_KEY[$ENV]} \
 #flutter build ios --dart-define=FLAVOR=${ENV}

@@ -7,9 +7,9 @@ import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql.dart';
 
 class DoneContentViewModel extends ChangeNotifier {
-  final GraphQLApiClient _client;
+  final GraphQLRepository _client;
 
-  DoneContentViewModel({required GraphQLApiClient client})
+  DoneContentViewModel({required GraphQLRepository client})
       : _client = client,
         _items = [];
 
