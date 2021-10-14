@@ -20,6 +20,7 @@ dependencies:
   flutter_native_splash: ^1.2.4
   uuid: ^3.0.5
   font_awesome_flutter: ^9.1.0
+  json_serializable: ^4.1.4
 
 
 flutter_native_splash:
