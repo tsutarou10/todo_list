@@ -49,12 +49,7 @@ class DonePage extends HookWidget {
               return buildReorderableListView(context, items, odc, doneContentProvider);
             }
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              InputDialog(context);
-            },
-            child: const Icon(Icons.add),
-        ),
+        floatingActionButton: ActionButtonWithInputDialog(icon: Icon(Icons.add)),
     );
   }
 }

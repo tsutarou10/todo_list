@@ -37,6 +37,11 @@ class ToDoPage extends HookWidget {
               }
             ),
             actions: [
+              Consumer(
+                builder: (context, watch, child) {
+                  return ActionButtonWithInputDialog(icon: Icon(Icons.add));
+                },
+              ),
               IconButton (
                 icon: Icon(Icons.more_horiz),
                 onPressed: () {},
@@ -48,12 +53,6 @@ class ToDoPage extends HookWidget {
               List<ToDoItem> items = watch(todoContentProvider).items;
               return buildReorderableListView(context, items, odc, todoContentProvider);
             }
-        ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () async {
-              InputDialog(context);
-            },
-            child: const Icon(Icons.add),
         ),
     );
   }

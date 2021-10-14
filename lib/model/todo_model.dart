@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/utils/utils.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'todo_model.freezed.dart';
+part 'todo_model.g.dart';
 
 enum Priority { HIGH, MID, LOW }
 
@@ -23,49 +27,19 @@ Map<Priority, dynamic> priorityToColor = {
 };
 
 
+@freezed
+class ToDoItem with _$ToDoItem {
+  const ToDoItem._();
+  const factory ToDoItem({
+    @JsonKey(name: 'tid') required String tid,
+    @JsonKey(name: 'title') required String title,
+    @JsonKey(name: 'name') required String status,
+    @JsonKey(name: 'memo') String? memo,
+    @JsonKey(name: 'createdAt') int? createdAt,
+    @JsonKey(name: 'updatedAt') int? updatedAt,
+    @JsonKey(name: 'priority') Priority? priority,
+    @JsonKey(name: 'hidden') bool? hidden,
+  }) = _ToDoItem;
 
-class ToDoItem {
-  String tid;
-  String title;
-  String status;
-  String? memo;
-  int? createdAt;
-  int? updatedAt;
-  Priority? priority;
-  bool? hidden;
-
-  ToDoItem(
-      {
-        required this.tid,
-        required this.title,
-        required this.status,
-        this.memo,
-        this.createdAt,
-        this.updatedAt,
-        this.priority,
-        this.hidden,
-      }
-    );
-
-  ToDoItem.fromMap(Map<String, dynamic> map)
-      : tid = map['tid'] as String,
-        title = map['title'] as String,
-        status = map['status'] as String,
-        memo = map['memo'] ? map['memo'] as String : null,
-        createdAt = map['createdAt'] ? map['createdAt'] as int : null,
-        updatedAt = map['upsatedAt'] ? map['updatedAt'] as int : null,
-        priority = map['priority'] ? map['priority'] as Priority : null,
-        hidden = map['hidden'] ? toBool(map['hidden'] as String) : false;
-
-  Map<String, dynamic> toJson() {
-    return <String, dynamic> {
-      'title': title,
-      'status': status,
-      'memo': memo,
-      'createdAt': createdAt,
-      'updatedAt': updatedAt,
-      'priority': priority,
-      'hidden': hidden,
-    };
-  }
+  factory ToDoItem.fromJson(Map<String, dynamic> json) => _$ToDoItemFromJson(json);
 }

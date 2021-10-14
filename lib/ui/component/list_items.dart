@@ -35,14 +35,9 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
     child: ListTile(
       contentPadding: EdgeInsets.all(10),
       leading: CircleAvatar(
-          radius: 30,
-          backgroundColor: Colors.white,
-          child: IconButton(
-            onPressed:(){
-              InputDialog(context, item.tid, item.title, item.memo, item.priority, false);
-            },
-            icon: Icon(FontAwesomeIcons.edit, color: Colors.black),
-          ),
+        radius: 30,
+        backgroundColor: Colors.white,
+        child: ActionButtonWithInputDialog(icon: Icon(FontAwesomeIcons.edit, color: Colors.black), tid: item.tid, title: item.title, memo: item.memo, priority: item.priority, isCreated: false),
       ),
       trailing: CircleAvatar(
           radius: 20,

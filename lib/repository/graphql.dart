@@ -52,15 +52,15 @@ class GraphQLApiClient implements GraphQLGateway {
     return rsl;
   }
 
-  Future<ToDoItem> createTodo(String cuid, String title, String memo, String status, Priority priority) async {
+  Future<ToDoItem> createTodo(String cuid, ToDoItem todoItem) async {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
     final request = GcreateTodoListReq(
         (b) => b
         ..vars.createtodolistinput.cuid = cuid
-        ..vars.createtodolistinput.tid = generateUUID()
-        ..vars.createtodolistinput.status = status
-        ..vars.createtodolistinput.title = title
-        ..vars.createtodolistinput.priority = priorityToString[priority]);
+        ..vars.createtodolistinput.tid = todoItem.tid
+        ..vars.createtodolistinput.status = todoItem.status
+        ..vars.createtodolistinput.title = todoItem.title
+        ..vars.createtodolistinput.priority = priorityToString[todoItem.priority]);
         //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.request(request);
     await for(dynamic event in events) {
@@ -76,15 +76,15 @@ class GraphQLApiClient implements GraphQLGateway {
     return ToDoItem(tid: generateUUID(), title: "title", status: "status");
   }
 
-  Future<ToDoItem> updateTodo(String cuid, String tid, String title, String memo, String status, Priority priority) async {
+  Future<ToDoItem> updateTodo(String cuid, ToDoItem todoItem) async {
     int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
     final request = GupdateTodoListReq(
         (b) => b
         ..vars.input.cuid = cuid
-        ..vars.input.tid = tid
-        ..vars.input.status = status
-        ..vars.input.title = title
-        ..vars.input.priority = priorityToString[priority]);
+        ..vars.input.tid = todoItem.tid
+        ..vars.input.status = todoItem.status
+        ..vars.input.title = todoItem.title
+        ..vars.input.priority = priorityToString[todoItem.priority]);
         //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.request(request);
     await for(dynamic event in events) {
