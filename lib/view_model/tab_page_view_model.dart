@@ -1,19 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
-import 'package:todo_list/repository/graphql.dart';
 
-class TabPageViewModel extends ChangeNotifier {
+class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
   final GraphQLGateway _client;
 
   TabPageViewModel({required GraphQLGateway client})
       : _client = client,
-        _items = [];
+        _items = [] {
+    WidgetsBinding.instance?.addObserver(this);
+  }
 
   List<ToDoItem> _items;
   List<ToDoItem> get items => _items;
 
-  Future<void> fetch(String status) async {
+  @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state) {
+      case AppLifecycleState.resumed:
+        // アプリがフォアグラウンドに来たときに取得する
+        print('resumed');
+        break;
+      case AppLifecycleState.inactive:
+        // アプリは表示されているが、フォーカスが当たっていない状態
+        print('inactive');
+        break;
+      case AppLifecycleState.paused:
+        // アプリがバックグラウンドに遷移
+        print('paused');
+        break;
+      case AppLifecycleState.detached:
+        // アプリが終了するときに透
+        print('detached');
+        break;
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(this);
+    super.dispose();
+  }
+
+  Future<void> fetch(Status status) async {
     Future<List<ToDoItem>> future = _client.queryTodo(status);
     print('start fetch');
     future.then((value) {
@@ -24,6 +53,10 @@ class TabPageViewModel extends ChangeNotifier {
       print('complete');
       notifyListeners();
     });
+  }
+
+  Future<void> updateAllTodo() async {
+    items.forEach((item) {});
   }
 
   Future<void> createTodo(String cuid, ToDoItem todoItem) async {
@@ -89,10 +122,8 @@ class TabPageViewModel extends ChangeNotifier {
     });
   }
 
-  void add(String tid, String title, Status status, Priority priority,
-      String? memo) {
-    _items.add(
-        ToDoItem(tid: tid, title: title, status: status, priority: priority));
+  void add(ToDoItem item) {
+    _items.add(item);
     notifyListeners();
   }
 
