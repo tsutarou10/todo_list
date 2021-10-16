@@ -1,4 +1,5 @@
 import 'package:ferry/ferry.dart';
+import 'package:ferry/typed_links.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 

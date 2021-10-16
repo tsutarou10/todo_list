@@ -10,7 +10,6 @@ class TodoDetailPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     ToDoItem item = ModalRoute.of(context)!.settings.arguments as ToDoItem;
-    print(item);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),

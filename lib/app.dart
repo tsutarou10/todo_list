@@ -9,9 +9,9 @@ class App extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(() {
-      context.read(todoContentProvider).fetch(Status.TODO);
-      context.read(inProgressContentProvider).fetch(Status.IN_PROGRESS);
-      context.read(doneContentProvider).fetch(Status.DONE);
+      context.read(todoContentProvider).fetch();
+      context.read(inProgressContentProvider).fetch();
+      context.read(doneContentProvider).fetch();
     }, const []);
     return MaterialApp(
       title: 'Flutter Demo',

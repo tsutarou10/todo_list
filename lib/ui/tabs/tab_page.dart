@@ -17,7 +17,6 @@ class TabPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final provider = statusToProvider[status];
-    print('todo_tabs');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

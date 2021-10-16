@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/provider/provider.dart';
 
 class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
   final GraphQLGateway _client;
+  final TabPageViewModelArgs _args;
 
-  TabPageViewModel({required GraphQLGateway client})
+  TabPageViewModel(
+      {required GraphQLGateway client, required TabPageViewModelArgs args})
       : _client = client,
-        _items = [] {
+        _items = [],
+        _args = args {
     WidgetsBinding.instance?.addObserver(this);
   }
 
@@ -19,11 +23,13 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     switch (state) {
       case AppLifecycleState.resumed:
         // アプリがフォアグラウンドに来たときに取得する
-        print('resumed');
+        fetch();
+        print('resumed ${_args.status}');
         break;
       case AppLifecycleState.inactive:
         // アプリは表示されているが、フォーカスが当たっていない状態
-        print('inactive');
+        updateAllTodo();
+        print('inactive ${_args.status}');
         break;
       case AppLifecycleState.paused:
         // アプリがバックグラウンドに遷移
@@ -31,6 +37,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
         break;
       case AppLifecycleState.detached:
         // アプリが終了するときに透
+        updateAllTodo();
         print('detached');
         break;
     }
@@ -42,43 +49,47 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     super.dispose();
   }
 
-  Future<void> fetch(Status status) async {
-    Future<List<ToDoItem>> future = _client.queryTodo(status);
-    print('start fetch');
+  Future<void> fetch() async {
+    if (_args.status == Status.TODO) {
+      print('============');
+      print('${_args.status}: ${_items}');
+    }
+    Future<List<ToDoItem>> future = _client.queryTodo(_args.status);
     future.then((value) {
       _items = value;
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      print('complete');
+      if (_args.status == Status.TODO) {
+        print('start fetch');
+        print('${_args.status} has ${_items}');
+      }
       notifyListeners();
     });
   }
 
   Future<void> updateAllTodo() async {
-    items.forEach((item) {});
+    items.forEach((item) {
+      updateTodo('TEST_CUID', item);
+    });
   }
 
   Future<void> createTodo(String cuid, ToDoItem todoItem) async {
     Future<ToDoItem> future = _client.createTodo(cuid, todoItem);
-    print('start create');
     future.then((value) {
       _items.add(value);
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      print('complete');
       notifyListeners();
     });
   }
 
   Future<void> updateTodo(String cuid, ToDoItem todoItem) async {
     Future<ToDoItem> future = _client.updateTodo(cuid, todoItem);
-    print('start create');
     future.then((value) {
       _items.add(value);
       _items.asMap().forEach((int i, ToDoItem v) {
-        print(v.tid);
         if (v.tid == value.tid) {
           _items.removeAt(i);
         }
@@ -86,18 +97,14 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      print('complete');
       notifyListeners();
     });
   }
 
   Future<void> deleteTodo(String cuid, String tid) async {
     Future<ToDoItem> future = _client.deleteTodo(cuid, tid);
-    print('start delete');
     future.then((value) {
-      print(value.tid);
       _items.asMap().forEach((int i, ToDoItem v) {
-        print(v.tid);
         if (v.tid == value.tid) {
           _items.removeAt(i);
         }
@@ -105,8 +112,6 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      print('delete complete');
-      print(_items);
       notifyListeners();
     });
   }

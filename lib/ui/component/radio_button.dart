@@ -26,7 +26,6 @@ class RadioButtonForPriority extends HookWidget {
               builder: (context, watch, child) {
                 Priority currentPriority =
                     watch(radioButtonProvider).currentValue;
-                print(currentPriority);
                 return RadioListTile(
                   title: Text(title),
                   value: Priority.values[index],

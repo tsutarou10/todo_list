@@ -62,7 +62,6 @@ class HomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('home_page.dart');
     return Scaffold(
       body: Consumer(builder: (context, watch, child) {
         int currentIndex = watch(bottomNavigationBarProvider).currentIndex;

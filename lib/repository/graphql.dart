@@ -1,29 +1,30 @@
+import 'package:ferry/ferry.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart';
 import 'package:todo_list/model/todo_model.dart';
+import 'package:todo_list/repository/graphql_client.dart';
 import 'package:todo_list/utils/utils.dart';
 
 class GraphQLRepository implements GraphQLGateway {
-  int id = 8;
   final GraphQLClientGateway _client;
   GraphQLRepository(this._client);
 
   @override
   Future<List<ToDoItem>> queryTodo(Status status) async {
     List<ToDoItem> rsl = [];
-    final request = GlistTodoListsReq(
-        (b) => b..vars.filter.status.eq = statusToString[status]);
+    final request = GlistTodoListsReq((b) => b
+      ..fetchPolicy = FetchPolicy.NetworkOnly
+      ..vars.filter.status.eq = statusToString[status]
+      ..vars.filter.cuid.eq = 'TEST_CUID');
 
     Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
       final data = event.data;
       if (data != null && data.listTodoLists != null) {
         final items = data.listTodoLists?.toJson()['items'];
-        print('before: ${items}');
         for (dynamic item in items) {
           rsl.add(ToDoItem.fromJson(item));
         }
-        print('after: ${rsl}');
         return rsl;
       } else {
         print('not found');
@@ -48,7 +49,6 @@ class GraphQLRepository implements GraphQLGateway {
       final data = event.data;
       if (data != null) {
         final item = data.createTodoList?.toJson();
-        print('mutation: ${item}');
         return ToDoItem.fromJson(item);
       } else {
         print('not found');
@@ -72,7 +72,6 @@ class GraphQLRepository implements GraphQLGateway {
       final data = event.data;
       if (data != null) {
         final item = data.updateTodoList?.toJson();
-        print('mutation: ${item}');
         return ToDoItem.fromJson(item);
       } else {
         print('not found');
@@ -91,7 +90,6 @@ class GraphQLRepository implements GraphQLGateway {
       final data = event.data;
       if (data != null) {
         final item = data.deleteTodoList?.toJson();
-        print('delete: ${item}');
         return ToDoItem.fromJson(item);
       } else {
         print('not found');
