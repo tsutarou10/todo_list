@@ -90,13 +90,14 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     future.then((value) {
       _items.add(value);
       _items.asMap().forEach((int i, ToDoItem v) {
-        if (v.tid == value.tid) {
+        if (v.tid == value.tid && v.priority != value.priority) {
           _items.removeAt(i);
         }
       });
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
+      print('updateTodo: ${_items}');
       notifyListeners();
     });
   }

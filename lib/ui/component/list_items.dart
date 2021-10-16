@@ -31,6 +31,9 @@ Widget buildReorderableListView(BuildContext context, List<ToDoItem> items,
 }
 
 Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
+  if (item.status == Status.IN_PROGRESS) {
+    print(item.priority);
+  }
   return Card(
     key: ValueKey(item.tid),
     margin: const EdgeInsets.all(10),
@@ -41,12 +44,15 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
         radius: 30,
         backgroundColor: Colors.white,
         child: ActionButtonWithInputDialog(
-            icon: const Icon(FontAwesomeIcons.edit, color: Colors.black),
-            tid: item.tid,
-            title: item.title,
-            memo: item.memo,
-            priority: item.priority,
-            isCreated: false),
+          icon: const Icon(FontAwesomeIcons.edit, color: Colors.black),
+          provider: provider,
+          tid: item.tid,
+          title: item.title,
+          memo: item.memo,
+          priority: item.priority,
+          isCreated: false,
+          status: item.status,
+        ),
       ),
       trailing: CircleAvatar(
         radius: 20,

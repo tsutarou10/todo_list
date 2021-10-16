@@ -10,20 +10,24 @@ import 'package:todo_list/utils/utils.dart';
 
 class ActionButtonWithInputDialog extends HookWidget {
   final Icon icon;
+  final dynamic provider;
   String? tid;
   String? title;
   String? memo;
   Priority? priority;
   bool? isCreated;
+  Status? status;
 
   ActionButtonWithInputDialog(
       {Key? key,
       required this.icon,
+      required this.provider,
       this.tid,
       this.title,
       this.memo,
       this.priority,
-      this.isCreated})
+      this.isCreated,
+      this.status})
       : super(key: key);
 
   @override
@@ -31,7 +35,7 @@ class ActionButtonWithInputDialog extends HookWidget {
     return IconButton(
       onPressed: () async {
         context.read(radioButtonProvider).setValue(priority);
-        _inputDialog(context, tid, title, memo, priority, isCreated);
+        _inputDialog(context, tid, title, memo, priority, isCreated, status);
       },
       icon: icon,
     );
@@ -42,7 +46,8 @@ class ActionButtonWithInputDialog extends HookWidget {
       String? title,
       String? memo,
       Priority? priority,
-      bool? isCreated]) async {
+      bool? isCreated,
+      Status? status]) async {
     var _titleController = TextEditingController(text: title);
     var _memoController = TextEditingController(text: memo);
 
@@ -50,7 +55,7 @@ class ActionButtonWithInputDialog extends HookWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('TODO Input Form'),
+            title: Text('${statusToString[status]} Input Form'),
             content: StatefulBuilder(
                 builder: (BuildContext context, StateSetter setState) {
               return SingleChildScrollView(
@@ -70,8 +75,8 @@ class ActionButtonWithInputDialog extends HookWidget {
             }),
             actions: <Widget>[
               textCancelButton(context),
-              textOKButton(
-                  context, tid, _titleController, _memoController, isCreated),
+              textOKButton(context, tid, _titleController, _memoController,
+                  isCreated, status),
             ],
           );
         });
@@ -91,7 +96,7 @@ class ActionButtonWithInputDialog extends HookWidget {
   }
 
   Widget textOKButton(BuildContext context, String? tid, var titleController,
-      var memoController, bool? isCreated) {
+      var memoController, bool? isCreated, Status? status) {
     return TextButton(
       style: TextButton.styleFrom(
         primary: Colors.white,
@@ -104,16 +109,17 @@ class ActionButtonWithInputDialog extends HookWidget {
           tid: tid ?? generateUUID(),
           title: titleController.text,
           memo: memoController.text,
-          status: Status.TODO,
+          status: status ?? Status.TODO,
           priority: priority ?? Priority.HIGH,
         );
         if (isCreated == null || isCreated) {
-          context.read(todoContentProvider).createTodo(
+          context.read(provider).createTodo(
                 "TEST_CUID",
                 todoItem,
               );
         } else {
-          context.read(todoContentProvider).updateTodo(
+          print('todoItem: ${todoItem}');
+          context.read(provider).updateTodo(
                 "TEST_CUID",
                 todoItem,
               );

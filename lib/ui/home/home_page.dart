@@ -34,6 +34,7 @@ class HomePage extends HookWidget {
       context.read(todoContentProvider).add(newItem);
     } else {
       ToDoItem newItem = item.copyWith(status: Status.DONE);
+      print('newItem: ${newItem}');
       context.read(doneContentProvider).add(newItem);
     }
     context.read(inProgressContentProvider).remove(index);

@@ -27,7 +27,8 @@ class TabPage extends HookWidget {
         actions: [
           Consumer(
             builder: (context, watch, child) {
-              return ActionButtonWithInputDialog(icon: const Icon(Icons.add));
+              return ActionButtonWithInputDialog(
+                  icon: const Icon(Icons.add), provider: provider);
             },
           ),
           IconButton(
