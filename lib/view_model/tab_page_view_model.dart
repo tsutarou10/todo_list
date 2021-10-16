@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/provider/provider.dart';
+import 'package:todo_list/utils/loggre.dart';
 
 class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
   final GraphQLGateway _client;
@@ -24,21 +25,21 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
       case AppLifecycleState.resumed:
         // アプリがフォアグラウンドに来たときに取得する
         fetch();
-        print('resumed ${_args.status}');
+        logger.info('resumed ${_args.status}');
         break;
       case AppLifecycleState.inactive:
         // アプリは表示されているが、フォーカスが当たっていない状態
         updateAllTodo();
-        print('inactive ${_args.status}');
+        logger.info('inactive ${_args.status}');
         break;
       case AppLifecycleState.paused:
         // アプリがバックグラウンドに遷移
-        print('paused');
+        logger.info('paused');
         break;
       case AppLifecycleState.detached:
         // アプリが終了するときに透
         updateAllTodo();
-        print('detached');
+        logger.info('detached');
         break;
     }
   }
@@ -54,7 +55,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     future.then((value) {
       _items = value;
     }).catchError((dynamic error) {
-      print(error);
+      logger.severe(error);
     }).whenComplete(() {
       notifyListeners();
     });
@@ -73,7 +74,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     future.then((value) {
       _items.add(value);
     }).catchError((dynamic error) {
-      print(error);
+      logger.severe(error);
     }).whenComplete(() {
       notifyListeners();
     });
@@ -89,7 +90,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
         }
       });
     }).catchError((dynamic error) {
-      print(error);
+      logger.severe(error);
     }).whenComplete(() {
       if (isAll == null || !isAll) {
         notifyListeners();
@@ -106,7 +107,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
         }
       });
     }).catchError((dynamic error) {
-      print(error);
+      logger.severe(error);
     }).whenComplete(() {
       notifyListeners();
     });

@@ -45,6 +45,8 @@ class _$GCreateTodoListInputSerializer
       'priority',
       serializers.serialize(object.priority,
           specifiedType: const FullType(String)),
+      'sortID',
+      serializers.serialize(object.sortID, specifiedType: const FullType(int)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
@@ -55,12 +57,6 @@ class _$GCreateTodoListInputSerializer
         ..add('memo')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
-    }
-    value = object.sortID;
-    if (value != null) {
-      result
-        ..add('sortID')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.status;
     if (value != null) {
@@ -105,7 +101,7 @@ class _$GCreateTodoListInputSerializer
           break;
         case 'sortID':
           result.sortID = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(int)) as int;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
@@ -917,6 +913,8 @@ class _$GUpdateTodoListInputSerializer
       'priority',
       serializers.serialize(object.priority,
           specifiedType: const FullType(String)),
+      'sortID',
+      serializers.serialize(object.sortID, specifiedType: const FullType(int)),
       'tid',
       serializers.serialize(object.tid, specifiedType: const FullType(String)),
     ];
@@ -927,12 +925,6 @@ class _$GUpdateTodoListInputSerializer
         ..add('memo')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
-    }
-    value = object.sortID;
-    if (value != null) {
-      result
-        ..add('sortID')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.status;
     if (value != null) {
@@ -977,7 +969,7 @@ class _$GUpdateTodoListInputSerializer
           break;
         case 'sortID':
           result.sortID = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(int)) as int;
           break;
         case 'status':
           result.status = serializers.deserialize(value,
@@ -1006,7 +998,7 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
   @override
   final String priority;
   @override
-  final int? sortID;
+  final int sortID;
   @override
   final String? status;
   @override
@@ -1022,7 +1014,7 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
       {required this.cuid,
       this.memo,
       required this.priority,
-      this.sortID,
+      required this.sortID,
       this.status,
       required this.tid,
       this.title})
@@ -1030,6 +1022,8 @@ class _$GCreateTodoListInput extends GCreateTodoListInput {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GCreateTodoListInput', 'cuid');
     BuiltValueNullFieldError.checkNotNull(
         priority, 'GCreateTodoListInput', 'priority');
+    BuiltValueNullFieldError.checkNotNull(
+        sortID, 'GCreateTodoListInput', 'sortID');
     BuiltValueNullFieldError.checkNotNull(tid, 'GCreateTodoListInput', 'tid');
   }
 
@@ -1152,7 +1146,8 @@ class GCreateTodoListInputBuilder
             memo: memo,
             priority: BuiltValueNullFieldError.checkNotNull(
                 priority, 'GCreateTodoListInput', 'priority'),
-            sortID: sortID,
+            sortID: BuiltValueNullFieldError.checkNotNull(
+                sortID, 'GCreateTodoListInput', 'sortID'),
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GCreateTodoListInput', 'tid'),
@@ -2306,7 +2301,7 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
   @override
   final String priority;
   @override
-  final int? sortID;
+  final int sortID;
   @override
   final String? status;
   @override
@@ -2322,7 +2317,7 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
       {required this.cuid,
       this.memo,
       required this.priority,
-      this.sortID,
+      required this.sortID,
       this.status,
       required this.tid,
       this.title})
@@ -2330,6 +2325,8 @@ class _$GUpdateTodoListInput extends GUpdateTodoListInput {
     BuiltValueNullFieldError.checkNotNull(cuid, 'GUpdateTodoListInput', 'cuid');
     BuiltValueNullFieldError.checkNotNull(
         priority, 'GUpdateTodoListInput', 'priority');
+    BuiltValueNullFieldError.checkNotNull(
+        sortID, 'GUpdateTodoListInput', 'sortID');
     BuiltValueNullFieldError.checkNotNull(tid, 'GUpdateTodoListInput', 'tid');
   }
 
@@ -2452,7 +2449,8 @@ class GUpdateTodoListInputBuilder
             memo: memo,
             priority: BuiltValueNullFieldError.checkNotNull(
                 priority, 'GUpdateTodoListInput', 'priority'),
-            sortID: sortID,
+            sortID: BuiltValueNullFieldError.checkNotNull(
+                sortID, 'GUpdateTodoListInput', 'sortID'),
             status: status,
             tid: BuiltValueNullFieldError.checkNotNull(
                 tid, 'GUpdateTodoListInput', 'tid'),

@@ -3,6 +3,7 @@ import 'package:todo_list/gateway/graphql_gateway.dart';
 import 'package:todo_list/graphql/__generated__/todo.query.req.gql.dart';
 import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/repository/graphql_client.dart';
+import 'package:todo_list/utils/loggre.dart';
 import 'package:todo_list/utils/utils.dart';
 
 class GraphQLRepository implements GraphQLGateway {
@@ -27,7 +28,7 @@ class GraphQLRepository implements GraphQLGateway {
         }
         return rsl;
       } else {
-        print('not found');
+        logger.info('not found');
       }
     }
     return rsl;
@@ -36,6 +37,8 @@ class GraphQLRepository implements GraphQLGateway {
   @override
   Future<ToDoItem> createTodo(String cuid, ToDoItem todoItem) async {
     // int nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
+    logger.info(cuid);
+    logger.info(todoItem);
     final request = GcreateTodoListReq((b) => b
       ..vars.createtodolistinput.cuid = cuid
       ..vars.createtodolistinput.tid = todoItem.tid
@@ -49,9 +52,11 @@ class GraphQLRepository implements GraphQLGateway {
       final data = event.data;
       if (data != null) {
         final item = data.createTodoList?.toJson();
+        logger.info(item);
+        logger.info(ToDoItem.fromJson(item));
         return ToDoItem.fromJson(item);
       } else {
-        print('not found');
+        logger.info('not found');
       }
     }
     return ToDoItem(
@@ -61,7 +66,7 @@ class GraphQLRepository implements GraphQLGateway {
   @override
   Future<ToDoItem> updateTodo(String cuid, ToDoItem todoItem) async {
     //jint nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
-    print(todoItem);
+    logger.info(todoItem);
     final request = GupdateTodoListReq((b) => b
       ..vars.input.cuid = cuid
       ..vars.input.tid = todoItem.tid
@@ -77,7 +82,7 @@ class GraphQLRepository implements GraphQLGateway {
         final item = data.updateTodoList?.toJson();
         return ToDoItem.fromJson(item);
       } else {
-        print('not found');
+        logger.info('not found');
       }
     }
     return ToDoItem(
@@ -96,7 +101,7 @@ class GraphQLRepository implements GraphQLGateway {
         final item = data.deleteTodoList?.toJson();
         return ToDoItem.fromJson(item);
       } else {
-        print('not found');
+        logger.info('not found');
       }
     }
     return ToDoItem(

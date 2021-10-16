@@ -5,6 +5,7 @@ import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/component/input_dialog.dart';
 import 'package:todo_list/ui/component/list_items.dart';
+import 'package:todo_list/utils/loggre.dart';
 
 class TabPage extends HookWidget {
   final String title;
@@ -27,8 +28,13 @@ class TabPage extends HookWidget {
         actions: [
           Consumer(
             builder: (context, watch, child) {
+              List<ToDoItem> items = watch(provider).items;
+              int sortID = items.length;
+              logger.info('sortID: ${sortID}');
               return ActionButtonWithInputDialog(
-                  icon: const Icon(Icons.add), provider: provider);
+                  icon: const Icon(Icons.add),
+                  provider: provider,
+                  sortID: sortID);
             },
           ),
           IconButton(

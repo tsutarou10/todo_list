@@ -6,6 +6,7 @@ import 'package:todo_list/model/todo_model.dart';
 import 'package:todo_list/provider/provider.dart';
 import 'package:todo_list/ui/component/radio_button.dart';
 import 'package:todo_list/ui/component/text_field.dart';
+import 'package:todo_list/utils/loggre.dart';
 import 'package:todo_list/utils/utils.dart';
 
 class ActionButtonWithInputDialog extends HookWidget {
@@ -113,15 +114,16 @@ class ActionButtonWithInputDialog extends HookWidget {
           memo: memoController.text,
           status: status ?? Status.TODO,
           priority: priority ?? Priority.HIGH,
-          sortID: sortID ?? 1,
+          sortID: sortID ?? 0,
         );
+        logger.info(todoItem);
         if (isCreated == null || isCreated) {
           context.read(provider).createTodo(
                 "TEST_CUID",
                 todoItem,
               );
         } else {
-          print('todoItem: ${todoItem}');
+          logger.info('todoItem: ${todoItem}');
           context.read(provider).updateTodo(
                 "TEST_CUID",
                 todoItem,

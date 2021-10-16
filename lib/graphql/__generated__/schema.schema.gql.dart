@@ -18,7 +18,7 @@ abstract class GCreateTodoListInput
   String get cuid;
   String? get memo;
   String get priority;
-  int? get sortID;
+  int get sortID;
   String? get status;
   String get tid;
   String? get title;
@@ -210,7 +210,7 @@ abstract class GUpdateTodoListInput
   String get cuid;
   String? get memo;
   String get priority;
-  int? get sortID;
+  int get sortID;
   String? get status;
   String get tid;
   String? get title;
