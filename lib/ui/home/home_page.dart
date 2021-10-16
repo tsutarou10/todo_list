@@ -22,8 +22,10 @@ class HomePage extends HookWidget {
       Priority priority = item.priority != null ? item.priority! : Priority.LOW;
       ToDoItem newItem = item.copyWith(status: Status.IN_PROGRESS);
       context.read(inProgressContentProvider).add(newItem);
+      context.read(inProgressContentProvider).fixSortID();
     }
     context.read(todoContentProvider).remove(index);
+    context.read(todoContentProvider).fixSortID();
   };
 
   OnDismissedCondition odcForInProgress =
@@ -32,12 +34,14 @@ class HomePage extends HookWidget {
     if (direction == DismissDirection.endToStart) {
       ToDoItem newItem = item.copyWith(status: Status.TODO);
       context.read(todoContentProvider).add(newItem);
+      context.read(todoContentProvider).fixSortID();
     } else {
       ToDoItem newItem = item.copyWith(status: Status.DONE);
-      print('newItem: ${newItem}');
       context.read(doneContentProvider).add(newItem);
+      context.read(doneContentProvider).fixSortID();
     }
     context.read(inProgressContentProvider).remove(index);
+    context.read(inProgressContentProvider).fixSortID();
   };
 
   OnDismissedCondition odcForDone =
@@ -46,8 +50,10 @@ class HomePage extends HookWidget {
     if (direction == DismissDirection.endToStart) {
       ToDoItem newItem = item.copyWith(status: Status.IN_PROGRESS);
       context.read(inProgressContentProvider).add(newItem);
+      context.read(inProgressContentProvider).fixSortID();
     } else {}
     context.read(doneContentProvider).remove(index);
+    context.read(doneContentProvider).fixSortID();
   };
 
   void initCurrentTab() {

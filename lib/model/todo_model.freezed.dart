@@ -24,6 +24,7 @@ class _$ToDoItemTearOff {
       {@JsonKey(name: 'tid') required String tid,
       @JsonKey(name: 'title') required String title,
       @JsonKey(name: 'status') required Status status,
+      @JsonKey(name: 'sortID') required int sortID,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -33,6 +34,7 @@ class _$ToDoItemTearOff {
       tid: tid,
       title: title,
       status: status,
+      sortID: sortID,
       memo: memo,
       createdAt: createdAt,
       updatedAt: updatedAt,
@@ -57,6 +59,8 @@ mixin _$ToDoItem {
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'status')
   Status get status => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sortID')
+  int get sortID => throw _privateConstructorUsedError;
   @JsonKey(name: 'memo')
   String? get memo => throw _privateConstructorUsedError;
   @JsonKey(name: 'createdAt')
@@ -82,6 +86,7 @@ abstract class $ToDoItemCopyWith<$Res> {
       {@JsonKey(name: 'tid') String tid,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'status') Status status,
+      @JsonKey(name: 'sortID') int sortID,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -102,6 +107,7 @@ class _$ToDoItemCopyWithImpl<$Res> implements $ToDoItemCopyWith<$Res> {
     Object? tid = freezed,
     Object? title = freezed,
     Object? status = freezed,
+    Object? sortID = freezed,
     Object? memo = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -121,6 +127,10 @@ class _$ToDoItemCopyWithImpl<$Res> implements $ToDoItemCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      sortID: sortID == freezed
+          ? _value.sortID
+          : sortID // ignore: cast_nullable_to_non_nullable
+              as int,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -154,6 +164,7 @@ abstract class _$ToDoItemCopyWith<$Res> implements $ToDoItemCopyWith<$Res> {
       {@JsonKey(name: 'tid') String tid,
       @JsonKey(name: 'title') String title,
       @JsonKey(name: 'status') Status status,
+      @JsonKey(name: 'sortID') int sortID,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -175,6 +186,7 @@ class __$ToDoItemCopyWithImpl<$Res> extends _$ToDoItemCopyWithImpl<$Res>
     Object? tid = freezed,
     Object? title = freezed,
     Object? status = freezed,
+    Object? sortID = freezed,
     Object? memo = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
@@ -194,6 +206,10 @@ class __$ToDoItemCopyWithImpl<$Res> extends _$ToDoItemCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      sortID: sortID == freezed
+          ? _value.sortID
+          : sortID // ignore: cast_nullable_to_non_nullable
+              as int,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -225,6 +241,7 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
       {@JsonKey(name: 'tid') required this.tid,
       @JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'status') required this.status,
+      @JsonKey(name: 'sortID') required this.sortID,
       @JsonKey(name: 'memo') this.memo,
       @JsonKey(name: 'createdAt') this.createdAt,
       @JsonKey(name: 'updatedAt') this.updatedAt,
@@ -245,6 +262,9 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
   @JsonKey(name: 'status')
   final Status status;
   @override
+  @JsonKey(name: 'sortID')
+  final int sortID;
+  @override
   @JsonKey(name: 'memo')
   final String? memo;
   @override
@@ -262,7 +282,7 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ToDoItem(tid: $tid, title: $title, status: $status, memo: $memo, createdAt: $createdAt, updatedAt: $updatedAt, priority: $priority, hidden: $hidden)';
+    return 'ToDoItem(tid: $tid, title: $title, status: $status, sortID: $sortID, memo: $memo, createdAt: $createdAt, updatedAt: $updatedAt, priority: $priority, hidden: $hidden)';
   }
 
   @override
@@ -273,6 +293,7 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('tid', tid))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('sortID', sortID))
       ..add(DiagnosticsProperty('memo', memo))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt))
@@ -290,6 +311,8 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.sortID, sortID) ||
+                const DeepCollectionEquality().equals(other.sortID, sortID)) &&
             (identical(other.memo, memo) ||
                 const DeepCollectionEquality().equals(other.memo, memo)) &&
             (identical(other.createdAt, createdAt) ||
@@ -311,6 +334,7 @@ class _$_ToDoItem extends _ToDoItem with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(tid) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(sortID) ^
       const DeepCollectionEquality().hash(memo) ^
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(updatedAt) ^
@@ -333,6 +357,7 @@ abstract class _ToDoItem extends ToDoItem {
       {@JsonKey(name: 'tid') required String tid,
       @JsonKey(name: 'title') required String title,
       @JsonKey(name: 'status') required Status status,
+      @JsonKey(name: 'sortID') required int sortID,
       @JsonKey(name: 'memo') String? memo,
       @JsonKey(name: 'createdAt') int? createdAt,
       @JsonKey(name: 'updatedAt') int? updatedAt,
@@ -351,6 +376,9 @@ abstract class _ToDoItem extends ToDoItem {
   @override
   @JsonKey(name: 'status')
   Status get status => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(name: 'sortID')
+  int get sortID => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'memo')
   String? get memo => throw _privateConstructorUsedError;

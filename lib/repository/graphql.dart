@@ -41,8 +41,8 @@ class GraphQLRepository implements GraphQLGateway {
       ..vars.createtodolistinput.tid = todoItem.tid
       ..vars.createtodolistinput.status = statusToString[todoItem.status]
       ..vars.createtodolistinput.title = todoItem.title
-      ..vars.createtodolistinput.priority =
-          priorityToString[todoItem.priority]);
+      ..vars.createtodolistinput.priority = priorityToString[todoItem.priority]
+      ..vars.createtodolistinput.sortID = todoItem.sortID);
     //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
@@ -54,18 +54,21 @@ class GraphQLRepository implements GraphQLGateway {
         print('not found');
       }
     }
-    return ToDoItem(tid: generateUUID(), title: "title", status: Status.TODO);
+    return ToDoItem(
+        tid: generateUUID(), title: "title", status: Status.TODO, sortID: 0);
   }
 
   @override
   Future<ToDoItem> updateTodo(String cuid, ToDoItem todoItem) async {
     //jint nowTime = (new DateTime.now().millisecondsSinceEpoch / 1000).floor();
+    print(todoItem);
     final request = GupdateTodoListReq((b) => b
       ..vars.input.cuid = cuid
       ..vars.input.tid = todoItem.tid
       ..vars.input.status = statusToString[todoItem.status]
       ..vars.input.title = todoItem.title
-      ..vars.input.priority = priorityToString[todoItem.priority]);
+      ..vars.input.priority = priorityToString[todoItem.priority]
+      ..vars.input.sortID = todoItem.sortID);
     //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.doRequest(request);
     await for (dynamic event in events) {
@@ -77,7 +80,8 @@ class GraphQLRepository implements GraphQLGateway {
         print('not found');
       }
     }
-    return ToDoItem(tid: generateUUID(), title: "title", status: Status.TODO);
+    return ToDoItem(
+        tid: generateUUID(), title: "title", status: Status.TODO, sortID: 0);
   }
 
   @override
@@ -95,6 +99,7 @@ class GraphQLRepository implements GraphQLGateway {
         print('not found');
       }
     }
-    return ToDoItem(tid: generateUUID(), title: "title", status: Status.TODO);
+    return ToDoItem(
+        tid: generateUUID(), title: "title", status: Status.TODO, sortID: 0);
   }
 }

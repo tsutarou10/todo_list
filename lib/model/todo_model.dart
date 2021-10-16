@@ -52,6 +52,7 @@ class ToDoItem with _$ToDoItem {
     @JsonKey(name: 'tid') required String tid,
     @JsonKey(name: 'title') required String title,
     @JsonKey(name: 'status') required Status status,
+    @JsonKey(name: 'sortID') required int sortID,
     @JsonKey(name: 'memo') String? memo,
     @JsonKey(name: 'createdAt') int? createdAt,
     @JsonKey(name: 'updatedAt') int? updatedAt,

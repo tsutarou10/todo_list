@@ -17,6 +17,7 @@ class ActionButtonWithInputDialog extends HookWidget {
   Priority? priority;
   bool? isCreated;
   Status? status;
+  int? sortID;
 
   ActionButtonWithInputDialog(
       {Key? key,
@@ -27,7 +28,8 @@ class ActionButtonWithInputDialog extends HookWidget {
       this.memo,
       this.priority,
       this.isCreated,
-      this.status})
+      this.status,
+      this.sortID})
       : super(key: key);
 
   @override
@@ -111,6 +113,7 @@ class ActionButtonWithInputDialog extends HookWidget {
           memo: memoController.text,
           status: status ?? Status.TODO,
           priority: priority ?? Priority.HIGH,
+          sortID: sortID ?? 1,
         );
         if (isCreated == null || isCreated) {
           context.read(provider).createTodo(

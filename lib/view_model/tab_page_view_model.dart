@@ -50,28 +50,22 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
   }
 
   Future<void> fetch() async {
-    if (_args.status == Status.TODO) {
-      print('============');
-      print('${_args.status}: ${_items}');
-    }
     Future<List<ToDoItem>> future = _client.queryTodo(_args.status);
     future.then((value) {
       _items = value;
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      if (_args.status == Status.TODO) {
-        print('start fetch');
-        print('${_args.status} has ${_items}');
-      }
       notifyListeners();
     });
   }
 
   Future<void> updateAllTodo() async {
+    List<ToDoItem> items = _items;
     items.forEach((item) {
-      updateTodo('TEST_CUID', item);
+      updateTodo('TEST_CUID', item, true);
     });
+    notifyListeners();
   }
 
   Future<void> createTodo(String cuid, ToDoItem todoItem) async {
@@ -85,7 +79,7 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     });
   }
 
-  Future<void> updateTodo(String cuid, ToDoItem todoItem) async {
+  Future<void> updateTodo(String cuid, ToDoItem todoItem, [bool? isAll]) async {
     Future<ToDoItem> future = _client.updateTodo(cuid, todoItem);
     future.then((value) {
       _items.add(value);
@@ -97,8 +91,9 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     }).catchError((dynamic error) {
       print(error);
     }).whenComplete(() {
-      print('updateTodo: ${_items}');
-      notifyListeners();
+      if (isAll == null || !isAll) {
+        notifyListeners();
+      }
     });
   }
 
@@ -124,8 +119,18 @@ class TabPageViewModel extends ChangeNotifier with WidgetsBindingObserver {
     Future.delayed(Duration(milliseconds: 10), () {
       final items = _items.removeAt(oldIndex);
       _items.insert(newIndex, items);
-      notifyListeners();
+      fixSortID();
     });
+  }
+
+  void fixSortID() {
+    List<ToDoItem> items = [];
+    _items.asMap().forEach((int index, ToDoItem item) {
+      ToDoItem newItem = item.copyWith(sortID: index);
+      items.add(newItem);
+    });
+    _items = items;
+    notifyListeners();
   }
 
   void add(ToDoItem item) {

@@ -11,13 +11,15 @@ typedef OnDismissedCondition = void Function(
     BuildContext, ToDoItem, int, dynamic);
 
 List<Widget> getListItems(BuildContext context, List<ToDoItem> items,
-        OnDismissedCondition odc, dynamic provider) =>
-    items
-        .asMap()
-        .map((index, item) =>
-            MapEntry(index, buildRow(context, index, item, odc, provider)))
-        .values
-        .toList();
+    OnDismissedCondition odc, dynamic provider) {
+  items.sort((x, y) => x.sortID.compareTo(y.sortID));
+  return items
+      .asMap()
+      .map((index, item) =>
+          MapEntry(index, buildRow(context, index, item, odc, provider)))
+      .values
+      .toList();
+}
 
 Widget buildReorderableListView(BuildContext context, List<ToDoItem> items,
     OnDismissedCondition odc, dynamic provider) {
@@ -31,9 +33,6 @@ Widget buildReorderableListView(BuildContext context, List<ToDoItem> items,
 }
 
 Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
-  if (item.status == Status.IN_PROGRESS) {
-    print(item.priority);
-  }
   return Card(
     key: ValueKey(item.tid),
     margin: const EdgeInsets.all(10),
@@ -52,6 +51,7 @@ Widget createListTile(BuildContext context, ToDoItem item, dynamic provider) {
           priority: item.priority,
           isCreated: false,
           status: item.status,
+          sortID: item.sortID,
         ),
       ),
       trailing: CircleAvatar(

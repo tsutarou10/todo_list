@@ -25,6 +25,7 @@ type TodoList {
   cuid: String!
   memo: String
   priority: String!
+  sortID: Int
   status: String
   tid: String!
   title: String
@@ -39,6 +40,7 @@ input CreateTodoListInput {
   cuid: String!
   memo: String
   priority: String!
+  sortID: Int
   status: String
   tid: String!
   title: String
@@ -115,6 +117,7 @@ input UpdateTodoListInput {
   cuid: String!
   memo: String
   priority: String!
+  sortID: Int
   status: String
   tid: String!
   title: String

@@ -14,7 +14,7 @@ class TodoDetailPage extends HookWidget {
       appBar: AppBar(
         title: Text(title),
       ),
-      body: Text(item.title),
+      body: Text('title: ${item.title}, sortID: ${item.sortID}'),
     );
   }
 }

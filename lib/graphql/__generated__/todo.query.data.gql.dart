@@ -47,6 +47,7 @@ abstract class GcreateTodoListData_createTodoList
   String? get title;
   String? get status;
   String get priority;
+  int? get sortID;
   static Serializer<GcreateTodoListData_createTodoList> get serializer =>
       _$gcreateTodoListDataCreateTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
@@ -125,6 +126,7 @@ abstract class GlistTodoListsData_listTodoLists_items
   String? get title;
   String? get status;
   String get priority;
+  int? get sortID;
   static Serializer<GlistTodoListsData_listTodoLists_items> get serializer =>
       _$glistTodoListsDataListTodoListsItemsSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -177,6 +179,7 @@ abstract class GdeleteTodoListData_deleteTodoList
   String? get status;
   String get tid;
   String? get title;
+  int? get sortID;
   static Serializer<GdeleteTodoListData_deleteTodoList> get serializer =>
       _$gdeleteTodoListDataDeleteTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
@@ -229,6 +232,7 @@ abstract class GupdateTodoListData_updateTodoList
   String? get status;
   String get tid;
   String? get title;
+  int? get sortID;
   static Serializer<GupdateTodoListData_updateTodoList> get serializer =>
       _$gupdateTodoListDataUpdateTodoListSerializer;
   Map<String, dynamic> toJson() => (_i1.serializers
