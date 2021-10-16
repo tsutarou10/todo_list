@@ -3,7 +3,7 @@
 set -eu
 
 readonly SCRIPT_DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
-source ${SCRIPT_DIR}/config.sh ${1-dev}
+source ${SCRIPT_DIR}/../config.sh ${1-dev}
 
 setopt +o nomatch
 cd ${SCRIPT_DIR}/../lib/graphql && ls ./ | grep -v -E 'todo.query.graphql' | xargs rm -rf
