@@ -63,6 +63,12 @@ const createTodoList = _i1.OperationDefinitionNode(
                 alias: null,
                 arguments: [],
                 directives: [],
+                selectionSet: null),
+            _i1.FieldNode(
+                name: _i1.NameNode(value: 'memo'),
+                alias: null,
+                arguments: [],
+                directives: [],
                 selectionSet: null)
           ]))
     ]));
@@ -128,6 +134,12 @@ const listTodoLists = _i1.OperationDefinitionNode(
                       selectionSet: null),
                   _i1.FieldNode(
                       name: _i1.NameNode(value: 'sortID'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null),
+                  _i1.FieldNode(
+                      name: _i1.NameNode(value: 'memo'),
                       alias: null,
                       arguments: [],
                       directives: [],

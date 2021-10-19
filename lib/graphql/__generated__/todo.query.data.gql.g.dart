@@ -132,6 +132,13 @@ class _$GcreateTodoListData_createTodoListSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.memo;
+    if (value != null) {
+      result
+        ..add('memo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -174,6 +181,10 @@ class _$GcreateTodoListData_createTodoListSerializer
         case 'sortID':
           result.sortID = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
+          break;
+        case 'memo':
+          result.memo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -342,6 +353,13 @@ class _$GlistTodoListsData_listTodoLists_itemsSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.memo;
+    if (value != null) {
+      result
+        ..add('memo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -384,6 +402,10 @@ class _$GlistTodoListsData_listTodoLists_itemsSerializer
         case 'sortID':
           result.sortID = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
+          break;
+        case 'memo':
+          result.memo = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -847,6 +869,8 @@ class _$GcreateTodoListData_createTodoList
   final String priority;
   @override
   final int sortID;
+  @override
+  final String? memo;
 
   factory _$GcreateTodoListData_createTodoList(
           [void Function(GcreateTodoListData_createTodoListBuilder)?
@@ -861,7 +885,8 @@ class _$GcreateTodoListData_createTodoList
       this.title,
       this.status,
       required this.priority,
-      required this.sortID})
+      required this.sortID,
+      this.memo})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GcreateTodoListData_createTodoList', 'G__typename');
@@ -894,7 +919,8 @@ class _$GcreateTodoListData_createTodoList
         title == other.title &&
         status == other.status &&
         priority == other.priority &&
-        sortID == other.sortID;
+        sortID == other.sortID &&
+        memo == other.memo;
   }
 
   @override
@@ -903,12 +929,14 @@ class _$GcreateTodoListData_createTodoList
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode),
-                        tid.hashCode),
-                    title.hashCode),
-                status.hashCode),
-            priority.hashCode),
-        sortID.hashCode));
+                    $jc(
+                        $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode),
+                            tid.hashCode),
+                        title.hashCode),
+                    status.hashCode),
+                priority.hashCode),
+            sortID.hashCode),
+        memo.hashCode));
   }
 
   @override
@@ -920,7 +948,8 @@ class _$GcreateTodoListData_createTodoList
           ..add('title', title)
           ..add('status', status)
           ..add('priority', priority)
-          ..add('sortID', sortID))
+          ..add('sortID', sortID)
+          ..add('memo', memo))
         .toString();
   }
 }
@@ -959,6 +988,10 @@ class GcreateTodoListData_createTodoListBuilder
   int? get sortID => _$this._sortID;
   set sortID(int? sortID) => _$this._sortID = sortID;
 
+  String? _memo;
+  String? get memo => _$this._memo;
+  set memo(String? memo) => _$this._memo = memo;
+
   GcreateTodoListData_createTodoListBuilder() {
     GcreateTodoListData_createTodoList._initializeBuilder(this);
   }
@@ -973,6 +1006,7 @@ class GcreateTodoListData_createTodoListBuilder
       _status = $v.status;
       _priority = $v.priority;
       _sortID = $v.sortID;
+      _memo = $v.memo;
       _$v = null;
     }
     return this;
@@ -1005,7 +1039,8 @@ class GcreateTodoListData_createTodoListBuilder
             priority: BuiltValueNullFieldError.checkNotNull(
                 priority, 'GcreateTodoListData_createTodoList', 'priority'),
             sortID: BuiltValueNullFieldError.checkNotNull(
-                sortID, 'GcreateTodoListData_createTodoList', 'sortID'));
+                sortID, 'GcreateTodoListData_createTodoList', 'sortID'),
+            memo: memo);
     replace(_$result);
     return _$result;
   }
@@ -1253,6 +1288,8 @@ class _$GlistTodoListsData_listTodoLists_items
   final String priority;
   @override
   final int sortID;
+  @override
+  final String? memo;
 
   factory _$GlistTodoListsData_listTodoLists_items(
           [void Function(GlistTodoListsData_listTodoLists_itemsBuilder)?
@@ -1267,7 +1304,8 @@ class _$GlistTodoListsData_listTodoLists_items
       this.title,
       this.status,
       required this.priority,
-      required this.sortID})
+      required this.sortID,
+      this.memo})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, 'GlistTodoListsData_listTodoLists_items', 'G__typename');
@@ -1301,7 +1339,8 @@ class _$GlistTodoListsData_listTodoLists_items
         title == other.title &&
         status == other.status &&
         priority == other.priority &&
-        sortID == other.sortID;
+        sortID == other.sortID &&
+        memo == other.memo;
   }
 
   @override
@@ -1310,12 +1349,14 @@ class _$GlistTodoListsData_listTodoLists_items
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode),
-                        tid.hashCode),
-                    title.hashCode),
-                status.hashCode),
-            priority.hashCode),
-        sortID.hashCode));
+                    $jc(
+                        $jc($jc($jc(0, G__typename.hashCode), cuid.hashCode),
+                            tid.hashCode),
+                        title.hashCode),
+                    status.hashCode),
+                priority.hashCode),
+            sortID.hashCode),
+        memo.hashCode));
   }
 
   @override
@@ -1328,7 +1369,8 @@ class _$GlistTodoListsData_listTodoLists_items
           ..add('title', title)
           ..add('status', status)
           ..add('priority', priority)
-          ..add('sortID', sortID))
+          ..add('sortID', sortID)
+          ..add('memo', memo))
         .toString();
   }
 }
@@ -1367,6 +1409,10 @@ class GlistTodoListsData_listTodoLists_itemsBuilder
   int? get sortID => _$this._sortID;
   set sortID(int? sortID) => _$this._sortID = sortID;
 
+  String? _memo;
+  String? get memo => _$this._memo;
+  set memo(String? memo) => _$this._memo = memo;
+
   GlistTodoListsData_listTodoLists_itemsBuilder() {
     GlistTodoListsData_listTodoLists_items._initializeBuilder(this);
   }
@@ -1381,6 +1427,7 @@ class GlistTodoListsData_listTodoLists_itemsBuilder
       _status = $v.status;
       _priority = $v.priority;
       _sortID = $v.sortID;
+      _memo = $v.memo;
       _$v = null;
     }
     return this;
@@ -1413,7 +1460,8 @@ class GlistTodoListsData_listTodoLists_itemsBuilder
             priority: BuiltValueNullFieldError.checkNotNull(
                 priority, 'GlistTodoListsData_listTodoLists_items', 'priority'),
             sortID: BuiltValueNullFieldError.checkNotNull(
-                sortID, 'GlistTodoListsData_listTodoLists_items', 'sortID'));
+                sortID, 'GlistTodoListsData_listTodoLists_items', 'sortID'),
+            memo: memo);
     replace(_$result);
     return _$result;
   }

@@ -45,6 +45,7 @@ class GraphQLRepository implements GraphQLGateway {
       ..vars.createtodolistinput.status = statusToString[todoItem.status]
       ..vars.createtodolistinput.title = todoItem.title
       ..vars.createtodolistinput.priority = priorityToString[todoItem.priority]
+      ..vars.createtodolistinput.memo = todoItem.memo
       ..vars.createtodolistinput.sortID = todoItem.sortID);
     //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.doRequest(request);
@@ -73,6 +74,7 @@ class GraphQLRepository implements GraphQLGateway {
       ..vars.input.status = statusToString[todoItem.status]
       ..vars.input.title = todoItem.title
       ..vars.input.priority = priorityToString[todoItem.priority]
+      ..vars.input.memo = todoItem.memo
       ..vars.input.sortID = todoItem.sortID);
     //..vars.createtodolistinput.title = title);
     Stream<dynamic> events = _client.doRequest(request);

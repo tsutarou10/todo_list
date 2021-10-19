@@ -30,10 +30,10 @@ class TabPage extends HookWidget {
             builder: (context, watch, child) {
               List<ToDoItem> items = watch(provider).items;
               int sortID = items.length;
-              logger.info('sortID: ${sortID}');
               return ActionButtonWithInputDialog(
                   icon: const Icon(Icons.add),
                   provider: provider,
+                  status: status,
                   sortID: sortID);
             },
           ),

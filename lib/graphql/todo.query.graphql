@@ -6,6 +6,7 @@ mutation createTodoList($createtodolistinput: CreateTodoListInput!) {
     status
     priority
     sortID
+    memo
   }
 }
 
@@ -18,6 +19,7 @@ query listTodoLists($filter: TableTodoListFilterInput!) {
       status
       priority
       sortID
+      memo
     }
   }
 }

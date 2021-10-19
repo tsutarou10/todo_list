@@ -116,7 +116,7 @@ class ActionButtonWithInputDialog extends HookWidget {
           priority: priority ?? Priority.HIGH,
           sortID: sortID ?? 0,
         );
-        logger.info(todoItem);
+        logger.info('todoItem: ${todoItem}');
         if (isCreated == null || isCreated) {
           context.read(provider).createTodo(
                 "TEST_CUID",
